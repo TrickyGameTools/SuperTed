@@ -16,21 +16,33 @@
     <Filter Include="Source Files\Units">
       <UniqueIdentifier>{78a487ba-098a-48eb-a071-a57318e66bc4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\JCR6">
+      <UniqueIdentifier>{bfd70284-405d-4ce8-87d6-39a5df680a4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\SuperTed_Core.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\SuperTed_Save.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source\SuperTed_Core.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\TrickyUnits\Source\QuickString.cpp">
       <Filter>Source Files\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SuperTed_Save.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\SuperTed_Core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JCR6\src\jcr6_core.cpp">
+      <Filter>Source Files\JCR6</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
