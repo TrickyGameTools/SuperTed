@@ -1,4 +1,4 @@
-//#include <QuickString.hpp>
+
 #include "../headers/SuperTed_Core.hpp"
 
 //using namespace TrickyUnits;
@@ -13,11 +13,11 @@ namespace SuperTed {
 	}
 
 	TeddyPanic TeddyPanicFunction{ nullptr };
-	static void Panic(std::string err) {
-		if (!TeddyPanicFunction) _Panic(err); else TeddyPanicFunction(err);
-		
-
+	void TedPanic(std::string err) {
+		if (!TeddyPanicFunction) _Panic(err); else TeddyPanicFunction(err);		
 	}
+
+	void TedAssert(bool condition, std::string err) { if (!condition) TedPanic(err); }
 
 	Teddy CreateTeddy(int w, int h, int gw, int gh, std::string rooms, std::string layers) {
 		using namespace TrickyUnits;

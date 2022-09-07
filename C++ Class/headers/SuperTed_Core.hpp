@@ -26,6 +26,10 @@ namespace SuperTed {
 	/// </summary>
 	typedef void (*TeddyPanic)(std::string errmsg);
 
+
+	void TedPanic(std::string err);
+	void TedAssert(bool condition, std::string err);
+
 	/// <summary>
 	/// Replace this function with your own if you need your own error support. Only parameter taken in a C++ string with the error message.
 	/// </summary>
