@@ -1,0 +1,5 @@
+.vs
+MKL_*
+*.MKL.*
+bin
+
