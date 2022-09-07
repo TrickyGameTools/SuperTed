@@ -2,4 +2,11 @@
 MKL_*
 *.MKL.*
 bin
+x64
+
+
+
+*.exe
+*.dll
+*.obj
 
