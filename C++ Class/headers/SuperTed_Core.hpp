@@ -40,7 +40,7 @@ namespace SuperTed {
 	class _TeddyRoomLayer; typedef std::shared_ptr<_TeddyRoomLayer> TeddyRoomLayer;
 	class _TeddyObject; typedef std::shared_ptr<_TeddyObject> TeddyObject;
 
-	typedef std::vector<TeddyObject> TeddyObjectList;
+	typedef std::shared_ptr<std::vector<TeddyObject>> TeddyObjectList;
 
 	class _Teddy {
 	public:
@@ -71,20 +71,24 @@ namespace SuperTed {
 		bool AutoRemap{ true };
 		std::map<std::string, TeddyRoomLayer> Layers;
 		TeddyRoomLayer CreateLayer(std::string a, bool dontremap = false);
+		TeddyRoomLayer CreateZone(std::string a);
 		void Remap_Dom();
 		int W(); void W(int _w);
 		int H(); void H(int _h);
+		int GW(); void GW(int _gw);
+		int GH(); void GH(int _gh);
 		_TeddyRoomLayer* ObjectLayer();
 		std::map<std::string, std::string> Data;
+		TeddyObject AddObject(int x, int y, int kind = 0);
 	};
 
 	class _TeddyRoomLayer {
 	private:		
 		TeddyRoomLayerType Type{TeddyRoomLayerType::Layer};
-		_TeddyRoom* parent;
+		_TeddyRoom* parent{nullptr};
 		int _Dominance{ 20 };
 	public:
-		_TeddyRoomLayer(_TeddyRoom* ouwe);
+		_TeddyRoomLayer(_TeddyRoom* ouwe,std::string cmd="");
 		int W();
 		int H();
 		int Dominance();
@@ -92,8 +96,9 @@ namespace SuperTed {
 		std::shared_ptr < TrickyUnits::Array2D<int>> Field{ nullptr };
 		static _TeddyRoomLayer* ObjectLayer(_TeddyRoom* ouwe);
 		TeddyRoomLayerType GetType();
+		void SetType(TeddyRoomLayerType t); // NEVER use this unless you know what you are doing!
 		std::map<std::string, std::string> Data;
-
+		void SetParent(_TeddyRoom* ouwe);
 	};
 	
 

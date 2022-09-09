@@ -21,8 +21,8 @@ namespace SuperTed {
 
 	Teddy CreateTeddy(int w, int h, int gw, int gh, std::string rooms, std::string layers) {
 		using namespace TrickyUnits;
-		auto _rooms{ Split(rooms, ':') };
-		auto _layers{ Split(layers,':') };
+		auto _rooms{ Split(rooms, ';') };
+		auto _layers{ Split(layers,';') };
 		return CreateTeddy(w, h, gw, gh, _rooms, _layers);
 	}
 	Teddy SuperTed::CreateTeddy(int w, int h, int gw, int gh, std::vector<std::string> rooms, std::vector<std::string> layers) {
@@ -42,6 +42,11 @@ namespace SuperTed {
 		ret->Remap_Dom();
 		n = Upper(n);
 		if (n == "OBJECTS") { TeddyPanicFunction("Name Objects is reserved"); return nullptr; }
+		Rooms[n] = ret;
+		auto objlay{ std::make_shared<_TeddyRoomLayer>(ret.get()) };
+		objlay->SetType(TeddyRoomLayerType::Objects);
+		ret->Layers["OBJECTS"] = objlay;
+		for (int x = 0; x < w; ++x) for (int y = 0; y < h; ++y) ret->MapObjects->Value(x, y, std::make_shared<std::vector<TeddyObject>>());
 		if (!layerless) for (auto l : BaseLayers) ret->CreateLayer(l);
 		return TeddyRoom();
 	}
@@ -50,7 +55,7 @@ namespace SuperTed {
 		for (auto l : Layers) l.second->Field->ReDim(w, h);
 	}
 
-	_TeddyRoom::_TeddyRoom() { Panic("Teddy Room without data"); }
+	_TeddyRoom::_TeddyRoom() { TedPanic("Teddy Room without data"); }
 
 	_TeddyRoom::_TeddyRoom(_Teddy* ouwe, int _w, int _h, int _gw, int _gh) {
 		w = _w;
@@ -62,7 +67,22 @@ namespace SuperTed {
 	}
 
 	TeddyRoomLayer _TeddyRoom::CreateLayer(std::string a, bool dontremap) {
+		a = TrickyUnits::Upper(a); TedAssert(a != "OBJECTS","Layer cannot be named OBJECTS!");
 		auto ret{ std::make_shared<_TeddyRoomLayer>(this) };
+		//std::cout << "Created layer: " << a << "\n"; // debug only
+		Layers[a] = ret;
+		ret->SetParent(this);
+		ret->Field = TrickyUnits::Array2D<int>::Dim(w, h);
+		return ret;
+	}
+
+	TeddyRoomLayer _TeddyRoom::CreateZone(std::string a) {
+		a = TrickyUnits::Upper(a); TedAssert(a != "OBJECTS", "Zone cannot be named OBJECTS!");
+		auto ret{ std::make_shared<_TeddyRoomLayer>(this) };
+		//std::cout << "Created zone: " << a << "\n"; // debug only
+		Layers[a] = ret;
+		ret->SetType(TeddyRoomLayerType::Zones);
+		ret->SetParent(this);
 		ret->Field = TrickyUnits::Array2D<int>::Dim(w, h);
 		return ret;
 	}
@@ -73,7 +93,7 @@ namespace SuperTed {
 		DominanceOrder.clear();
 		for (auto ol : Layers) {
 			char tag[255];
-			sprintf_s(tag, "%08d_%s", ol.second->Dominance(), ol.first);
+			sprintf_s(tag, "%08d_%s", ol.second->Dominance(), ol.first.c_str());
 			__map[tag] = ol.first;
 		}
 		for (auto ol : __map) DominanceOrder.push_back(Layers[ol.second].get());
@@ -95,18 +115,35 @@ namespace SuperTed {
 		RedimLayers();
 	}
 
+	int _TeddyRoom::GW() { return gw; }
+	void _TeddyRoom::GW(int _v) { gw = _v; }
+	int _TeddyRoom::GH() { return gh; }
+	void _TeddyRoom::GH(int _v) { gh = _v; }
+
 	_TeddyRoomLayer* _TeddyRoom::ObjectLayer() {
 		return _TeddyRoomLayer::ObjectLayer(this);
 	}
 
+	TeddyObject _TeddyRoom::AddObject(int x, int y, int kind) {
+		auto ret{ std::make_shared<_TeddyObject>() };
+		ret->kind = 0;
+		MapObjects->Value(x, y)->push_back(ret);
+		return ret;
+	}
 
-	_TeddyRoomLayer::_TeddyRoomLayer(_TeddyRoom* ouwe) {
+
+	_TeddyRoomLayer::_TeddyRoomLayer(_TeddyRoom* ouwe,std::string cmd) {
+		using namespace TrickyUnits;
+		auto cmds{ Split(cmd,';') };
+		for (auto c : cmds) {
+			if (Upper(c) == "ZONE" || Upper(c) == "ZONE") Type = TeddyRoomLayerType::Zones;
+		}
 		parent = ouwe;
-		Field->ReDim(W(), H());
+		if(ouwe) Field = Array2D<int>::Dim(W(), H());
 	}
 
 	int _TeddyRoomLayer::W() { return parent->W(); }
-	int _TeddyRoomLayer::H() { return parent->H(); }
+	int _TeddyRoomLayer::H() { /*std::cout << "Parent: " << (int)parent << std::endl;*/ return parent->H(); }
 	int _TeddyRoomLayer::Dominance() { return _Dominance; }
 	void _TeddyRoomLayer::Dominance(int value) {
 		_Dominance = value;
@@ -124,6 +161,15 @@ namespace SuperTed {
 	}
 
 	TeddyRoomLayerType _TeddyRoomLayer::GetType() { return Type; }
+
+	void _TeddyRoomLayer::SetType(TeddyRoomLayerType t) { Type = t; }
+
+	void _TeddyRoomLayer::SetParent(_TeddyRoom* ouwe) {
+		if (!parent) {
+			parent = ouwe;
+			Field = TrickyUnits::Array2D<int>::Dim(W(), H());
+		}
+	}
 
 
 }

@@ -93,7 +93,8 @@ namespace SuperTed {
 					{
 						auto bob{ resource->StartEntry(dir + "Rooms/" + room.first + "/Objects") };
 						for (uint32 y = 0; y < room.second->H(); y++)for (uint32 x = 0; x < room.second->W(); x++) {
-							for (auto obj : room.second->MapObjects->Value(x, y) ){
+							auto l{ *(room.second->MapObjects->Value(x, y).get()) };
+							for (auto obj :l ){
 								bob->Write((byte)1);
 								bob->Write((byte)2);
 								bob->Write(x);
@@ -116,9 +117,15 @@ namespace SuperTed {
 					}
 
 				}
-				auto brd{ resource->StartEntry(dir + "Rooms/" + room.first + "/data",Storage) };
+				auto brd{ resource->StartEntry(dir + "Rooms/" + room.first + "/Room",Storage) };
+				brd->Write((byte)1);
+				brd->Write(room.second->W());
+				brd->Write(room.second->H());
+				brd->Write((byte)2);
+				brd->Write(room.second->GH());
+				brd->Write(room.second->GW());
 				for (auto d : room.second->Data) {
-					brd->Write((byte)1);
+					brd->Write((byte)3);
 					brd->Write(d.first);
 					brd->Write(d.second);
 				}
