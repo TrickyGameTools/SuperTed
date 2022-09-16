@@ -36,6 +36,11 @@ namespace SuperTed {
 		return ret;
 	}
 
+	TeddyTex _Teddy::Tex(TrickyUnits::uint32 idx) {
+		if (!Textures.count(idx)) Textures[idx] = std::make_shared<_TeddyTex>();
+		return Textures[idx];
+	}
+
 	TeddyRoom _Teddy::CreateRoom(std::string n, int w, int h, int gw, int gh, bool layerless) {
 		using namespace TrickyUnits;
 		auto ret{ std::make_shared<_TeddyRoom>(this, w,  h,  gw, gh) };
@@ -169,6 +174,13 @@ namespace SuperTed {
 			parent = ouwe;
 			Field = TrickyUnits::Array2D<int>::Dim(W(), H());
 		}
+	}
+
+
+	void _TeddyTex::Col(TrickyUnits::byte _r, TrickyUnits::byte _g, TrickyUnits::byte _b) {
+		r = _r;
+		g = _g;
+		b = _b;
 	}
 
 

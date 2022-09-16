@@ -39,6 +39,7 @@ namespace SuperTed {
 	class _TeddyRoom; typedef std::shared_ptr<_TeddyRoom> TeddyRoom;
 	class _TeddyRoomLayer; typedef std::shared_ptr<_TeddyRoomLayer> TeddyRoomLayer;
 	class _TeddyObject; typedef std::shared_ptr<_TeddyObject> TeddyObject;
+	class _TeddyTex; typedef std::shared_ptr<_TeddyTex> TeddyTex;
 
 	typedef std::shared_ptr<std::vector<TeddyObject>> TeddyObjectList;
 
@@ -52,9 +53,10 @@ namespace SuperTed {
 			defaultgh{ 32 };
 		std::vector<std::string> BaseLayers;
 		std::map<std::string, TeddyRoom> Rooms;
-		std::map<TrickyUnits::uint32, std::string> Textures;
+		std::map<TrickyUnits::uint32, TeddyTex> Textures;
 		std::map<std::string, std::string> Data;
 
+		TeddyTex Tex(TrickyUnits::uint32 idx);
 		TeddyRoom CreateRoom(std::string n, int w = 64, int h = 64, int gw = 32, int gh = 32, bool layerless = false);
 	};
 
@@ -106,6 +108,19 @@ namespace SuperTed {
 	public:
 		TrickyUnits::uint32 kind;
 		std::map<std::string, std::string> Data;
+	};
+
+	class _TeddyTex {
+	public:
+		std::string TexFile{ "" };
+		TrickyUnits::byte
+			r{ 255 },
+			g{ 255 },
+			b{ 255 };
+		int AnimSpeed{ -1 };
+		TrickyUnits::uint32 Frame{ 0 };
+		void Col(TrickyUnits::byte _r, TrickyUnits::byte _g, TrickyUnits::byte _b);
+
 	};
 
 

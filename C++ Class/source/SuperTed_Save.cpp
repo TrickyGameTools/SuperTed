@@ -10,7 +10,7 @@ using namespace jcr6;
 namespace SuperTed {
 
 	static void WriteTexCode(Teddy TeddyMap, JT_CreateBuf* Buf,uint32 t) {
-		TedAssert(t < 256, "Trying to save tex reference " + std::to_string(t) + " which is higher than the max tiles (" + std::to_string((uint32)TeddyMap->_MaxTiles) + ")");
+		TedAssert(t < (int)TeddyMap->_MaxTiles, "Trying to save tex reference " + std::to_string(t) + " which is higher than the max tiles (" + std::to_string((uint32)TeddyMap->_MaxTiles) + ")");
 		switch (TeddyMap->_MaxTiles) {
 		case TeddyMaxTile::B8:
 			Buf->Write((byte)t);
@@ -69,7 +69,11 @@ namespace SuperTed {
 			for (auto i : TeddyMap->Textures) {
 				bttex->Write((byte)2);
 				WriteTexCode(TeddyMap, bttex, i.first);
-				bttex->Write(i.second);
+				bttex->Write(i.second->TexFile);
+				bttex->Write((byte)3);
+				bttex->Write(i.second->r);
+				bttex->Write(i.second->g);
+				bttex->Write(i.second->b);
 			}
 			bttex->Write((byte)0);
 			bttex->Close();
