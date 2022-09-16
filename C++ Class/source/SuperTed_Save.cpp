@@ -52,7 +52,7 @@ namespace SuperTed {
 		{
 			auto bdata = resource->StartEntry(dir + "Data", Storage);
 			for (auto i : TeddyMap->Data) {
-				bdata->Write((byte)0);
+				bdata->Write((byte)1);
 				bdata->Write(i.first);
 				bdata->Write(i.second);
 			}
@@ -74,6 +74,12 @@ namespace SuperTed {
 				bttex->Write(i.second->r);
 				bttex->Write(i.second->g);
 				bttex->Write(i.second->b);
+				bttex->Write((byte)4);
+				bttex->Write(i.second->alpha);
+				bttex->Write((byte)5);
+				bttex->Write(i.second->Frame);
+				bttex->Write((byte)6);
+				bttex->Write(i.second->AnimSpeed);
 			}
 			bttex->Write((byte)0);
 			bttex->Close();
@@ -85,7 +91,7 @@ namespace SuperTed {
 			for(auto room:TeddyMap->Rooms){
 				brt->Write((byte)1);
 				brt->Write(room.first);
-				for (auto layer : room.second->Layers) {
+				for (auto layer : room.second->Layers) {				
 					switch (layer.second->GetType()) {
 					case TeddyRoomLayerType::Layer:
 						SaveLayer(resource,dir + "Rooms/" + room.first + "/Layers/" + layer.first, layer.second, TeddyMap,Storage);
@@ -132,6 +138,11 @@ namespace SuperTed {
 					brd->Write((byte)3);
 					brd->Write(d.first);
 					brd->Write(d.second);
+				}
+				for (auto layer : room.second->Layers) {
+					brd->Write((byte)4);
+					brd->Write(layer.first);
+					brd->Write((byte)layer.second->GetType());
 				}
 				brd->Write((byte)0);
 				brd->Close();

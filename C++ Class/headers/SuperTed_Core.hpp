@@ -13,12 +13,14 @@
 #include <QuickString.hpp>
 #include <QuickTypes.hpp> // No .cpp as these are just typedefs and nothing more
 
+#include <jcr6_core.hpp>
+
 //using namespace TrickyUnits; // Quick Test!
 
 namespace SuperTed {
 	enum class TeddyRoomLayerType { Layer, Zones, Objects };
 	enum class TeddyDrawTile { TrueSize, FitToGrid };
-	enum class TeddyMaxTile { B8 = 256, B16 = 65536, B32 = 4294967296 };
+	enum class TeddyMaxTile { B8 = 256, B16 = 65536, B32 = 4294967295 }; // Note that B32 must be one value lower or bad stuff happens
 
 
 	/// <summary>
@@ -44,6 +46,9 @@ namespace SuperTed {
 	typedef std::shared_ptr<std::vector<TeddyObject>> TeddyObjectList;
 
 	class _Teddy {
+	private: 
+		void LoadLayer(TeddyRoom R,std::string Layer, jcr6::JT_Dir* J,std::string EntryName,TeddyRoomLayerType t=TeddyRoomLayerType::Layer);
+		void LoadObjects(TeddyRoom R, jcr6::JT_Dir* J,std::string p,std::string r);
 	public:
 		TeddyMaxTile _MaxTiles{ TeddyMaxTile::B8 };
 		int
@@ -58,6 +63,8 @@ namespace SuperTed {
 
 		TeddyTex Tex(TrickyUnits::uint32 idx);
 		TeddyRoom CreateRoom(std::string n, int w = 64, int h = 64, int gw = 32, int gh = 32, bool layerless = false);
+
+		static Teddy Load(jcr6::JT_Dir* J, std::string p); // Don't call this directly. Use LoadTeddy() in stead
 	};
 
 	class _TeddyRoom {
@@ -79,9 +86,12 @@ namespace SuperTed {
 		int H(); void H(int _h);
 		int GW(); void GW(int _gw);
 		int GH(); void GH(int _gh);
+		int PixW();
+		int PixH();
 		_TeddyRoomLayer* ObjectLayer();
 		std::map<std::string, std::string> Data;
 		TeddyObject AddObject(int x, int y, int kind = 0);
+		_Teddy* GetParent();
 	};
 
 	class _TeddyRoomLayer {
@@ -116,7 +126,8 @@ namespace SuperTed {
 		TrickyUnits::byte
 			r{ 255 },
 			g{ 255 },
-			b{ 255 };
+			b{ 255 },
+			alpha{ 255 };
 		int AnimSpeed{ -1 };
 		TrickyUnits::uint32 Frame{ 0 };
 		void Col(TrickyUnits::byte _r, TrickyUnits::byte _g, TrickyUnits::byte _b);
@@ -139,5 +150,6 @@ namespace SuperTed {
 
 	Teddy CreateTeddy(int w , int h , int gw, int gh, std::vector<std::string> rooms , std::vector<std::string> layers);
 
-
+	Teddy LoadTeddy(std::string File,std::string prefix="");
+	Teddy LoadTeddy(jcr6::JT_Dir* JCRResource, std::string prefix = "");
 }
