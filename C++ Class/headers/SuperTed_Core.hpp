@@ -43,10 +43,32 @@ namespace SuperTed {
 	class _TeddyObject; typedef std::shared_ptr<_TeddyObject> TeddyObject;
 	class _TeddyTex; typedef std::shared_ptr<_TeddyTex> TeddyTex;
 
+
+	class TeddyDraw {
+	public:
+		/// <summary>
+		/// Will need to be replaced with a function which allows drawing a layer
+		/// </summary>
+		/// <param name=""></param>
+		/// <param name=""></param>
+		/// <param name="scollx"></param>
+		/// <param name="scrolly"></param>
+		virtual void DrawLayer(_Teddy* TedMap, std::string Room, std::string Lay, int scollx = 0, int scrolly = 0) = 0;
+
+		/// <summary>
+		/// Will be called automatically by the Teddy destructor
+		/// </summary>
+		/// <param name=""></param>
+		virtual void Dispose(_Teddy* TedMap)=0;
+	};
+
 	typedef std::shared_ptr<std::vector<TeddyObject>> TeddyObjectList;
 
 	class _Teddy {
 	private: 
+		static TeddyDraw* DrawDriver;
+		static TrickyUnits::uint64 Teller;
+		TrickyUnits::uint64 _ID{ Teller++ };
 		void LoadLayer(TeddyRoom R,std::string Layer, jcr6::JT_Dir* J,std::string EntryName,TeddyRoomLayerType t=TeddyRoomLayerType::Layer);
 		void LoadObjects(TeddyRoom R, jcr6::JT_Dir* J,std::string p,std::string r);
 	public:
@@ -56,6 +78,7 @@ namespace SuperTed {
 			default_h{ 64 },
 			defaultgw{ 32 },
 			defaultgh{ 32 };
+		int ID();
 		std::vector<std::string> BaseLayers;
 		std::map<std::string, TeddyRoom> Rooms;
 		std::map<TrickyUnits::uint32, TeddyTex> Textures;
@@ -63,8 +86,12 @@ namespace SuperTed {
 
 		TeddyTex Tex(TrickyUnits::uint32 idx);
 		TeddyRoom CreateRoom(std::string n, int w = 64, int h = 64, int gw = 32, int gh = 32, bool layerless = false);
+		void DrawLayer(std::string R, std::string L, int scrollx = 0, int scrolly = 0);
 
 		static Teddy Load(jcr6::JT_Dir* J, std::string p); // Don't call this directly. Use LoadTeddy() in stead
+
+		static void SetDrawDriver(TeddyDraw* DD = nullptr); // To be used by draw drivers
+		~_Teddy();
 	};
 
 	class _TeddyRoom {
@@ -120,6 +147,8 @@ namespace SuperTed {
 		std::map<std::string, std::string> Data;
 	};
 
+	enum class TeddyTexType{Unknown,NoEffect,Stretch,BottomCenter,ACT}; // (ACT=AutoCorrectTile. Only use when you know what you're doing).
+
 	class _TeddyTex {
 	public:
 		std::string TexFile{ "" };
@@ -128,6 +157,7 @@ namespace SuperTed {
 			g{ 255 },
 			b{ 255 },
 			alpha{ 255 };
+		TeddyTexType Type{ TeddyTexType::Stretch };
 		int AnimSpeed{ -1 };
 		TrickyUnits::uint32 Frame{ 0 };
 		void Col(TrickyUnits::byte _r, TrickyUnits::byte _g, TrickyUnits::byte _b);

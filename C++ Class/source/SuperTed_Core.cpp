@@ -8,6 +8,26 @@ using namespace TrickyUnits;
 
 
 namespace SuperTed {
+
+	uint64 _Teddy::Teller{ 0 };
+
+	class EmptyDrawDriver :public TeddyDraw {
+	public:		
+		void DrawLayer(_Teddy* TedMap, std::string Room, std::string Lay, int scollx = 0, int scrolly = 0) {}
+		void Dispose(_Teddy* T) {}
+	};
+	EmptyDrawDriver _DrawDriverEmpty{ EmptyDrawDriver() };	
+	TeddyDraw* _Teddy::DrawDriver{ &_DrawDriverEmpty };
+
+	void _Teddy::SetDrawDriver(TeddyDraw* DD) {
+		if (!DD) DrawDriver = &_DrawDriverEmpty; else DrawDriver = DD;
+	}
+
+	void _Teddy::DrawLayer(std::string R,std::string L,int scrollx,int scrolly) { DrawDriver->DrawLayer(this, R, L, scrollx, scrolly); }
+
+	_Teddy::~_Teddy() {
+		DrawDriver->Dispose(this);
+	}
 	
 	static void LChat(std::string m) {
 #ifdef LoadChat
@@ -124,6 +144,8 @@ namespace SuperTed {
 			Tag = BT->ReadByte();
 		}
 	}
+
+	int _Teddy::ID() { return _ID; }
 
 	TeddyTex _Teddy::Tex(TrickyUnits::uint32 idx) {
 		if (!Textures.count(idx)) Textures[idx] = std::make_shared<_TeddyTex>();
@@ -400,7 +422,7 @@ namespace SuperTed {
 
 	TeddyObject _TeddyRoom::AddObject(int x, int y, int kind) {
 		auto ret{ std::make_shared<_TeddyObject>() };
-		ret->kind = 0;
+		ret->kind = kind;
 		ObjectLayer();
 		if (!MapObjects) MapObjects = std::make_shared<Array2D<TeddyObjectList>>(w, h);
 		if (!MapObjects->Value(x, y)) MapObjects->Value(x, y, std::make_shared<std::vector<TeddyObject>>());
