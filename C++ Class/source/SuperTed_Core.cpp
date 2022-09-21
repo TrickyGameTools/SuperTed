@@ -416,6 +416,20 @@ namespace SuperTed {
 	int _TeddyRoom::PixW() { return w * gw; }
 	int _TeddyRoom::PixH() { return h * gh; }
 
+	int _TeddyRoom::LayVal(std::string Layer, int x, int y)	{
+		using namespace std;
+		Layer = Upper(Layer);
+		if (!Layers.count(Layer)) _Panic("Layer " + Layer + " not found");
+		return Layers[Layer]->Field->Value(x, y);
+	}
+
+	void _TeddyRoom::LayVal(std::string Layer, int x, int y, int newvalue) {
+		using namespace std;
+		Layer = Upper(Layer);
+		if (!Layers.count(Layer)) _Panic("Layer " + Layer + " not found");
+		Layers[Layer]->Field->Value(x, y, newvalue);
+	}
+
 	_TeddyRoomLayer* _TeddyRoom::ObjectLayer() {
 		return _TeddyRoomLayer::ObjectLayer(this);
 	}

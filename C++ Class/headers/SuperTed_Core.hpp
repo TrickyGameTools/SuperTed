@@ -83,6 +83,7 @@ namespace SuperTed {
 		std::map<std::string, TeddyRoom> Rooms;
 		std::map<TrickyUnits::uint32, TeddyTex> Textures;
 		std::map<std::string, std::string> Data;
+		
 
 		TeddyTex Tex(TrickyUnits::uint32 idx);
 		TeddyRoom CreateRoom(std::string n, int w = 64, int h = 64, int gw = 32, int gh = 32, bool layerless = false);
@@ -119,6 +120,9 @@ namespace SuperTed {
 		std::map<std::string, std::string> Data;
 		TeddyObject AddObject(int x, int y, int kind = 0);
 		_Teddy* GetParent();
+		int LayVal(std::string Layer, int x, int y); 
+		void LayVal(std::string Layer, int x, int y, int newvalue);
+
 	};
 
 	class _TeddyRoomLayer {
