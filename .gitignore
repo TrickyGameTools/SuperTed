@@ -16,3 +16,6 @@ x64
 # C# junk in project creation wizard
 NewProjectWizard/bin
 NewProjectWizard/obj
+
+
+Release
