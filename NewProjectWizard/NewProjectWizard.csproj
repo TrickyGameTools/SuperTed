@@ -35,4 +35,9 @@
     <Resource Include="Background.png" />
     <Resource Include="green059.jpg" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Units\" />
+  </ItemGroup>
+
 </Project>
