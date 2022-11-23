@@ -14,4 +14,16 @@
     <Exec Command="pwsh build2release.ps1" />
   </Target>
 
+
+  <ItemGroup>
+    <Compile Include="..\..\..\TrickyUnits\Dirry.cs" Link="Units\Dirry.cs" />
+    <Compile Include="..\..\..\TrickyUnits\FileList.cs" Link="Units\FileList.cs" />
+    <Compile Include="..\..\..\TrickyUnits\Fmt.cs" Link="Units\Fmt.cs" />
+    <Compile Include="..\..\..\TrickyUnits\FormConfirm.cs" Link="Units\FormConfirm.cs" />
+    <Compile Include="..\..\..\TrickyUnits\FormSelectFiles.cs" Link="Units\FormSelectFiles.cs" />
+    <Compile Include="..\..\..\TrickyUnits\GINIE.cs" Link="Units\GINIE.cs" />
+    <Compile Include="..\..\..\TrickyUnits\mkl.cs" Link="Units\mkl.cs" />
+    <Compile Include="..\..\..\TrickyUnits\qstr.cs" Link="Units\qstr.cs" />
+    <Compile Include="..\..\..\TrickyUnits\qstream.cs" Link="Units\qstream.cs" />
+  </ItemGroup>
 </Project>
