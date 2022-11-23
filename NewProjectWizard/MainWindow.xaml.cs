@@ -23,6 +23,7 @@
 // 
 // Version: 22.11.23
 // EndLic
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,15 +38,79 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TrickyUnits;
 
 namespace NewProjectWizard {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window {
-        public MainWindow() {
-            InitializeComponent();
-            Title = $"SuperTed Project Creation Wizard - Build: {BuildDate.sBuildDate}";
+
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window {
+		static GINIE GlobData = GINIE.FromFileAuto(Dirry.C("$AppSupport$/SuperTed.ini"));
+		static GINIE PrjData = GINIE.Empty();
+		static Dictionary<TextBox, string> TextBoxLink = new Dictionary<TextBox, string>();
+		static List<TextBox> TextBoxRequired=new List<TextBox>();
+
+		static string ProjectsDir {
+			get {
+				if (GlobData["Directories", "Projects"] == "") {
+					Confirm.Annoy("I need a directory where the SuperTed project data will be stored before I can create any project at all. Please pick one!");
+					var A = FFS.RequestDir();
+					if (A=="") {
+						Confirm.Annoy("Sorry! No directory, no projects!");
+						Environment.Exit(123);
+						return "";
+					}
+					GlobData["Directories", "Projects"] = A.Replace('\\','/');
+				}
+				return Dirry.AD(GlobData["Directories", "Projects"]);
+			}
+		}
+
+		public MainWindow() {
+			Dirry.InitAltDrives();
+			InitializeComponent();
+			Title = $"SuperTed Project Creation Wizard - Build: {BuildDate.sBuildDate}";
+			if (GlobData["Sys", "Creation"] == "") GlobData["Sys", "Creation"] = $"{DateTime.Now}";
+			ProjectDirectory.Text = ProjectsDir;
+			TextBoxLink[ProjectName] = "Project;Name";
+			TextBoxRequired.Add(ProjectName);
+			CanCreate();
+		}
+
+		void CanCreate() {
+			bool _CanCreate = true;
+			foreach (var T in TextBoxRequired) _CanCreate = _CanCreate && T.Text != "";
+			Create.IsEnabled = _CanCreate;
+        }
+
+		private void TBChange(object sender, TextChangedEventArgs e) {
+			var TB=(TextBox)sender; ;
+			if (!TextBoxLink.ContainsKey(TB)) {                
+				Confirm.Annoy("Text box not properly linked!\nAre you using complete code?\nPlease notify Jeroen P. Broks!", "ERROR!", System.Windows.Forms.MessageBoxIcon.Error);
+			} else {
+				var t = TextBoxLink[TB].Split(';');
+				string c = "", k = "";
+				switch (t.Length) {
+					case 0:
+						Confirm.Annoy("Textbox linkup syntax error!\nAre you using complete/stable code?\nPlease notify Jeroen P. Broks!", "ERROR!", System.Windows.Forms.MessageBoxIcon.Error);
+						return;
+					case 1:
+						c = "Directory";
+						k = t[0];
+						break;
+					default:
+						c = t[0];
+						k = t[1];
+						break;
+				}
+				PrjData[c, k] = TB.Text;
+			}
+			CanCreate();
+		}
+
+        private void CreateProject(object sender, RoutedEventArgs e) {
+
         }
     }
 }
