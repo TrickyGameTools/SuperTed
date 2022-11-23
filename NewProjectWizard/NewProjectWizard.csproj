@@ -14,6 +14,10 @@
     <Exec Command="pwsh build2release.ps1" />
   </Target>
 
+  <ItemGroup>
+    <None Remove="Background.png" />
+    <None Remove="green059.jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\..\..\TrickyUnits\Dirry.cs" Link="Units\Dirry.cs" />
@@ -25,5 +29,10 @@
     <Compile Include="..\..\..\TrickyUnits\mkl.cs" Link="Units\mkl.cs" />
     <Compile Include="..\..\..\TrickyUnits\qstr.cs" Link="Units\qstr.cs" />
     <Compile Include="..\..\..\TrickyUnits\qstream.cs" Link="Units\qstream.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Background.png" />
+    <Resource Include="green059.jpg" />
   </ItemGroup>
 </Project>
