@@ -82,7 +82,7 @@ namespace NewProjectWizard {
 			bool _CanCreate = true;
 			foreach (var T in TextBoxRequired) _CanCreate = _CanCreate && T.Text != "";
 			Create.IsEnabled = _CanCreate;
-        }
+		}
 
 		private void TBChange(object sender, TextChangedEventArgs e) {
 			var TB=(TextBox)sender; ;
@@ -109,8 +109,8 @@ namespace NewProjectWizard {
 			CanCreate();
 		}
 
-        private void CreateProject(object sender, RoutedEventArgs e) {
+		private void CreateProject(object sender, RoutedEventArgs e) {
 
-        }
-    }
+		}
+
 }
