@@ -89,6 +89,9 @@ namespace NewProjectWizard {
 			ProjectDirectory.Text = ProjectsDir;
 			TextBoxLink[ProjectName] = "Project;Name";
 			TextBoxRequired.Add(ProjectName);
+			TextBoxLink[DirMap] = "Maps";
+			TextBoxRequired.Add(DirMap);
+			DirButtons[DirMapSelect] = new DirButton(DirMap);
 			CanCreate();
 		}
 
