@@ -10,3 +10,9 @@ x64
 *.dll
 *.obj
 
+
+
+
+# C# junk in project creation wizard
+NewProjectWizard/bin
+NewProjectWizard/obj
