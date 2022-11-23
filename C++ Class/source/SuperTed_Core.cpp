@@ -1,6 +1,5 @@
 #define LoadChat
 
-
 #include "../headers/SuperTed_Core.hpp"
 #include <QuickString.hpp>
 
@@ -360,6 +359,7 @@ namespace SuperTed {
 		Layers[a] = ret;
 		ret->SetParent(this);
 		ret->Field = TrickyUnits::Array2D<int>::Dim(w, h);
+		ret->Field->SetAll(0);
 		return ret;
 	}
 
@@ -371,6 +371,7 @@ namespace SuperTed {
 		ret->SetType(TeddyRoomLayerType::Zones);
 		ret->SetParent(this);
 		ret->Field = TrickyUnits::Array2D<int>::Dim(w, h);
+		ret->Field->SetAll(0);
 		return ret;
 	}
 
