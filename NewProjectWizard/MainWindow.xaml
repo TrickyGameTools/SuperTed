@@ -18,6 +18,10 @@
         <Label Foreground="#FFFF00" Content="Map directory:" FontFamily="Arial" FontSize="20" Margin="0,99,980,591"></Label>
         <TextBox x:Name="DirMap" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,99,63,638" TextChanged="TBChange"/>
         <Button Content="..." Background="#b4ffb400" x:Name="DirMapSelect" Click="DirButton" Margin="1175,99,10,643"/>
+        <Label Foreground="#FFFF00" Content="Texture directory:" FontFamily="Arial" FontSize="20" Margin="0,151,980,539"></Label>
+        <TextBox x:Name="DirTex" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,141,63,596" TextChanged="TBChange"/>
+        <Button Content="..." Background="#b4ffb400" x:Name="DirTexSelect" Click="DirButton" Margin="1175,141,10,601"/>
+        <CheckBox Content="Author based" Foreground="#FFb400ff" FontFamily="Arial" FontSize="20" Margin="180,198,0,539" Checked="AuthorSet" Unchecked="AuthorSet" x:Name="Author"/>
 
         <Button Content="Create" x:Name="Create" Click="CreateProject" Margin="1018,735,0,0" Foreground="#FFB4FC00" FontFamily="Arial" FontSize="20">
             <Button.Background>

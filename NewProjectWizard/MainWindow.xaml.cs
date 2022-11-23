@@ -92,6 +92,9 @@ namespace NewProjectWizard {
 			TextBoxLink[DirMap] = "Maps";
 			TextBoxRequired.Add(DirMap);
 			DirButtons[DirMapSelect] = new DirButton(DirMap);
+			TextBoxLink[DirTex] = "Textures";
+			TextBoxRequired.Add(DirTex);
+			DirButtons[DirTexSelect] = new DirButton(DirTex);
 			CanCreate();
 		}
 
@@ -148,6 +151,10 @@ namespace NewProjectWizard {
 					Confirm.Annoy($"Unknown filesystem type({BFld.Type})\nPlease notify Jeroen P. Broks!", "Error!", System.Windows.Forms.MessageBoxIcon.Error);
 					return;
 			}
+		}
+
+		private void AuthorSet(object sender, RoutedEventArgs e) {
+			PrjData["Author", "Textures"] = $"{Author.IsChecked}";
 		}
 	}
 }
