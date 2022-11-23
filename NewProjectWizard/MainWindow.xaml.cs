@@ -42,6 +42,19 @@ using TrickyUnits;
 
 namespace NewProjectWizard {
 
+	enum ft { File,Directory};
+
+	internal struct DirButton {
+		internal ft Type;
+		internal TextBox TB;
+
+		internal DirButton(TextBox tB, ft type = ft.Directory) {
+			Type = type;
+			TB = tB;
+		}
+
+	}
+
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
@@ -50,6 +63,7 @@ namespace NewProjectWizard {
 		static GINIE PrjData = GINIE.Empty();
 		static Dictionary<TextBox, string> TextBoxLink = new Dictionary<TextBox, string>();
 		static List<TextBox> TextBoxRequired=new List<TextBox>();
+		static Dictionary<Button,DirButton> DirButtons=new Dictionary<Button,DirButton>();
 
 		static string ProjectsDir {
 			get {
@@ -113,4 +127,24 @@ namespace NewProjectWizard {
 
 		}
 
+		private void DirButton(object sender, RoutedEventArgs e) {
+			var DB = (Button)sender;
+			if (!DirButtons.ContainsKey(DB)) {
+				Confirm.Annoy("Request button has not been linked\nPlease notify Jeroen P. Broks!", "Error!", System.Windows.Forms.MessageBoxIcon.Error);
+				return;
+			}
+			var BFld = DirButtons[DB];
+			switch (BFld.Type) {
+				case ft.Directory:
+					BFld.TB.Text = FFS.RequestDir();
+					break;
+				case ft.File:
+					BFld.TB.Text = FFS.RequestFile();
+					break;
+				default:
+					Confirm.Annoy($"Unknown filesystem type({BFld.Type})\nPlease notify Jeroen P. Broks!", "Error!", System.Windows.Forms.MessageBoxIcon.Error);
+					return;
+			}
+		}
+	}
 }
