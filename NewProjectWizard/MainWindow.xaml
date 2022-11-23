@@ -7,26 +7,41 @@
 		xmlns:local="clr-namespace:NewProjectWizard"
 		mc:Ignorable="d"
 		Title="SuperTed Project Creation Wizard" Height="800" Width="1238">
-    <Grid >
-        <Grid.Background>
-            <ImageBrush ImageSource="/Background.png"/>
-        </Grid.Background>
-        <Label Foreground="#FFFF00" Content="Projects Directory:" FontFamily="Arial" FontSize="20" Margin="0,0,980,690"></Label>
-        <TextBox x:Name="ProjectDirectory" IsReadOnly="True" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,0,10,737"/>
-        <Label Foreground="#FFFF00" Content="Project Name:" FontFamily="Arial" FontSize="20" Margin="0,47,980,643"></Label>
-        <TextBox x:Name="ProjectName" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,47,10,690" TextChanged="TBChange"/>
-        <Label Foreground="#FFFF00" Content="Map directory:" FontFamily="Arial" FontSize="20" Margin="0,99,980,591"></Label>
-        <TextBox x:Name="DirMap" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,99,63,638" TextChanged="TBChange"/>
-        <Button Content="..." Background="#b4ffb400" x:Name="DirMapSelect" Click="DirButton" Margin="1175,99,10,643"/>
-        <Label Foreground="#FFFF00" Content="Texture directory:" FontFamily="Arial" FontSize="20" Margin="0,151,980,539"></Label>
-        <TextBox x:Name="DirTex" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,141,63,596" TextChanged="TBChange"/>
-        <Button Content="..." Background="#b4ffb400" x:Name="DirTexSelect" Click="DirButton" Margin="1175,141,10,601"/>
-        <CheckBox Content="Author based" Foreground="#FFb400ff" FontFamily="Arial" FontSize="20" Margin="180,198,0,539" Checked="AuthorSet" Unchecked="AuthorSet" x:Name="Author"/>
+	<Grid >
+		<Grid.Background>
+			<ImageBrush ImageSource="/Background.png"/>
+		</Grid.Background>
+		<Label Foreground="#FFFF00" Content="Projects Directory:" FontFamily="Arial" FontSize="20" Margin="0,0,980,690"></Label>
+		<TextBox x:Name="ProjectDirectory" IsReadOnly="True" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,0,10,737"/>
+		<Label Foreground="#FFFF00" Content="Project Name:" FontFamily="Arial" FontSize="20" Margin="0,47,980,643"></Label>
+		<TextBox x:Name="ProjectName" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,47,10,690" TextChanged="TBChange"/>
+		<Label Foreground="#FFFF00" Content="Map directory:" FontFamily="Arial" FontSize="20" Margin="0,99,980,591"></Label>
+		<TextBox x:Name="DirMap" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,99,63,638" TextChanged="TBChange"/>
+		<Button Content="..." Background="#b4ffb400" x:Name="DirMapSelect" Click="DirButton" Margin="1175,99,10,643"/>
+		<Label Foreground="#FFFF00" Content="Texture directory:" FontFamily="Arial" FontSize="20" Margin="0,151,980,539"></Label>
+		<TextBox x:Name="DirTex" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,141,63,596" TextChanged="TBChange"/>
+		<Button Content="..." Background="#b4ffb400" x:Name="DirTexSelect" Click="DirButton" Margin="1175,141,10,601"/>
+		<CheckBox Content="Author based" Foreground="#FFb400ff" FontFamily="Arial" FontSize="20" Margin="180,198,0,539" Checked="AuthorSet" Unchecked="AuthorSet" x:Name="Author"/>
 
-        <Button Content="Create" x:Name="Create" Click="CreateProject" Margin="1018,735,0,0" Foreground="#FFB4FC00" FontFamily="Arial" FontSize="20">
-            <Button.Background>
-                <ImageBrush ImageSource="/green059.jpg"/>
-            </Button.Background>
-        </Button>
-    </Grid>
+		<Label Foreground="#FFFF00" Content="Layers:" FontFamily="Arial" FontSize="20" Margin="10,245,970,445"></Label>
+		<TextBox x:Name="LLayers" Background="#7F000000" Foreground="#FF00b4ff" Margin="190,245,0,492" TextChanged="NoChange"/>
+		<Label Foreground="#FFFF00" Content="Zones:" FontFamily="Arial" FontSize="20" Margin="10,292,970,398"></Label>
+		<TextBox x:Name="LZones" Background="#7F000000" Foreground="#FF00b4ff" Margin="190,292,0,445" TextChanged="NoChange"/>
+		<Label Foreground="#FFFF00" Content="Grid:" FontFamily="Arial" FontSize="20" Margin="10,339,970,351"></Label>
+		<Label Foreground="#FFFF00" Content="x" FontFamily="Arial" FontSize="20" Margin="268,339,712,351"></Label>
+		<TextBox x:Name="Width" Background="#7F000000" Foreground="#FF00b4ff" Margin="190,345,980,392" TextChanged="TBChange" />
+		<TextBox x:Name="Height" Background="#7F000000" Foreground="#FF00b4ff" Margin="329,345,841,392" TextChanged="TBChange"/>
+
+		<Label Foreground="#FFFF00" Content="Script Area:" FontFamily="Arial" FontSize="20" Margin="10,410,970,280"></Label>
+		<TextBox x:Name="ScriptArea" Background="#7F000000" Foreground="#FF00b4ff" Margin="190,397,0,340" TextChanged="NoChange"/>
+		<Label Foreground="#FFFF00" Content="Script Spot:" FontFamily="Arial" FontSize="20" Margin="10,457,970,233"></Label>
+		<TextBox x:Name="ScriptSpot" Background="#7F000000" Foreground="#FF00b4ff" Margin="190,457,0,280" TextChanged="NoChange"/>
+
+
+		<Button Content="Create" x:Name="Create" Click="CreateProject" Margin="1018,735,0,0" Foreground="#FFB4FC00" FontFamily="Arial" FontSize="20">
+			<Button.Background>
+				<ImageBrush ImageSource="/green059.jpg"/>
+			</Button.Background>
+		</Button>
+	</Grid>
 </Window>
