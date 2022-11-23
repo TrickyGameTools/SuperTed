@@ -1,13 +1,24 @@
 ﻿<Window x:Class="NewProjectWizard.MainWindow"
-        
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NewProjectWizard"
-        mc:Ignorable="d"
-        Title="SuperTed Project Creation Wizard" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+		
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:NewProjectWizard"
+		mc:Ignorable="d"
+		Title="SuperTed Project Creation Wizard" Height="800" Width="1238">
+	<Grid >
+		<Grid.Background>
+			<ImageBrush ImageSource="/Background.png"/>
+		</Grid.Background>
+		<Label Foreground="#FFFF00" Content="Projects Directory:" FontFamily="Arial" FontSize="20" Margin="0,0,980,690"></Label>
+		<TextBox x:Name="ProjectDirectory" IsReadOnly="True" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,0,10,737"/>
+		<Label Foreground="#FFFF00" Content="Project Name:" FontFamily="Arial" FontSize="20" Margin="0,47,980,643"></Label>
+		<TextBox x:Name="ProjectName" Background="#7F000000" Foreground="#FF00b4ff" Margin="180,47,10,690" TextChanged="TBChange"/>
+		<Button Content="Create" x:Name="Create" Click="CreateProject" Margin="1018,735,0,0" Foreground="#FFB4FC00" FontFamily="Arial" FontSize="20">
+			<Button.Background>
+				<ImageBrush ImageSource="/green059.jpg"/>
+			</Button.Background>
+		</Button>
+	</Grid>
 </Window>
