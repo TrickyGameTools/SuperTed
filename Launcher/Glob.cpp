@@ -77,5 +77,12 @@ namespace SuperTed {
 			return ret;
 		}
 
+		int WW() {
+			return AskInt(&_globalconfig, "Launcher", "Width", "Preffered Window width for launcher:", 1200);
+		}
+		int WH() {
+			return AskInt(&_globalconfig, "Launcher", "Height", "Preffered Window Height for launcher:", 800);
+		}
+
 	}
 }

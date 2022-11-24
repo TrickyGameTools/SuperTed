@@ -31,5 +31,7 @@ namespace SuperTed {
 		extern std::string MyDir;
 		extern jcr6::JT_Dir* JAS;
 		std::string ProjectsDir();
+		int WW();
+		int WH();
 	}
 }
