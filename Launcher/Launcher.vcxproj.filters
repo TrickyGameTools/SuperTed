@@ -28,6 +28,9 @@
     <Filter Include="Source Files\TQSG">
       <UniqueIdentifier>{c91cad3b-1028-46a2-a788-7614a13b5db0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\June19">
+      <UniqueIdentifier>{be895fcc-88b8-40e4-abf4-d341eb9e9e2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
