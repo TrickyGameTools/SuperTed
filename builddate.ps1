@@ -6,10 +6,12 @@ function private:builddate($d){
         $cpp = '
 
         #pragma once
-        #define BPP_BuildDate "' + $date + '"
+        #define SuperTed_BuildDate "' + $date + '"
         '
 
         echo $cpp > $d/builddate.hpp
+
+	echo "Build date for '$d' set to $date"
 }
 
 
