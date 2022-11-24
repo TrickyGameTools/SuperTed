@@ -2,11 +2,11 @@
 
 function private:builddate{                           
         $date = Get-Date                              
-        $ginie = '# Identification data      
-                                                      
-[Build]                                  
-Date=' + $date + '        
-		
+        $ginie = '# Identification data 
+
+[Build]
+Date=' + $date + '
+
 [ID]
 For=SuperTed
 Sig=fbeb79a1
