@@ -28,10 +28,13 @@
 #include <Platform.hpp>
 #include <QuickString.hpp>
 #include <QuickStream.hpp>
+#include <TQSG.hpp>
+#include <TQSE.hpp>
 
 
 #include "builddate.hpp"
 #include "Glob.hpp"
+#include "Run.hpp"
 #include "../SupJCR/SupJCR.hpp"
 
 using namespace TrickyUnits;
@@ -39,7 +42,9 @@ using namespace SuperTed::Launcher;
 
 int main(int ac, char** arg) {
 	MyDir = TReplace(ExtractDir(arg[0]), '\\', '/');
+	// Start
 	QCol->LGreen("SuperTed - Launcher\n");
+	QCol->Magenta("(c) 2022 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
 	QCol->Doing("Coded by", "Jeroen P. Broks");
 	QCol->Doing("Build", SuperTed_BuildDate);
 	QCol->Doing("Platform", Platform());
@@ -48,5 +53,16 @@ int main(int ac, char** arg) {
 	QCol->Doing("Called from", TReplace(CurrentDir(), '\\', '/'));
 	QCol->Doing("Project Dir", ProjectsDir());
 	JAS = SuperTed::JCR6::STED_Assets(MyDir);
-	QCol->Magenta("(c) 2022 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
+	QCol->Doing("Initizing", "SDL2 and TQSG"); 
+	TQSG_Init("SuperTed - Launcher - (c) Jeroen P. Broks", WW(), WH()); TQSG_Cls(); TQSG_Flip();
+	QCol->Doing("Initizing", "TQSE"); TQSE_Init();
+	LoadBackGround();
+	QCol->Yellow("Let's get ready to rumble\n\n");
+	// Run
+	do {} while (Run());
+
+	// End
+	QCol->Doing("Closing", "SDL2 and TQSG");
+	TQSG_Close();
+	QCol->Reset();
 }
