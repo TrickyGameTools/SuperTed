@@ -57,6 +57,7 @@ int main(int ac, char** arg) {
 	TQSG_Init("SuperTed - Launcher - (c) Jeroen P. Broks", WW(), WH()); TQSG_Cls(); TQSG_Flip();
 	QCol->Doing("Initizing", "TQSE"); TQSE_Init();
 	LoadBackGround();
+	CreateUI();
 	QCol->Yellow("Let's get ready to rumble\n\n");
 	// Run
 	do {} while (Run());
