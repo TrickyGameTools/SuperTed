@@ -23,8 +23,30 @@
 // 
 // Version: 22.11.24
 // EndLic
+
+#include <QCol.hpp>
+#include <Platform.hpp>
+#include <QuickString.hpp>
+#include <QuickStream.hpp>
+
+
 #include "builddate.hpp"
+#include "Glob.hpp"
+#include "../SupJCR/SupJCR.hpp"
+
+using namespace TrickyUnits;
+using namespace SuperTed::Launcher;
 
 int main(int ac, char** arg) {
-
+	MyDir = TReplace(ExtractDir(arg[0]), '\\', '/');
+	QCol->LGreen("SuperTed - Launcher\n");
+	QCol->Doing("Coded by", "Jeroen P. Broks");
+	QCol->Doing("Build", SuperTed_BuildDate);
+	QCol->Doing("Platform", Platform());
+	QCol->Doing("PlatformX", Platform(false));
+	QCol->Doing("SuperTed Dir", MyDir);
+	QCol->Doing("Called from", TReplace(CurrentDir(), '\\', '/'));
+	QCol->Doing("Project Dir", ProjectsDir());
+	JAS = SuperTed::JCR6::STED_Assets(MyDir);
+	QCol->Magenta("(c) 2022 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
 }
