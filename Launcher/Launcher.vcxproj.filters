@@ -16,10 +16,75 @@
     <Filter Include="Source Files\Launcher">
       <UniqueIdentifier>{47478258-a023-46cb-b2a2-3eb45b23b1f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Launcher">
+      <UniqueIdentifier>{b00ba582-64fd-4220-b71d-13b304d23802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tricky%27s Units">
+      <UniqueIdentifier>{e6f30f5a-42db-4a7d-b8f0-5d64271b5a96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\JCR6">
+      <UniqueIdentifier>{9120352e-0b30-46f3-967c-1415aab274a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\Launcher</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\Ask.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\FileList.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\GINIE.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\Platform.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\QCol.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\QuickInput.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\QuickStream.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\QuickString.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\TrickySTOI.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\TrickyTime.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Glob.cpp">
+      <Filter>Source Files\Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\Dirry.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SupJCR\SupJCR.cpp">
+      <Filter>Source Files\Launcher</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JCR6\src\jcr6_zlib.cpp">
+      <Filter>Source Files\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JCR6\src\jcr6_core.cpp">
+      <Filter>Source Files\JCR6</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="builddate.hpp">
+      <Filter>Header Files\Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="Glob.hpp">
+      <Filter>Header Files\Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SupJCR\SupJCR.hpp">
+      <Filter>Header Files\Launcher</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

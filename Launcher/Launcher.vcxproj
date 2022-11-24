@@ -85,6 +85,8 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>../Release</OutDir>
     <TargetName>SuperTed</TargetName>
+    <IncludePath>E:\Projects\Applications\VisualStudio\VC\Apollo Game Engine\packages\zlib-msvc14-x64.1.2.11.7795\build\native\include\;E:\Projects\Applications\VisualStudio\VC\JCR6\headers;E:\Projects\Applications\VisualStudio\VC\TrickyUnits\Headers;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Projects\Applications\VisualStudio\VC\Apollo Game Engine\packages\zlib-msvc14-x64.1.2.11.7795\build\native\lib_release\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -140,10 +142,37 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>zlib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>pwsh ../builddate.ps1 ../Launcher</Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>Keep the build number to-to-date</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\JCR6\src\jcr6_core.cpp" />
+    <ClCompile Include="..\..\JCR6\src\jcr6_zlib.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\Ask.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\Dirry.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\FileList.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\GINIE.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\Platform.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\QCol.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\QuickInput.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\QuickStream.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\QuickString.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\TrickySTOI.cpp" />
+    <ClCompile Include="..\..\TrickyUnits\Source\TrickyTime.cpp" />
+    <ClCompile Include="..\SupJCR\SupJCR.cpp" />
+    <ClCompile Include="Glob.cpp" />
     <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SupJCR\SupJCR.hpp" />
+    <ClInclude Include="builddate.hpp" />
+    <ClInclude Include="Glob.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
