@@ -27,6 +27,7 @@
 namespace SuperTed {
 	namespace Launcher {
 		void LoadBackGround();
+		void CreateUI();
 		bool Run();
 	}
 }
