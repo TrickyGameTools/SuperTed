@@ -25,6 +25,9 @@
     <Filter Include="Source Files\JCR6">
       <UniqueIdentifier>{9120352e-0b30-46f3-967c-1415aab274a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\TQSG">
+      <UniqueIdentifier>{c91cad3b-1028-46a2-a788-7614a13b5db0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -75,6 +78,18 @@
     <ClCompile Include="..\..\JCR6\src\jcr6_core.cpp">
       <Filter>Source Files\JCR6</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\TQSG\TQSE.cpp">
+      <Filter>Source Files\TQSG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TQSG\TQSG.cpp">
+      <Filter>Source Files\TQSG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TrickyUnits\Source\TrickyMath.cpp">
+      <Filter>Source Files\Tricky%27s Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Run.cpp">
+      <Filter>Source Files\Launcher</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="builddate.hpp">
@@ -84,6 +99,15 @@
       <Filter>Header Files\Launcher</Filter>
     </ClInclude>
     <ClInclude Include="..\SupJCR\SupJCR.hpp">
+      <Filter>Header Files\Launcher</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\TQSG\TQSE.hpp">
+      <Filter>Source Files\TQSG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\TQSG\TQSG.hpp">
+      <Filter>Source Files\TQSG</Filter>
+    </ClInclude>
+    <ClInclude Include="Run.hpp">
       <Filter>Header Files\Launcher</Filter>
     </ClInclude>
   </ItemGroup>
