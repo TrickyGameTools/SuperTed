@@ -59,6 +59,7 @@ namespace SuperTed {
 		static j19gadget* selMap{ nullptr };
 		static j19gadget* newMap{ nullptr };
 		static j19gadget* newMapAct{ nullptr };
+		static j19gadget* edtMapButton{ nullptr };
 
 		static int Exe(std::string cmd) {
 			QCol->Doing("Executing", cmd);
@@ -71,7 +72,18 @@ namespace SuperTed {
 			TQSG_Flip();
 			auto ret = system(cmd.c_str());
 			return ret;
+		}
 
+		static std::string ChosenProject() {
+			return selPrj->ItemText();
+		}
+
+		static void PCheck(j19gadget* j, j19action a);
+		static void ActRenewProjectList(j19gadget* j, j19action a) {
+			auto List = FileList(ProjectsDir(), Directories);
+			selPrj->ClearItems();
+			for (auto F : List) selPrj->AddItem(F);
+			PCheck(j, a);
 		}
 
 		static void ActNewProject(j19gadget*j,j19action a){ 
@@ -81,6 +93,7 @@ namespace SuperTed {
 				return;
 			}
 			Exe(cmd);
+			ActRenewProjectList(j, a);
 		}
 
 		static void PCheck(j19gadget* j, j19action a){
@@ -88,15 +101,23 @@ namespace SuperTed {
 			haveprj->Visible = selPrj->ItemText()!="";
 		}
 
-		static void ActRenewProjectList(j19gadget* j, j19action a) {
-			auto List = FileList(ProjectsDir(), Directories);
-			selPrj->ClearItems();
-			for (auto F : List) selPrj->AddItem(F);
-			PCheck(j, a);
+
+		static void StartEditor(std::string Project, std::string Map) {
+			// This looks needlessly complicated, and frankly, it is....
+			// However in Windows, execution commands are mostly taken over cmd 
+			// which is quite primitive and will me quite a load of errors, so this way I hope to prevent that
+			static std::string Editor = TrSPrintF("%s/SuperTed_Editor.exe",MyDir.c_str());
+			if (!FileExists(Editor)) { Err("Editor (" + Editor + ") not found"); return; }
+			std::string pP{ "" };
+			std::string pM{ "" };
+			for (size_t i = 0; i < Project.size(); i++) pP += TrSPrintF(":%d:", (int)Project[i]);
+			for (size_t i = 0; i < Map.size(); i++) pM += TrSPrintF(":%d:", (int)Map[i]);
+			Exe(Editor + " -dc " + pP + " " + pM);
 		}
 
 		static void ActNew(j19gadget*, j19action a) {
-			QCol->Error("Action for new map not yet implemented");
+			//QCol->Error("Action for new map not yet implemented");
+			if (newMap->Text.size()) StartEditor(ChosenProject(), newMap->Text);
 		}
 
 		static void TypeNew(j19gadget* j, j19action a) {
@@ -145,9 +166,13 @@ namespace SuperTed {
 			haveprj->Visible = false;
 			auto labMap{ CreateLabel("Maps",0,0,40,20,haveprj,0) };
 			labMap->FR =0; labMap->FG = 180; labMap->FB = 0; labMap->FA = 255;
-			selMap = CreateListBox(5, 20, dw, haveprj->H() - 60, haveprj);
+			selMap = CreateListBox(5, 20, dw-10, haveprj->H() - 60, haveprj);
 			selMap->FR = 0; selMap->FG = 180; selMap->FB = 255; selMap->FA = 255;
 			selMap->BR = 0; selMap->BG = 18; selMap->BB = 25; selMap->BA = 255;
+			edtMapButton = CreateButton("Edit chosen map", dw, 0, haveprj);
+			edtMapButton->FR = 0; edtMapButton->FG = 180; edtMapButton->FB = 255; edtMapButton->FA = 255;
+			edtMapButton->BR = 0; edtMapButton->BG = 18; edtMapButton->BB = 25; edtMapButton->BA = 255;
+			edtMapButton->Enabled = false;
 
 			auto newy{ haveprj->H() - 30 };
 			newMap = CreateTextfield(5, newy, dw-10, haveprj);
@@ -158,6 +183,7 @@ namespace SuperTed {
 			newMapAct->FB = 0; newMapAct->FR = 180; newMapAct->FG = 255; newMapAct->FA = 255;
 			newMapAct->BB = 0; newMapAct->BR = 18; newMapAct->BG = 25; newMapAct->BA = 255;
 			newMapAct->Enabled = false;
+			newMapAct->CBAction = ActNew;
 
 		}
 
