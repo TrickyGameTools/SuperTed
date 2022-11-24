@@ -46,6 +46,7 @@ using namespace TrickyUnits;
 namespace SuperTed {
 	namespace Launcher {
 		static TQSG_AutoImage Background{ nullptr };
+		static TQSG_AutoImage Bear{ nullptr };
 
 		static bool ErrorThrown{ false };
 		static void Err(std::string e) {
@@ -142,9 +143,13 @@ namespace SuperTed {
 			QCol->Doing("Configuring", "Font");
 			j19gadget::SetDefaultFont(JAS, "Fonts/DOS.jfbf");
 			QCol->Doing("Creating", "User Interface");
-			UI = WorkScreen();
+			UI = WorkScreen();			
 			auto h = UI->H(), dh = (int)ceil(h * 0.25);
 			auto w = UI->W(), dw = w - 250;
+
+			//auto bear = CreatePicture(w - 260, 100, 260, 300, UI, Pic_FullStretch);
+			//bear->Image(*JAS, "IMG/TeddyBear");
+
 			auto labPrj{ CreateLabel("Projects",0,0,40,20,UI) };
 			labPrj->FR = 255; labPrj->FG = 180; labPrj->FB = 0; labPrj->FA = 255;
 			selPrj= CreateListBox(5,20,dw - 10,dh - 20,UI) ;
@@ -195,6 +200,7 @@ namespace SuperTed {
 			if (a != "" && Upper(Trim(a)) != "OK") Err("JCR6 ERROR>" + a);
 			if (b != "") Err("SDL2 ERROR>" + b);
 			if (!Background->Frames()) Err("For some reasons beyond me, the background didn't load");
+			Bear = TQSG_LoadAutoImage(JAS, "IMG/Teddybear.png");
 		}
 
 		bool Run() {
@@ -206,6 +212,7 @@ namespace SuperTed {
 			TQSG_Color(255, 255, 255);
 			Background->Tile(0, 0, TQSG_ScreenWidth(), TQSG_ScreenHeight(), floor((TQSG_ScreenWidth() / 2) + (DegSin(r) * 250)), floor((TQSG_ScreenHeight() / 2) + (DegCos(r) * 250)));
 			r = (r + 1) % 360;
+			Bear->Draw(TQSG_ScreenWidth() - Bear->W(), ceil(TQSG_ScreenHeight() / 2) - ceil(Bear->H() / 2));
 			UI->Draw();
 			KeepGoing = KeepGoing && !TQSE_Quit();
 #ifdef ESCAPE_IS_QUIT
