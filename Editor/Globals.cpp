@@ -34,7 +34,8 @@ namespace SuperTed {
 		std::string MyDir{"."};
 		jcr6::JT_Dir* JAS;
 		GINIE GlobalConfig;
-		TrickyUnits::ParsedArg CLIOptions;
+		GINIE ProjectConfig;
+		ParsedArg CLIOptions;
 		std::string EdtProject{ "" };
 		std::string EdtMap{ "" };
 

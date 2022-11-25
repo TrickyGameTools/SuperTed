@@ -36,6 +36,7 @@ namespace SuperTed {
 		extern std::string MyDir;
 		extern jcr6::JT_Dir* JAS;
 		extern TrickyUnits::GINIE GlobalConfig;
+		extern TrickyUnits::GINIE ProjectConfig;
 		extern TrickyUnits::ParsedArg CLIOptions;
 		extern std::string EdtProject;
 		extern std::string EdtMap;
