@@ -62,6 +62,7 @@ namespace SuperTed {
 				Functions.clear();
 				Reg("Slyvina", Slyvina);
 				Reg("LoadString", SLoadString);
+				Reg("InstantCrash", InstantCrash);
 				first = false;
 			}
 		}
