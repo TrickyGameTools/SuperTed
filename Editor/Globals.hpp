@@ -49,6 +49,8 @@ namespace SuperTed {
 		std::string ProjectsDir();
 		std::string EdtProjectDir();
 		std::string EdtProjectIni();
+		std::string EdtProjectLua();
+		std::string EdtProjectNeil();
 		
 		std::string TextureDir();
 
