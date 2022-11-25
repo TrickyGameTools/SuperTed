@@ -27,17 +27,21 @@
 #include "Globals.hpp"
 #include <Dirry.hpp>
 #include <QCol.hpp>
+#include <QuickString.hpp>
+#include <Ask.hpp>
 using namespace TrickyUnits;
 
 namespace SuperTed {
 	namespace Editor {
 		std::string MyDir{"."};
 		jcr6::JT_Dir* JAS;
+		jcr6::JT_Dir JTEX;
 		GINIE GlobalConfig;
 		GINIE ProjectConfig;
 		ParsedArg CLIOptions;
 		std::string EdtProject{ "" };
 		std::string EdtMap{ "" };
+		
 
 
 		static void LoadGlobalConfig(bool force=false) {
@@ -51,15 +55,28 @@ namespace SuperTed {
 			}
 		}
 
+		static string AltMount(string file) {
+			auto spfile = Split(file, ':');
+			if (spfile.size() <= 0) { QCol->Error("Invalid file (" + file + ")"); return "???"; }
+			if (spfile.size() > 2) { QCol->Error("Illegal file name (" + file + "). I'll try to go on, but results may be funny"); }
+			auto drv{ Upper(spfile[0]) };
+			auto path{ spfile[1] };
+			auto mdrv{ Ask(&GlobalConfig,"Mount",drv,TrSPrintF("In file \"%s\" the unrecognized drive '%s' appears to be requested.\nI can mount a directory to that.\nPlease give me one: ",file.c_str(),drv.c_str())) };
+			return mdrv + "/" + path;
+
+		}
+
 		std::string ProjectsDir() {
 			LoadGlobalConfig();
-			auto ret = GlobalConfig.Value("Directories", "Projects");
-			if (!ret.size()) { QCol->Error("No project direcoty set"); exit(1); }
+			auto ret = AltMount(GlobalConfig.Value("Directories", "Projects"));
+			if (!ret.size()) { QCol->Error("No project directory set"); exit(1); }
+			
 			return ret;
 		}
 
 		std::string EdtProjectDir() { return ProjectsDir() + "/" + EdtProject; }
 		std::string EdtProjectIni() { return EdtProjectDir() + "/" + EdtProject + ".ini"; }
+		std::string TextureDir() { return TReplace(AltMount(ProjectConfig.Value("Directory", "Textures")),'\\','/'); }
 		std::string EdtProjectScript() { return EdtProjectDir() + "/" + EdtProject + ".neil"; }
 
 	}
