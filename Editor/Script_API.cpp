@@ -151,7 +151,7 @@ namespace SuperTed {
 			if (ExtractExt(Lower(ScriptFile)) == "neil") {
 				auto src = TrSPrintF("-- %s\n\nlocal u,e = Neil.Use(\"%s\")\n", ScriptFile.c_str(), ScriptFile.c_str());
 				src += "if not u then SuperTed.InstantCrash(e) end";
-				luaL_loadstring(L, src.c_str(); lua_call(L, 0, 0);
+				luaL_loadstring(L, src.c_str()); lua_call(L, 0, 0);
 			} else if (ExtractExt(Lower(ScriptFile)) == "lua") {
 				if (!FileExists(ScriptFile)) { Throw("Script file not found", ScriptFile, ThrowAct::InstantEnd); return; }
 				auto src = LoadString(ScriptFile);
