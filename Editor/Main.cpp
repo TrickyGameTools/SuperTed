@@ -87,6 +87,6 @@ int main(int argcount, char** args) {
 	// Run
 
 	// Close
-	if (Script != NULL) lua_close(Script);
+	if (Script != NULL) { QCol->Doing("Disposing", "Script");  lua_close(Script); }
 	return 0;
 }
