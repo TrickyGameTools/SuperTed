@@ -106,6 +106,11 @@ namespace SuperTed {
 			return 0;
 		}
 
+		static int Doing(lua_State* L) {
+			QCol->Doing(luaL_checkstring(L, 1), luaL_checkstring(L, 2), luaL_optstring(L, 3, "\n"));
+			return 0;
+		}
+
 		static void Reg(string fname, lua_CFunction cfun) {
 			Functions[fname] = cfun;
 		}
@@ -119,6 +124,7 @@ namespace SuperTed {
 				Reg("LoadString", SLoadString);
 				Reg("InstantCrash", InstantCrash);
 				Reg("NonFatalError", NonFatalError);
+				Reg("Doing", Doing);
 				first = false;
 			}
 		}
