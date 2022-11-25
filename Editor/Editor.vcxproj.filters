@@ -84,9 +84,18 @@
     <ClCompile Include="..\..\TrickyUnits\Source\Platform.cpp">
       <Filter>Source Files\Tricky%27s Units</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\JCR6\src\jcr6_realdir.cpp">
+      <Filter>Source Files\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="Textures.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.hpp">
+      <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Textures.hpp">
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
   </ItemGroup>

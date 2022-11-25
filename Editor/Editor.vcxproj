@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\JCR6\src\jcr6_core.cpp" />
+    <ClCompile Include="..\..\JCR6\src\jcr6_realdir.cpp" />
     <ClCompile Include="..\..\JCR6\src\jcr6_zlib.cpp" />
     <ClCompile Include="..\..\TrickyUnits\Source\ArgParse.cpp" />
     <ClCompile Include="..\..\TrickyUnits\Source\Ask.cpp" />
@@ -166,9 +167,11 @@
     <ClCompile Include="..\SupJCR\SupJCR.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Textures.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.hpp" />
+    <ClInclude Include="Textures.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
