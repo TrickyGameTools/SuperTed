@@ -4,7 +4,7 @@
 #define MyAppName "SuperTed"
 #define MyAppVersion "Scyndi"
 #define MyAppPublisher "Jeroen P. Broks"
-#define MyAppURL "http://www.example.com/"
+#define MyAppURL "https://github.com/TrickyGameTools/SuperTed" ; should eventually be the itch.io page
 #define MyAppExeName "SuperTed.exe"
 
 [Setup]
