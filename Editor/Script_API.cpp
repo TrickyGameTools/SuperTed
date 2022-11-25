@@ -1,6 +1,6 @@
 // Lic:
 // SuperTed - Editor
-// Scripting APIs
+// Script APIs
 // 
 // 
 // 
