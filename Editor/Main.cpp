@@ -25,10 +25,14 @@
 // EndLic
 
 
+#include <Ask.hpp>
 #include <Platform.hpp>
 #include <QCol.hpp>
 #include <QuickString.hpp>
 #include <QuickStream.hpp>
+
+#include <TQSG.hpp>
+#include <TQSE.hpp>
 
 #include <jcr6_realdir.hpp>
 
@@ -37,6 +41,7 @@
 #include "Globals.hpp"
 #include "Textures.hpp"
 #include "Script_API.hpp"
+#include "Run.hpp"
 
 using namespace TrickyUnits;
 using namespace SuperTed;
@@ -82,9 +87,20 @@ int main(int argcount, char** args) {
 	CLIParse(argcount, args);
 	jcr6::InitRealDir(); ScanForTextures();
 	LoadScript();
+	// Start TQSG (always after all non-SDL2 things are done).
 	QCol->Doing("Initizing", "SDL2 and TQSG");
+	TQSG_Init(
+		TrSPrintF("SuperTed - %s - %s", EdtProject.c_str(), EdtMap.c_str()),
+		AskInt(&ProjectConfig, "Editor", "Width", "Preferred window width for editor: ", 1600),
+		AskInt(&ProjectConfig, "Editor", "Height", "Preferred window height for editor: ", 900),
+		false);
+	TQSG_Cls();
+	TQSG_Flip();
+	QCol->Doing("Initizing", "TQSE");
+	TQSE_Init();
 
 	// Run
+	do {} while (Run());
 
 	// Close
 	if (Script != NULL) { QCol->Doing("Disposing", "Script");  lua_close(Script); }
