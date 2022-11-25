@@ -84,7 +84,7 @@
     <OutDir>../Release</OutDir>
     <TargetName>SuperTed_Editor</TargetName>
     <IncludePath>E:\Projects\Applications\VisualStudio\VC\3rdparty\Lua\lua-5.4.0\raw\src;E:\Projects\Applications\VisualStudio\VC\June19\src;E:\Projects\Applications\VisualStudio\VC\TQSG;E:\Projects\Applications\VisualStudio\VC\JCR6\headers;E:\Projects\Applications\VisualStudio\VC\TrickyUnits\Headers;$(IncludePath);E:\Projects\Applications\VisualStudio\VC\Apollo Game Engine\packages\zlib-msvc14-x64.1.2.11.7795\build\native\include\</IncludePath>
-    <LibraryPath>E:\Projects\Applications\VisualStudio\VC\3rdparty\Lua\lua-5.4.0\Lua Library\x64;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);E:\Projects\Applications\VisualStudio\VC\Apollo Game Engine\packages\zlib-msvc14-x64.1.2.11.7795\build\native\lib_release\</LibraryPath>
+    <LibraryPath>E:\Projects\Applications\VisualStudio\VC\3rdparty\Lua\lua-5.4.0\Lua Library\x64\Release\;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);E:\Projects\Applications\VisualStudio\VC\Apollo Game Engine\packages\zlib-msvc14-x64.1.2.11.7795\build\native\lib_release\</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
