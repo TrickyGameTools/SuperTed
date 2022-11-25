@@ -1,3 +1,28 @@
+// Lic:
+// SuperTed - Editor
+// Scripting APIs
+// 
+// 
+// 
+// (c) Jeroen P. Broks, 2022
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+// 
+// Please note that some references to data like pictures or audio, do not automatically
+// fall under this licenses. Mostly this is noted in the respective files.
+// 
+// Version: 22.11.25
+// EndLic
 // A quick .hpp file that makes everything 'extern "C"' and includes all needed headers. Not part of Lua itself, I made it myself.
 #include <lua.hpp>
 
@@ -17,6 +42,31 @@ using namespace TrickyUnits;
 namespace SuperTed {
 	namespace Editor {
 		static map<string, lua_CFunction> Functions;
+
+		static int Paniek(lua_State* L) {
+			string TB{ "Data received:\n" };
+			//string Trace{};
+			TB += lua_gettop(L); TB+= "\n";
+			for (int i = 1; i <= lua_gettop(L); i++) {
+				TB +=TrSPrintF( "Arg #%04d\t", i);
+				switch (lua_type(L, i)) {
+				case LUA_TSTRING:
+					TB += "String \""; TB += luaL_checkstring(L, i);
+					//Trace += luaL_checkstring(L, i); Trace += "\n";
+					break;
+				case LUA_TNUMBER:
+					TB += TrSPrintF("Number %d", luaL_checknumber(L, i));
+				case LUA_TFUNCTION:
+					TB += "Function";
+				default:
+					TB += "Unknown: "; TB += to_string(lua_type(L, i));
+					break;
+				}
+				TB += "\n";
+			}
+			Throw("Lua panicked!", TB, PanicAct);
+			return 0;
+		}
 
 		// Merely an Easter Egg, whcih was also meant to test if the function linkups work!
 		static int Slyvina(lua_State* L) {
@@ -48,7 +98,12 @@ namespace SuperTed {
 
 		static int InstantCrash(lua_State* L) {
 			Throw(string(luaL_optstring(L, 1, "Unkown error")), "", ThrowAct::InstantEnd);
-			return 1;
+			return 0;
+		}
+
+		static int NonFatalError(lua_State* L) {
+			QCol->Error(luaL_optstring(L, 1, "An error occurred. No further info known"));
+			return 0;
 		}
 
 		static void Reg(string fname, lua_CFunction cfun) {
@@ -63,20 +118,23 @@ namespace SuperTed {
 				Reg("Slyvina", Slyvina);
 				Reg("LoadString", SLoadString);
 				Reg("InstantCrash", InstantCrash);
+				Reg("NonFatalError", NonFatalError);
 				first = false;
 			}
 		}
 
-		void InitState(lua_State* L,std::string ScriptFile) {
+		void InitState(lua_State* L, std::string ScriptFile) {
 			Reg();
 			QCol->Doing("Linking", "Script APIs");
+			luaL_openlibs(L);
+			lua_atpanic(L, Paniek);
 			string NeilGroup{ "group SuperTed\n" };
 			auto LuaGroup{ "SuperTed = Neil.Globals.SuperTed" };
 			string LuaDispose{ "-- Let's get red of everything!\n" };
 			for (auto f : Functions) {
-				NeilGroup += TrSPrintF("\tReadOnly Const %s = INITSUPERTED_%s\n",f.first.c_str(), f.first.c_str());
+				NeilGroup += TrSPrintF("\tReadOnly Const %s = INITSUPERTED_%s\n", f.first.c_str(), f.first.c_str());
 				LuaDispose += TrSPrintF("INITSUPERTED_%s = nil", f.first.c_str());
-				lua_register(L, TrSPrintF("INITSUPERTED_%s",f.first.c_str()).c_str(), f.second); // Ugly, but works?
+				lua_register(L, TrSPrintF("INITSUPERTED_%s", f.first.c_str()).c_str(), f.second); // Ugly, but works?
 			}
 			NeilGroup += "\n";
 
@@ -90,10 +148,32 @@ namespace SuperTed {
 			QCol->Doing("Compiling", "Disposals");
 			luaL_loadstring(L, LuaDispose.c_str());
 			QCol->Doing("Compiling", ScriptFile);
-			auto src = TrSPrintF("-- %s\n\nlocal u,e = Neil.Use(\"%s\")\n", ScriptFile.c_str(), ScriptFile.c_str());
-			src += "if not u then SuperTed.InstantCrash(e) end";
-			luaL_loadstring(L, src.c_str(); lua_call(L, 0, 0);
+			if (ExtractExt(Lower(ScriptFile)) == "neil") {
+				auto src = TrSPrintF("-- %s\n\nlocal u,e = Neil.Use(\"%s\")\n", ScriptFile.c_str(), ScriptFile.c_str());
+				src += "if not u then SuperTed.InstantCrash(e) end";
+				luaL_loadstring(L, src.c_str(); lua_call(L, 0, 0);
+			} else if (ExtractExt(Lower(ScriptFile)) == "lua") {
+				if (!FileExists(ScriptFile)) { Throw("Script file not found", ScriptFile, ThrowAct::InstantEnd); return; }
+				auto src = LoadString(ScriptFile);
+				src = "-- " + ScriptFile + "\n\n" + src + "\n\nif not SuperTedCallBack  then SuperTed.Crash(\"No SuperTed group present\") end\n\n";
+				luaL_loadstring(L, src.c_str());
+				lua_call(L, 0, 0);
+			} else if (ScriptFile == "*NOSCRIPT*") {
+				string src{ "-- NoScript --\n\n" };
+				src += JAS->String("Script/NoScript.lua");
+				luaL_loadstring(L, src.c_str());
+				lua_call(L, 0, 0);
+			} else {
+				Throw("I really do not know what kind of script you want me to load", ScriptFile, ThrowAct::InstantEnd);
+			}
 		}
 
 	}
+
+	void LoadStript(std::string Script) {
+		Script = luaL_newstate();
+	}
+	void LoadScript() {
+	}
+
 }
