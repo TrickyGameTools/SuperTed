@@ -36,6 +36,7 @@
 #include "builddate.hpp"
 #include "Globals.hpp"
 #include "Textures.hpp"
+#include "Script_API.hpp"
 
 using namespace TrickyUnits;
 using namespace SuperTed;
@@ -80,6 +81,7 @@ int main(int argcount, char** args) {
 	JAS = SuperTed::JCR6::STED_Assets(MyDir);
 	CLIParse(argcount, args);
 	jcr6::InitRealDir(); ScanForTextures();
+	LoadScript();
 	QCol->Doing("Initizing", "SDL2 and TQSG");
 
 	// Run
