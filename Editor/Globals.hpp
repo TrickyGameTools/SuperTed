@@ -43,7 +43,7 @@ namespace SuperTed {
 		extern TrickyUnits::ParsedArg CLIOptions;
 		extern std::string EdtProject;
 		extern std::string EdtMap;
-		extern lua_State* Script{;
+		extern lua_State* Script;
 		
 
 		std::string ProjectsDir();
