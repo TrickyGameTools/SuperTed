@@ -38,6 +38,25 @@ using namespace TrickyUnits;
 using namespace SuperTed;
 using namespace SuperTed::Editor;
 
+void CLIParse(int argcount, char** args) {
+	QCol->Doing("Parsing", "CLI arguments");
+	FlagConfig C;
+	AddFlag(C, "dc", false);
+	CLIOptions = ParseArg(argcount, args, C);
+	if (CLIOptions.arguments.size() < 3) { QCol->Error("I need a project and a map!"); exit(1); }
+	EdtProject = CLIOptions.arguments[1];
+	EdtMap = CLIOptions.arguments[2];
+	if (CLIOptions.bool_flags["dc"]) {
+		for (char ch = -125; ch < 127; ch++) {
+			string rc = ""; rc += ch;
+			EdtProject = TReplace(EdtProject, TrSPrintF(":%d:", (int)ch), rc);
+			EdtMap = TReplace(EdtMap, TrSPrintF(":%d:", (int)ch), rc);
+		}
+	}
+	QCol->Doing("Project", EdtProject);
+	QCol->Doing("Map", EdtMap);
+}
+
 int main(int argcount, char** args) {
 	MyDir = TReplace(ExtractDir(args[0]), '\\', '/');
 	// Start
@@ -51,6 +70,7 @@ int main(int argcount, char** args) {
 	QCol->Doing("Called from", TReplace(CurrentDir(), '\\', '/'));
 	QCol->Doing("Project Dir", ProjectsDir());
 	JAS = SuperTed::JCR6::STED_Assets(MyDir);
+	CLIParse(argcount, args);
 	QCol->Doing("Initizing", "SDL2 and TQSG");
 	return 0;
 }
