@@ -30,9 +30,12 @@
 #include <QuickString.hpp>
 #include <QuickStream.hpp>
 
+#include <jcr6_realdir.hpp>
+
 #include "../SupJCR/SupJCR.hpp"
 #include "builddate.hpp"
 #include "Globals.hpp"
+#include "Textures.hpp"
 
 using namespace TrickyUnits;
 using namespace SuperTed;
@@ -55,6 +58,11 @@ void CLIParse(int argcount, char** args) {
 	}
 	QCol->Doing("Project", EdtProject);
 	QCol->Doing("Map", EdtMap);
+
+	QCol->Doing("Reading", EdtProjectIni());
+	if (!FileExists(EdtProjectIni())) { QCol->Error("File not found"); exit(2); }
+	ProjectConfig.FromFile(EdtProjectIni());
+	ProjectConfig.AutoSave = EdtProjectIni();
 }
 
 int main(int argcount, char** args) {
@@ -71,6 +79,7 @@ int main(int argcount, char** args) {
 	QCol->Doing("Project Dir", ProjectsDir());
 	JAS = SuperTed::JCR6::STED_Assets(MyDir);
 	CLIParse(argcount, args);
+	jcr6::InitRealDir(); ScanForTextures();
 	QCol->Doing("Initizing", "SDL2 and TQSG");
 	return 0;
 }
