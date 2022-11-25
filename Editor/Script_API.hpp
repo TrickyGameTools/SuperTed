@@ -33,5 +33,7 @@
 namespace SuperTed {
 	namespace Editor {
 		void InitState(lua_State* L, std::string ScriptFile);
+		void LoadScript(std::string);
+		void LoadScript();
 	}
 }
