@@ -34,6 +34,10 @@ namespace SuperTed {
 		std::string MyDir{"."};
 		jcr6::JT_Dir* JAS;
 		GINIE GlobalConfig;
+		TrickyUnits::ParsedArg CLIOptions;
+		std::string EdtProject{ "" };
+		std::string EdtMap{ "" };
+
 
 		static void LoadGlobalConfig(bool force=false) {
 			static bool first{ true };
@@ -52,6 +56,10 @@ namespace SuperTed {
 			if (!ret.size()) { QCol->Error("No project direcoty set"); exit(1); }
 			return ret;
 		}
+
+		std::string EdtProjectDir() { return ProjectsDir() + "/" + EdtProject; }
+		std::string EdtProjectIni() { return EdtProjectDir() + "/" + EdtProject + ".ini"; }
+		std::string EdtProjectScript() { return EdtProjectDir() + "/" + EdtProject + ".neil"; }
 
 	}
 }

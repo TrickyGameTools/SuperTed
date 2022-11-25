@@ -29,13 +29,19 @@
 #include <string>
 #include <jcr6_core.hpp>
 #include <GINIE.hpp>
+#include <ArgParse.h>
 
 namespace SuperTed {
 	namespace Editor {
 		extern std::string MyDir;
 		extern jcr6::JT_Dir* JAS;
 		extern TrickyUnits::GINIE GlobalConfig;
+		extern TrickyUnits::ParsedArg CLIOptions;
+		extern std::string EdtProject;
+		extern std::string EdtMap;
 
 		std::string ProjectsDir();
+		std::string EdtProjectDir();
+		std::string EdtProjectIni();
 	}
 }
