@@ -27,6 +27,7 @@
 #pragma once
 
 #include <string>
+#include <lua.hpp>
 #include <jcr6_core.hpp>
 #include <GINIE.hpp>
 #include <QuickString.hpp>
@@ -42,6 +43,8 @@ namespace SuperTed {
 		extern TrickyUnits::ParsedArg CLIOptions;
 		extern std::string EdtProject;
 		extern std::string EdtMap;
+		extern lua_State* Script;
+		
 
 		std::string ProjectsDir();
 		std::string EdtProjectDir();
@@ -50,5 +53,10 @@ namespace SuperTed {
 		std::string TextureDir();
 
 		inline bool cBool(TrickyUnits::GINIE& C, std::string k, std::string v) { return TrickyUnits::Upper(C.Value(k, v)) == "TRUE"; }
+
+		enum class ThrowAct{None,InstantEnd,LogForRun};
+		void Throw(std::string message, std::string TraceBack = "", ThrowAct A = ThrowAct::LogForRun);
+		bool GetThrown();
+
 	}
 }

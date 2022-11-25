@@ -41,7 +41,8 @@ namespace SuperTed {
 		ParsedArg CLIOptions;
 		std::string EdtProject{ "" };
 		std::string EdtMap{ "" };
-		
+		lua_State* Script;
+		bool ErrorThrown;
 
 
 		static void LoadGlobalConfig(bool force=false) {
@@ -77,6 +78,22 @@ namespace SuperTed {
 		std::string EdtProjectDir() { return ProjectsDir() + "/" + EdtProject; }
 		std::string EdtProjectIni() { return EdtProjectDir() + "/" + EdtProject + ".ini"; }
 		std::string TextureDir() { return TReplace(AltMount(ProjectConfig.Value("Directory", "Textures")),'\\','/'); }
+		void Throw(std::string message, std::string TraceBack, ThrowAct A) {
+			QCol->Error(message);
+			if (TraceBack.size()) QCol->LCyan(TraceBack); 
+			QCol->Reset(); std::cout << std::endl;
+			switch (A) {
+			case ThrowAct::InstantEnd:
+				exit(255);
+				break;
+			case ThrowAct::LogForRun:
+				ErrorThrown = true;
+				break;
+			default:
+				break;
+			}
+		}
+		bool GetThrown() { return ErrorThrown; }
 		std::string EdtProjectScript() { return EdtProjectDir() + "/" + EdtProject + ".neil"; }
 
 	}
