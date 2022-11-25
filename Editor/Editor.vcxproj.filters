@@ -25,6 +25,9 @@
     <Filter Include="Source Files\JCR6">
       <UniqueIdentifier>{ab5c03c5-290f-4f21-8d6e-b16adf8f82a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\TQSG">
+      <UniqueIdentifier>{c1fe01e8-8ea7-420a-95e0-2714f3cf40bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -93,6 +96,15 @@
     <ClCompile Include="Script_API.cpp">
       <Filter>Source Files\Editor</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\TQSG\TQSE.cpp">
+      <Filter>Source Files\TQSG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TQSG\TQSG.cpp">
+      <Filter>Source Files\TQSG</Filter>
+    </ClCompile>
+    <ClCompile Include="Run.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.hpp">
@@ -102,6 +114,9 @@
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
     <ClInclude Include="Script_API.hpp">
+      <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="Run.hpp">
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
   </ItemGroup>
