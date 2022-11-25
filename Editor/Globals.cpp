@@ -43,6 +43,7 @@ namespace SuperTed {
 		std::string EdtMap{ "" };
 		lua_State* Script;
 		bool ErrorThrown;
+		ThrowAct PanicAct{ ThrowAct::InstantEnd };
 
 
 		static void LoadGlobalConfig(bool force=false) {
@@ -84,6 +85,7 @@ namespace SuperTed {
 			QCol->Reset(); std::cout << std::endl;
 			switch (A) {
 			case ThrowAct::InstantEnd:
+				if (Script != NULL) lua_close(Script);
 				exit(255);
 				break;
 			case ThrowAct::LogForRun:
@@ -93,7 +95,6 @@ namespace SuperTed {
 				break;
 			}
 		}
-				if (Script != NULL) lua_close(Script);
 		bool GetThrown() { return ErrorThrown; }
 		std::string EdtProjectScript() { return EdtProjectDir() + "/" + EdtProject + ".neil"; }
 
