@@ -29,12 +29,14 @@
 #include <string>
 #include <jcr6_core.hpp>
 #include <GINIE.hpp>
+#include <QuickString.hpp>
 #include <ArgParse.h>
 
 namespace SuperTed {
 	namespace Editor {
 		extern std::string MyDir;
 		extern jcr6::JT_Dir* JAS;
+		extern jcr6::JT_Dir JTEX;
 		extern TrickyUnits::GINIE GlobalConfig;
 		extern TrickyUnits::GINIE ProjectConfig;
 		extern TrickyUnits::ParsedArg CLIOptions;
@@ -44,5 +46,9 @@ namespace SuperTed {
 		std::string ProjectsDir();
 		std::string EdtProjectDir();
 		std::string EdtProjectIni();
+		
+		std::string TextureDir();
+
+		inline bool cBool(TrickyUnits::GINIE& C, std::string k, std::string v) { return TrickyUnits::Upper(C.Value(k, v)) == "TRUE"; }
 	}
 }
