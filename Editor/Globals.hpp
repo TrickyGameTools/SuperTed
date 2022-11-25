@@ -43,7 +43,7 @@ namespace SuperTed {
 		extern TrickyUnits::ParsedArg CLIOptions;
 		extern std::string EdtProject;
 		extern std::string EdtMap;
-		extern lua_State* Script;
+		extern lua_State* Script{ nullptr };
 		
 
 		std::string ProjectsDir();
@@ -55,6 +55,7 @@ namespace SuperTed {
 		inline bool cBool(TrickyUnits::GINIE& C, std::string k, std::string v) { return TrickyUnits::Upper(C.Value(k, v)) == "TRUE"; }
 
 		enum class ThrowAct{None,InstantEnd,LogForRun};
+		extern ThrowAct PanicAct;
 		void Throw(std::string message, std::string TraceBack = "", ThrowAct A = ThrowAct::LogForRun);
 		bool GetThrown();
 
