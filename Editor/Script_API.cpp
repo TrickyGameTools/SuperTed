@@ -132,24 +132,25 @@ namespace SuperTed {
 			auto LuaGroup{ "SuperTed = Neil.Globals.SuperTed" };
 			string LuaDispose{ "-- Let's get red of everything!\n" };
 			for (auto f : Functions) {
-				NeilGroup += TrSPrintF("\tReadOnly Const %s = INITSUPERTED_%s\n", f.first.c_str(), f.first.c_str());
+				NeilGroup += TrSPrintF("\tReadOnly Var %s = Lua.INITSUPERTED_%s\n", f.first.c_str(), f.first.c_str());
 				LuaDispose += TrSPrintF("INITSUPERTED_%s = nil", f.first.c_str());
 				lua_register(L, TrSPrintF("INITSUPERTED_%s", f.first.c_str()).c_str(), f.second); // Ugly, but works?
 			}
-			NeilGroup += "\n";
+			NeilGroup += "\nEnd\n\n";
 
 			QCol->Doing("Compiling", "Neil");
-			string Neil{ JAS->String("Neil/Neil.lua") };
+			string Neil{ "-- Neil --\nlocal function loadneil()\n" + JAS->String("Neil/Neil.lua") + "\n\nend Neil=loadneil()" };
 			luaL_loadstring(L, Neil.c_str()); lua_call(L, 0, 0);
 			QCol->Doing("Compiling", "Neil Group");
-			luaL_loadstring(L, TrSPrintF("Neil.Globals.LoadNeil([[%s]],\"SuperTed Group\")()", NeilGroup.c_str()).c_str()); lua_call(L, 0, 0);
+			//cout << "<DEBUG>\n" << NeilGroup << "\n</DEBUG>\n\n"; // DEBUG ONLY!
+			luaL_loadstring(L, TrSPrintF("Neil.Globals.NeilLoadString([[%s]],\"SuperTed Group\")()", NeilGroup.c_str()).c_str()); lua_call(L, 0, 0);
 			QCol->Doing("Compiling", "LuaLink");
 			luaL_loadstring(L, LuaGroup); lua_call(L, 0, 0);
 			QCol->Doing("Compiling", "Disposals");
 			luaL_loadstring(L, LuaDispose.c_str());
 			QCol->Doing("Compiling", ScriptFile);
 			if (ExtractExt(Lower(ScriptFile)) == "neil") {
-				auto src = TrSPrintF("-- %s\n\nlocal u,e = Neil.Use(\"%s\")\n", ScriptFile.c_str(), ScriptFile.c_str());
+				auto src = TrSPrintF("-- %s\n\nlocal u,e = Neil.Use(\"%s\")\n", ScriptFile.c_str(), StripExt(ScriptFile).c_str());
 				src += "if not u then SuperTed.InstantCrash(e) end";
 				luaL_loadstring(L, src.c_str()); lua_call(L, 0, 0);
 			} else if (ExtractExt(Lower(ScriptFile)) == "lua") {
