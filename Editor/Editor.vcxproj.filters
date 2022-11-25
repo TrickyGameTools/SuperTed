@@ -90,7 +90,7 @@
     <ClCompile Include="Textures.cpp">
       <Filter>Source Files\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="Script_APIs.cpp">
+    <ClCompile Include="Script_API.cpp">
       <Filter>Source Files\Editor</Filter>
     </ClCompile>
   </ItemGroup>

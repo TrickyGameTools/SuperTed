@@ -167,7 +167,7 @@
     <ClCompile Include="..\SupJCR\SupJCR.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Script_APIs.cpp" />
+    <ClCompile Include="Script_API.cpp" />
     <ClCompile Include="Textures.cpp" />
   </ItemGroup>
   <ItemGroup>

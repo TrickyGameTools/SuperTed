@@ -168,12 +168,19 @@ namespace SuperTed {
 			}
 		}
 
-	}
 
-	void LoadStript(std::string Script) {
+	void LoadScript(std::string ScriptFile) {
 		Script = luaL_newstate();
+		InitState(Script, ScriptFile);
 	}
 	void LoadScript() {
+		if (FileExists(EdtProjectNeil()))
+			LoadScript(EdtProjectNeil());
+		else if (FileExists(EdtProjectLua()))
+			LoadScript(EdtProjectLua());
+		else
+			LoadScript("*NOSCRIPT*");
 	}
 
+	}
 }
