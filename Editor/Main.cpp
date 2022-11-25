@@ -81,5 +81,10 @@ int main(int argcount, char** args) {
 	CLIParse(argcount, args);
 	jcr6::InitRealDir(); ScanForTextures();
 	QCol->Doing("Initizing", "SDL2 and TQSG");
+
+	// Run
+
+	// Close
+	if (Script != NULL) lua_close(Script);
 	return 0;
 }

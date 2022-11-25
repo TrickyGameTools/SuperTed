@@ -93,6 +93,7 @@ namespace SuperTed {
 				break;
 			}
 		}
+				if (Script != NULL) lua_close(Script);
 		bool GetThrown() { return ErrorThrown; }
 		std::string EdtProjectScript() { return EdtProjectDir() + "/" + EdtProject + ".neil"; }
 
