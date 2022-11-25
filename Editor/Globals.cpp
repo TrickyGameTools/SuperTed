@@ -41,7 +41,7 @@ namespace SuperTed {
 		ParsedArg CLIOptions;
 		std::string EdtProject{ "" };
 		std::string EdtMap{ "" };
-		lua_State* Script;
+		lua_State* Script{nullptr};
 		bool ErrorThrown;
 		ThrowAct PanicAct{ ThrowAct::InstantEnd };
 
