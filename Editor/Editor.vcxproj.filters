@@ -28,6 +28,12 @@
     <Filter Include="Source Files\TQSG">
       <UniqueIdentifier>{c1fe01e8-8ea7-420a-95e0-2714f3cf40bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\June 19">
+      <UniqueIdentifier>{2f5c7e7d-d167-4021-88f1-a1a25c48e851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\June 19">
+      <UniqueIdentifier>{e3d911dd-c8ab-4c66-b12f-a8fdb6ada955}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -105,6 +111,36 @@
     <ClCompile Include="Run.cpp">
       <Filter>Source Files\Editor</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\June19\src\june19_button.cpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\June19\src\june19_checkbox.cpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\June19\src\june19_core.cpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\June19\src\june19_label.cpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\June19\src\june19_listbox.cpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\June19\src\june19_picture.cpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\June19\src\june19_radio.cpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\June19\src\june19_scrollbar.cpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\June19\src\june19_tabber.cpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\June19\src\june19_textfield.cpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.hpp">
@@ -118,6 +154,39 @@
     </ClInclude>
     <ClInclude Include="Run.hpp">
       <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19.hpp">
+      <Filter>Source Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19_button.hpp">
+      <Filter>Header Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19_checkbox.hpp">
+      <Filter>Header Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19_label.hpp">
+      <Filter>Header Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19_core.hpp">
+      <Filter>Header Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19_listbox.hpp">
+      <Filter>Header Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19_picture.hpp">
+      <Filter>Header Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19_radio.hpp">
+      <Filter>Header Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19_scrollbar.hpp">
+      <Filter>Header Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19_tabber.hpp">
+      <Filter>Header Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\June19\src\june19_textfield.hpp">
+      <Filter>Header Files\June 19</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
