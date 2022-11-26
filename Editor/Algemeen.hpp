@@ -37,8 +37,11 @@
 // TQSG
 #include <TQSG.hpp>
 
-// Kthura Editor
-//#include "../headers/Config.hpp"
+
+// All UI Based crap
+#include "MapEdit.hpp"
+#include "MetaEdit.hpp"
+#include "RoomEdit.hpp"
 
 
 
