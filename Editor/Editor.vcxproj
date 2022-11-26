@@ -177,8 +177,12 @@
     <ClCompile Include="..\..\TrickyUnits\Source\TrickySTOI.cpp" />
     <ClCompile Include="..\..\TrickyUnits\Source\TrickyTime.cpp" />
     <ClCompile Include="..\SupJCR\SupJCR.cpp" />
+    <ClCompile Include="Algemeen.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MapEdit.cpp" />
+    <ClCompile Include="MetaEdit.cpp" />
+    <ClCompile Include="Opslaan.cpp" />
     <ClCompile Include="Run.cpp" />
     <ClCompile Include="Script_API.cpp" />
     <ClCompile Include="Textures.cpp" />
@@ -195,7 +199,11 @@
     <ClInclude Include="..\..\June19\src\june19_scrollbar.hpp" />
     <ClInclude Include="..\..\June19\src\june19_tabber.hpp" />
     <ClInclude Include="..\..\June19\src\june19_textfield.hpp" />
+    <ClInclude Include="Algemeen.hpp" />
     <ClInclude Include="Globals.hpp" />
+    <ClInclude Include="MapEdit.hpp" />
+    <ClInclude Include="MetaEdit.hpp" />
+    <ClInclude Include="Opslaan.hpp" />
     <ClInclude Include="Run.hpp" />
     <ClInclude Include="Script_API.hpp" />
     <ClInclude Include="Textures.hpp" />
