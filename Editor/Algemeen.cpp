@@ -151,6 +151,33 @@ namespace SuperTed {
 
 		}
 
+		bool UI::Run() {
+			auto CS{ CurrentStage() };
+			//auto go_on{ true };
+			go_on = true;
+			TQSG_Cls();
+			if (!CS) { Throw("No stage"); return false; }
+			if (CS->PreJune) CS->PreJune();
+			TQSE_Poll();
+			Screen()->Draw();
+			if (CS->PostJune) CS->PostJune();
+			if (TQSE_Quit()) go_on = false;
+#ifdef QUICK_QUIT
+			if (TQSE_KeyHit(SDLK_ESCAPE)) go_on = false;
+#endif
+			TQSG_ACol(255, 255, 255, 255);
+			Mouse->Draw(TQSE_MouseX(), TQSE_MouseY());
+			TQSG_Flip(20);
+			return go_on; 
+		}
+
+		void UI::Done() {
+			if (!_initialized) return;
+			_initialized = false;
+			QCol->Doing("Closing","User Interface");
+			MenuSave(nullptr, j19action::Unknown);	
+		}
+
 
 
 	}

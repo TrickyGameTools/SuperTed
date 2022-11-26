@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.25
+// Version: 22.11.26
 // EndLic
 
 
@@ -42,6 +42,8 @@
 #include "Textures.hpp"
 #include "Script_API.hpp"
 #include "Run.hpp"
+
+#include "Algemeen.hpp"
 
 using namespace TrickyUnits;
 using namespace SuperTed;
@@ -96,11 +98,14 @@ int main(int argcount, char** args) {
 		false);
 	TQSG_Cls();
 	TQSG_Flip();
-	QCol->Doing("Initizing", "TQSE");
+	QCol->Doing("Initizing", "TQSE");	
 	TQSE_Init();
 
+
 	// Run
+	UI::Start();
 	do {} while (Run());
+	UI::Done();
 
 	// Close
 	if (Script != NULL) { QCol->Doing("Disposing", "Script");  lua_close(Script); }

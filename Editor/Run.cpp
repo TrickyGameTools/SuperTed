@@ -21,12 +21,14 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.25
+// Version: 22.11.26
 // EndLic
 
 #include <TQSE.hpp>
 
 #include "Globals.hpp"
+
+#include "Algemeen.hpp"
 
 using namespace TrickyUnits;
 
@@ -34,11 +36,14 @@ namespace SuperTed {
 	namespace Editor {
 		bool Run() {
 			TQSE_Poll();
+			/*
 			if (TQSE_Quit()) {
 				// TODO: Save on quit
 				return false;
 			}
-			return !GetThrown();
+			//*/
+						
+			return(!GetThrown()) && (UI::Run());
 		}
 	}
 }
