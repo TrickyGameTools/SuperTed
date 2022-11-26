@@ -27,6 +27,8 @@
 
 #include <june19.hpp>
 
+#include "Algemeen.hpp"
+
 using namespace TrickyUnits;
 
 namespace SuperTed {
@@ -37,7 +39,15 @@ namespace SuperTed {
 
 
 #pragma region UI
-		void UI_MapStart(){}
+		static UI* UI_MapEdit{ nullptr };
+		void UI_MapStart() {
+			// Start
+			UI::AddStage("Map");
+			UI::GoToStage("Map");
+			UI_MapEdit = UI::GetStage("Map");
+			//UI_MapEdit->PreJune = DrawMap;
+
+		}
 #pragma endregion
 
 
