@@ -158,7 +158,7 @@ namespace SuperTed {
 			TQSG_Cls();
 			if (!CS) { Throw("No stage"); return false; }
 			if (CS->PreJune) CS->PreJune();
-			TQSE_Poll();
+			//TQSE_Poll();
 			Screen()->Draw();
 			if (CS->PostJune) CS->PostJune();
 			if (TQSE_Quit()) go_on = false;
