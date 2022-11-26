@@ -34,6 +34,12 @@
     <Filter Include="Header Files\June 19">
       <UniqueIdentifier>{e3d911dd-c8ab-4c66-b12f-a8fdb6ada955}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Editor\User Interface">
+      <UniqueIdentifier>{6f6447ad-f8c6-40dc-b0e4-f1b8f1d52ba8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Editor\UserInterface">
+      <UniqueIdentifier>{ae64dea6-c56d-4591-8da8-67df69383fb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -141,6 +147,18 @@
     <ClCompile Include="..\..\June19\src\june19_textfield.cpp">
       <Filter>Source Files\June 19</Filter>
     </ClCompile>
+    <ClCompile Include="Algemeen.cpp">
+      <Filter>Source Files\Editor\User Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="MapEdit.cpp">
+      <Filter>Source Files\Editor\User Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Opslaan.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="MetaEdit.cpp">
+      <Filter>Source Files\Editor\User Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.hpp">
@@ -187,6 +205,18 @@
     </ClInclude>
     <ClInclude Include="..\..\June19\src\june19_textfield.hpp">
       <Filter>Header Files\June 19</Filter>
+    </ClInclude>
+    <ClInclude Include="Algemeen.hpp">
+      <Filter>Header Files\Editor\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="MapEdit.hpp">
+      <Filter>Header Files\Editor\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="Opslaan.hpp">
+      <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="MetaEdit.hpp">
+      <Filter>Header Files\Editor\UserInterface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
