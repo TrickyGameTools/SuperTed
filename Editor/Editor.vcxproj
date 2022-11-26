@@ -183,6 +183,7 @@
     <ClCompile Include="MapEdit.cpp" />
     <ClCompile Include="MetaEdit.cpp" />
     <ClCompile Include="Opslaan.cpp" />
+    <ClCompile Include="RoomEdit.cpp" />
     <ClCompile Include="Run.cpp" />
     <ClCompile Include="Script_API.cpp" />
     <ClCompile Include="Textures.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="MapEdit.hpp" />
     <ClInclude Include="MetaEdit.hpp" />
     <ClInclude Include="Opslaan.hpp" />
+    <ClInclude Include="RoomEdit.hpp" />
     <ClInclude Include="Run.hpp" />
     <ClInclude Include="Script_API.hpp" />
     <ClInclude Include="Textures.hpp" />

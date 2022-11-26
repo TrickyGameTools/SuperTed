@@ -80,6 +80,9 @@ namespace SuperTed {
 
 		static void JPanic(std::string msg) { Throw(msg); }
 
+		static bool go_on{ true };
+		static void dquit(j19gadget* g, j19action a) { go_on = false; }
+
 		void UI::Start() {
 
 
@@ -131,25 +134,23 @@ namespace SuperTed {
 			//GridMenu->AddItem("Toggle Grid", ToggleUseGrid, SDLK_g);
 			GridMenu->AddItem("Toggle GridShow", ToggleShowGrid, SDLK_d);
 			RoomMenu->AddItem("New Room", NewRoom, SDLK_n);
-			RoomMenu->AddItem("Rename Room", ChangeRoom, SDLK_KP_5);
+			RoomMenu->AddItem("Rename Room", RenameRoom, SDLK_KP_5);
 			ScrollMenu->AddItem("Down", ScrollDn, SDLK_DOWN);
 			ScrollMenu->AddItem("Left", ScrollLe, SDLK_LEFT);
 			ScrollMenu->AddItem("Up", ScrollUp, SDLK_UP);
 			ScrollMenu->AddItem("Right", ScrollRi, SDLK_RIGHT);
-			DebugMenu->AddItem("View BlockMap", ShowBlockMap, SDLK_b);
-			DebugMenu->AddItem("Tag Overview", ShowTags, SDLK_z);
-			DebugMenu->AddItem("PNG to JPBF", PNG2JPBF, SDLK_F12);
-			DebugMenu->AddItem("Remove \"Rotten\" Objects", RemoveRottenObjects, SDLK_INSERT);
-			DebugMenu->AddItem("Pic Remove", RemovePicObjects, SDLK_F9);
+			//DebugMenu->AddItem("View BlockMap", ShowBlockMap, SDLK_b);
+			//DebugMenu->AddItem("Tag Overview", ShowTags, SDLK_z);
+			//DebugMenu->AddItem("PNG to JPBF", PNG2JPBF, SDLK_F12);
+			//DebugMenu->AddItem("Remove \"Rotten\" Objects", RemoveRottenObjects, SDLK_INSERT);
+			//DebugMenu->AddItem("Pic Remove", RemovePicObjects, SDLK_F9);
 			DebugMenu->AddItem("Optimize To Origin", OptimizeToOrigin, SDLK_F2);
-			DebugMenu->AddItem("Next Object", NextObject, SDLK_TAB);
+			//DebugMenu->AddItem("Next Object", NextObject, SDLK_TAB);
 			// Stages
 			UI_MapStart(); // Must be last
 
 		}
 
-		static bool go_on{ true };
-		static void dquit(j19gadget* g, j19action a) { go_on = false; }
 
 
 	}

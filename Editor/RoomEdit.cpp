@@ -34,5 +34,9 @@ namespace SuperTed {
 		void NewRoom(june19::j19gadget*, june19::j19action) {
 			QCol->Error("Room creation not yet implemented");
 		}
+
+		void RenameRoom(june19::j19gadget*, june19::j19action) {
+			QCol->Error("Room renaming not yet implemented");
+		}
 	}
 }

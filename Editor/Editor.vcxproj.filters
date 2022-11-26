@@ -159,6 +159,9 @@
     <ClCompile Include="MetaEdit.cpp">
       <Filter>Source Files\Editor\User Interface</Filter>
     </ClCompile>
+    <ClCompile Include="RoomEdit.cpp">
+      <Filter>Source Files\Editor\User Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.hpp">
@@ -216,6 +219,9 @@
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
     <ClInclude Include="MetaEdit.hpp">
+      <Filter>Header Files\Editor\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="RoomEdit.hpp">
       <Filter>Header Files\Editor\UserInterface</Filter>
     </ClInclude>
   </ItemGroup>

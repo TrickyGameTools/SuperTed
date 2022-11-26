@@ -37,6 +37,7 @@ namespace SuperTed {
 
 
 #pragma region UI
+		void UI_MapStart(){}
 #pragma endregion
 
 
@@ -47,6 +48,12 @@ namespace SuperTed {
 		void ToggleShowGrid(june19::j19gadget*, june19::j19action) {
 			QCol->Error("Grid toggling not yet implemented");
 		}
+
+		void ScrollDn(june19::j19gadget*, june19::j19action) { QCol->Error("Scrolling not yet implemented"); }
+		void ScrollUp(june19::j19gadget*, june19::j19action) { QCol->Error("Scrolling not yet implemented"); }
+		void ScrollRi(june19::j19gadget*, june19::j19action) { QCol->Error("Scrolling not yet implemented"); }
+		void ScrollLe(june19::j19gadget*, june19::j19action) { QCol->Error("Scrolling not yet implemented"); }
+		void OptimizeToOrigin(june19::j19gadget*, june19::j19action) { QCol->Error("No optimizing to origin yet"); }
 #pragma endregion
 
 #pragma region GeneralFunctions

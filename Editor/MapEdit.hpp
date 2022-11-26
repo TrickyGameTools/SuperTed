@@ -29,8 +29,19 @@
 
 namespace SuperTed {
 	namespace Editor {
+		// General
 		void AdeptStatus();
+
+		// Pulldown menu callbacks
 		void ToggleShowGrid(june19::j19gadget*, june19::j19action);
+		void ScrollDn(june19::j19gadget*, june19::j19action);
+		void ScrollUp(june19::j19gadget*, june19::j19action);
+		void ScrollRi(june19::j19gadget*, june19::j19action);
+		void ScrollLe(june19::j19gadget*, june19::j19action);
+		void OptimizeToOrigin(june19::j19gadget*, june19::j19action);
+
+		// UI Start
+		void UI_MapStart();
 
 	}
 }
