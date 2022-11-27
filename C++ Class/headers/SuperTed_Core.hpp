@@ -105,7 +105,7 @@ namespace SuperTed {
 		std::map<std::string, std::string> Data;
 		
 
-		void RenameRoom(std::string original, std::target);
+		void RenameRoom(std::string original, std::string target);
 		TeddyTex Tex(TrickyUnits::uint32 idx);
 		TeddyRoom CreateRoom(std::string n, int w = 64, int h = 64, int gw = 32, int gh = 32, bool layerless = false);
 		void DrawLayer(std::string R, std::string L, int scrollx = 0, int scrolly = 0);
