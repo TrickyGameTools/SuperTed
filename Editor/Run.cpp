@@ -40,7 +40,7 @@ namespace SuperTed {
 				// TODO: Save on quit
 				return false;
 			}						
-			return(!GetThrown()) && (UI::Run());
+			return(!GetThrown()) && (_UI::Run());
 		}
 	}
 }
