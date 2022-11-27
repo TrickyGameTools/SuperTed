@@ -27,8 +27,11 @@
 
 #include <june19.hpp>
 
+#include "Globals.hpp"
 #include "Algemeen.hpp"
 
+
+using namespace june19;
 using namespace TrickyUnits;
 
 namespace SuperTed {
@@ -36,9 +39,16 @@ namespace SuperTed {
 
 #pragma region Variables
 		bool ShowGrid{ true };
+
+		static j19gadget* MapGroup;
+		static j19gadget* RoomPanel{ nullptr };
+		static j19gadget* RoomList{ nullptr };
+
+		static j19gadget* DataPanel{ nullptr };
 #pragma endregion
 
 #pragma region CallBackHeaders
+		static void RoomSelected(j19gadget*, j19action);
 #pragma endregion
 
 
@@ -50,12 +60,37 @@ namespace SuperTed {
 			UI::GoToStage("Map");
 			UI_MapEdit = UI::GetStage("Map");
 			UI_MapEdit->PreJune = DrawMap;
+			auto MG{ UI_MapEdit->MainGadget };
+			RoomPanel = CreatePanel(0, 0, 125, MG->H(), MG);
+			RoomPanel->BR = 25; RoomPanel->BB = 0; RoomPanel->BG = 18;
+			RoomList = CreateListBox(1, 0, RoomPanel->W() - 2, RoomPanel->H() - 120, RoomPanel);
+			RoomList->BR = 0;
+			RoomList->BG = 25;
+			RoomList->BB = 25;
+			RoomList->FR = 0;
+			RoomList->FG = 255;
+			RoomList->FB = 255;
+			RoomList->CBAction = RoomSelected;
+
+			DataPanel = CreatePanel(TQSG_ScreenWidth() - 400, 0, 400, MG->H(), MG);
+			DataPanel->BR = 25; DataPanel->BG = 18; DataPanel->BB = 0;
+
+			auto TedPic = CreatePicture(0, RoomPanel->H() - 120, RoomPanel->W(), 120, RoomPanel, Pic_FullStretch);
+			TedPic->Image(*JAS, "Img/TeddyBear.png");
+
+
+			MapGroup = CreateGroup(RoomPanel->W(), RoomPanel->DrawY(), TQSG_ScreenWidth() - (RoomPanel->W() + DataPanel->W()), RoomPanel->H(), MG);
+
+
 
 		}
 #pragma endregion
 
 
 #pragma region CallBackFunctions
+		static void RoomSelected(j19gadget*, j19action) {
+			QCol->Error("Layer selection NOT yet present");
+		}
 #pragma endregion
 
 #pragma region CallBackFunctionPullDownMenus
