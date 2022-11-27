@@ -40,6 +40,12 @@
     <Filter Include="Header Files\Editor\UserInterface">
       <UniqueIdentifier>{ae64dea6-c56d-4591-8da8-67df69383fb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SuperTed Class">
+      <UniqueIdentifier>{3e93ae19-0fea-4b13-9ee7-4bdd5a01f992}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SuperTed Class">
+      <UniqueIdentifier>{9024c092-2950-4809-9047-9e6edefefb8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -162,6 +168,15 @@
     <ClCompile Include="RoomEdit.cpp">
       <Filter>Source Files\Editor\User Interface</Filter>
     </ClCompile>
+    <ClCompile Include="..\C++ Class\source\SuperTed_Core.cpp">
+      <Filter>Source Files\SuperTed Class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C++ Class\source\SuperTed_Draw_TQSG.cpp">
+      <Filter>Source Files\SuperTed Class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\C++ Class\source\SuperTed_Save.cpp">
+      <Filter>Source Files\SuperTed Class</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.hpp">
@@ -223,6 +238,15 @@
     </ClInclude>
     <ClInclude Include="RoomEdit.hpp">
       <Filter>Header Files\Editor\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\C++ Class\headers\SuperTed_Core.hpp">
+      <Filter>Header Files\SuperTed Class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\C++ Class\headers\SuperTed_Draw_TQSG.hpp">
+      <Filter>Header Files\SuperTed Class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\C++ Class\headers\SuperTed_Save.hpp">
+      <Filter>Header Files\SuperTed Class</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
