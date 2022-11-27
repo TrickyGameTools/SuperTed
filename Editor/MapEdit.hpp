@@ -32,6 +32,7 @@ namespace SuperTed {
 		// General
 		void AdeptStatus();
 		void DrawMap();
+		void RenewRooms();
 
 		// Pulldown menu callbacks
 		void ToggleShowGrid(june19::j19gadget*, june19::j19action);

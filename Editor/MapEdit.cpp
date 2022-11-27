@@ -81,7 +81,7 @@ namespace SuperTed {
 
 			MapGroup = CreateGroup(RoomPanel->W(), RoomPanel->DrawY(), TQSG_ScreenWidth() - (RoomPanel->W() + DataPanel->W()), RoomPanel->H(), MG);
 
-
+			RenewRooms();
 
 		}
 #pragma endregion
@@ -113,6 +113,12 @@ namespace SuperTed {
 
 		void DrawMap() {
 
+		}
+
+		void RenewRooms() {
+			RoomList->ClearItems();
+			for (auto r : TheMap->Rooms) RoomList->AddItem(r.first);
+			RoomList->SelectItem(0);
 		}
 
 #pragma endregion
