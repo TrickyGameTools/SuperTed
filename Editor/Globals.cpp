@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.25
+// Version: 22.11.27
 // EndLic
 
 #include "Globals.hpp"
@@ -79,6 +79,7 @@ namespace SuperTed {
 		std::string EdtProjectDir() { return ProjectsDir() + "/" + EdtProject; }
 		std::string EdtProjectIni() { return EdtProjectDir() + "/" + EdtProject + ".ini"; }
 		std::string EdtProjectNeil() { return EdtProjectDir() + "/" + EdtProject + ".neil"; }
+		std::string EdtProjectMapFile() { LoadGlobalConfig(); return AltMount(ProjectConfig.Value("Directory", "Maps") + EdtMap); }
 		std::string EdtProjectLua() { return EdtProjectDir() + "/" + EdtProject + ".lua"; }
 		std::string TextureDir() { return TReplace(AltMount(ProjectConfig.Value("Directory", "Textures")),'\\','/'); }
 		void Throw(std::string message, std::string TraceBack, ThrowAct A) {
