@@ -44,6 +44,7 @@ namespace SuperTed {
 		extern std::string EdtProject;
 		extern std::string EdtMap;
 		extern lua_State* Script;
+		extern SuperTed::Teddy TheMap;
 		
 
 		std::string ProjectsDir();

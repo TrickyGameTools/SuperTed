@@ -44,6 +44,7 @@ namespace SuperTed {
 		lua_State* Script{nullptr};
 		bool ErrorThrown;
 		ThrowAct PanicAct{ ThrowAct::InstantEnd };
+		SuperTed::Teddy TheMap{ nullptr };
 
 
 		static void LoadGlobalConfig(bool force=false) {
