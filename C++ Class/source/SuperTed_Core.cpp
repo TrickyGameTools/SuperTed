@@ -85,7 +85,7 @@ namespace SuperTed {
 
 	Teddy LoadTeddy(std::string File, std::string prefix) {
 		auto J{ jcr6::Dir(File) };
-		if (JCR_Error != "" && Upper(JCR_Error) != "") return nullptr;
+		if (JCR_Error != "" && Upper(JCR_Error) != "OK") return nullptr;
 		return _Teddy::Load(&J, prefix);
 	}
 
@@ -185,7 +185,10 @@ namespace SuperTed {
 		objlay->SetType(TeddyRoomLayerType::Objects);
 		ret->Layers["OBJECTS"] = objlay;
 		for (int x = 0; x < w; ++x) for (int y = 0; y < h; ++y) ret->MapObjects->Value(x, y, std::make_shared<std::vector<TeddyObject>>());
-		if (!layerless) for (auto l : BaseLayers) ret->CreateLayer(l);
+		if (!layerless) {
+			for (auto l : BaseLayers) ret->CreateLayer(l);
+			for (auto z : BaseZones) ret->CreateZone(z);
+		}
 		return ret;
 	}
 

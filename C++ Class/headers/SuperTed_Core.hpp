@@ -99,6 +99,7 @@ namespace SuperTed {
 			defaultgh{ 32 };
 		int ID();
 		std::vector<std::string> BaseLayers;
+		std::vector<std::string> BaseZones;
 		std::map<std::string, TeddyRoom> Rooms;
 		std::map<TrickyUnits::uint32, TeddyTex> Textures;
 		std::map<std::string, std::string> Data;
