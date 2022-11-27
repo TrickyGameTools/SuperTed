@@ -45,6 +45,7 @@
 #include "Textures.hpp"
 #include "Script_API.hpp"
 #include "Run.hpp"
+#include "Opslaan.hpp"
 
 #include "Algemeen.hpp"
 
@@ -105,7 +106,7 @@ int main(int argcount, char** args) {
 	TQSE_Init();
 	QCol->Doing("Initizing", "SuperTed TQSG Driver");
 	SuperTed_InitTQSG(&JTEX);
-
+	LoadMap();
 
 	// Run
 	UI::Start();
