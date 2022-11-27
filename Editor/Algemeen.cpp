@@ -58,14 +58,15 @@ namespace SuperTed {
 		void _UI::AddStage(std::string st) {
 			st = Upper(st);
 			if (Stage.count(st)) Crash("Dupe stage: " + st);
-			Stage[st] = std::make_shared<_UI>( st );
+			Stage[st] = std::make_shared<_UI>(  );
+			Stage[st]->_Name = st;
 			Stage[st]->MainGadget = CreateGroup(0, 0, TQSG_ScreenWidth(), TQSG_ScreenHeight() - 36, WorkScreen());
 		}
 
 		UI _UI::GetStage(std::string st) {
 			st = Upper(st);
 			if (!Stage.count(st)) Crash("Non-existent stage: " + st);
-			return &Stage[st];
+			return Stage[st];
 		}
 
 		UI _UI::CurrentStage() {
