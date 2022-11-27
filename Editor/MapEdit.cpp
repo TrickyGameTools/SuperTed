@@ -106,13 +106,20 @@ namespace SuperTed {
 #pragma endregion
 
 #pragma region GeneralFunctions
-		void AdeptStatus() {
-			auto st{ "Actual stuff comes later!" };
+		void AdeptStatus(std::string st) {
+			//auto st{ "Actual stuff comes later!" };
 			june19::j19gadget::StatusText(st);
 		}
 
-		void DrawMap() {
+		void AdeptStatus() { AdeptStatus("Welcome to SuperTed"); }
 
+		static void MouseStatus() {
+			auto s{ TrSPrintF("%s:\tMouse(%04d,%04d)",CurrentRoom().c_str(),TQSE_MouseX(),TQSE_MouseY()) };
+			AdeptStatus(s);
+		}
+
+		void DrawMap() {
+			MouseStatus();
 		}
 
 		void RenewRooms() {
@@ -120,6 +127,8 @@ namespace SuperTed {
 			for (auto r : TheMap->Rooms) RoomList->AddItem(r.first);
 			RoomList->SelectItem(0);
 		}
+
+		std::string CurrentRoom() { return RoomList->ItemText(); }
 
 #pragma endregion
 	}
