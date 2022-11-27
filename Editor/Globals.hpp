@@ -52,7 +52,7 @@ namespace SuperTed {
 		std::string EdtProjectIni();
 		std::string EdtProjectLua();
 		std::string EdtProjectNeil();
-		std::string EdtProjectMap();
+		std::string EdtProjectMapFile();
 		
 		std::string TextureDir();
 
