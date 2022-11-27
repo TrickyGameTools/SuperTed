@@ -29,6 +29,7 @@
 #include <string>
 #include <lua.hpp>
 #include <jcr6_core.hpp>
+#include <SuperTed_Core.hpp>
 #include <GINIE.hpp>
 #include <QuickString.hpp>
 #include <ArgParse.h>
