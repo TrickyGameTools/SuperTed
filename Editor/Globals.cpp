@@ -64,7 +64,7 @@ namespace SuperTed {
 			auto drv{ Upper(spfile[0]) };
 			auto path{ spfile[1] };
 			auto mdrv{ Ask(&GlobalConfig,"Mount",drv,TrSPrintF("In file \"%s\" the unrecognized drive '%s' appears to be requested.\nI can mount a directory to that.\nPlease give me one: ",file.c_str(),drv.c_str())) };
-			return mdrv + "/" + path;
+			return TReplace(mdrv + "/" + path,'\\','/');
 
 		}
 
