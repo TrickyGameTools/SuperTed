@@ -79,7 +79,7 @@ namespace SuperTed {
 		std::string EdtProjectDir() { return ProjectsDir() + "/" + EdtProject; }
 		std::string EdtProjectIni() { return EdtProjectDir() + "/" + EdtProject + ".ini"; }
 		std::string EdtProjectNeil() { return EdtProjectDir() + "/" + EdtProject + ".neil"; }
-		std::string EdtProjectMapFile() { LoadGlobalConfig(); return AltMount(ProjectConfig.Value("Directory", "Maps") + EdtMap); }
+		std::string EdtProjectMapFile() { LoadGlobalConfig(); return AltMount(ProjectConfig.Value("Directory", "Maps") + "/" + EdtMap); }
 		std::string EdtProjectLua() { return EdtProjectDir() + "/" + EdtProject + ".lua"; }
 		std::string TextureDir() { return TReplace(AltMount(ProjectConfig.Value("Directory", "Textures")),'\\','/'); }
 		void Throw(std::string message, std::string TraceBack, ThrowAct A) {
