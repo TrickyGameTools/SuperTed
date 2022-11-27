@@ -31,8 +31,10 @@ namespace SuperTed {
 	namespace Editor {
 		// General
 		void AdeptStatus();
+		void AdeptStatus(std::string st);
 		void DrawMap();
 		void RenewRooms();
+		std::string CurrentRoom();
 
 		// Pulldown menu callbacks
 		void ToggleShowGrid(june19::j19gadget*, june19::j19action);
