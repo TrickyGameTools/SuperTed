@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.26
+// Version: 22.11.27
 // EndLic
 #include <QCol.hpp>
 
@@ -34,6 +34,10 @@ using namespace TrickyUnits;
 namespace SuperTed {
 	namespace Editor {
 
+#pragma region Variables
+		bool ShowGrid{ true };
+#pragma endregion
+
 #pragma region CallBackHeaders
 #pragma endregion
 
@@ -45,7 +49,7 @@ namespace SuperTed {
 			UI::AddStage("Map");
 			UI::GoToStage("Map");
 			UI_MapEdit = UI::GetStage("Map");
-			//UI_MapEdit->PreJune = DrawMap;
+			UI_MapEdit->PreJune = DrawMap;
 
 		}
 #pragma endregion
@@ -70,6 +74,10 @@ namespace SuperTed {
 		void AdeptStatus() {
 			auto st{ "Actual stuff comes later!" };
 			june19::j19gadget::StatusText(st);
+		}
+
+		void DrawMap() {
+
 		}
 
 #pragma endregion
