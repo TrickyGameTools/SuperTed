@@ -53,12 +53,12 @@ namespace SuperTed {
 
 
 #pragma region UI
-		static UI* UI_MapEdit{ nullptr };
+		static UI UI_MapEdit{ nullptr };
 		void UI_MapStart() {
 			// Start
-			UI::AddStage("Map");
-			UI::GoToStage("Map");
-			UI_MapEdit = UI::GetStage("Map");
+			_UI::AddStage("Map");
+			_UI::GoToStage("Map");
+			UI_MapEdit = _UI::GetStage("Map");
 			UI_MapEdit->PreJune = DrawMap;
 			auto MG{ UI_MapEdit->MainGadget };
 			RoomPanel = CreatePanel(0, 0, 125, MG->H(), MG);
