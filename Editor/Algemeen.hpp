@@ -50,18 +50,18 @@ namespace SuperTed {
 
 		typedef void(*UIV)();
 
-		class UI;
+		class _UI; typedef	std::shared_ptr<_UI> UI;
 
-		class UI {
+		class _UI {
 		private:
 			static bool _initialized;
 			static TrickyUnits::TQSG_AutoImage Mouse;
 			static std::map<std::string, UI> Stage;
 			std::string _Name{};
-			UI(std::string name);
-			static UI* _Current;
+			_UI(std::string name);
+			static UI _Current;
 		public:
-			UI();
+			_UI();
 
 			static void Crash(std::string m);
 
@@ -70,8 +70,8 @@ namespace SuperTed {
 			UIV PostJune{ nullptr };
 
 			static void AddStage(std::string st);
-			static UI* GetStage(std::string st);
-			static UI* CurrentStage();
+			static UI GetStage(std::string st);
+			static UI CurrentStage();
 			static void GoToStage(std::string st);
 
 			// Notify

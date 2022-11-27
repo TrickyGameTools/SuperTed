@@ -39,45 +39,45 @@ using namespace TrickyUnits;
 
 namespace SuperTed {
 	namespace Editor {
-		bool UI::_initialized{ false };
-		TQSG_AutoImage UI::Mouse{ nullptr };
-		UI* UI::_Current{ nullptr };
-		std::map<std::string, UI> UI::Stage{};
+		bool _UI::_initialized{ false };
+		TQSG_AutoImage _UI::Mouse{ nullptr };
+		UI _UI::_Current{ nullptr };
+		std::map<std::string, std::shared_ptr<_UI>> _UI::Stage{};
 		
 
 
 
-		UI::UI(std::string name) {
+		_UI::_UI(std::string name) {
 			_Name = name;
 		}
-		UI::UI() {}
-		void UI::Crash(std::string m) {
+		_UI::_UI() {}
+		void _UI::Crash(std::string m) {
 			Throw(m);
 		}
 
-		void UI::AddStage(std::string st) {
+		void _UI::AddStage(std::string st) {
 			st = Upper(st);
 			if (Stage.count(st)) Crash("Dupe stage: " + st);
-			Stage[st] = UI{ st };
-			Stage[st].MainGadget = CreateGroup(0, 0, TQSG_ScreenWidth(), TQSG_ScreenHeight() - 36, WorkScreen());
+			Stage[st] = std::make_shared<_UI>( st );
+			Stage[st]->MainGadget = CreateGroup(0, 0, TQSG_ScreenWidth(), TQSG_ScreenHeight() - 36, WorkScreen());
 		}
 
-		UI* UI::GetStage(std::string st) {
+		UI _UI::GetStage(std::string st) {
 			st = Upper(st);
 			if (!Stage.count(st)) Crash("Non-existent stage: " + st);
 			return &Stage[st];
 		}
 
-		UI* UI::CurrentStage() {
+		UI _UI::CurrentStage() {
 			return _Current;
 		}
 
-		void UI::GoToStage(std::string st) {
+		void _UI::GoToStage(std::string st) {
 			st = Upper(st);
 			if (!Stage.count(st)) Crash("Non-existent stage: " + st);
-			_Current = &Stage[st];
-			for (auto& si : Stage) {
-				si.second.MainGadget->Visible = si.first == st;
+			_Current = Stage[st];
+			for (auto si : Stage) {
+				si.second->MainGadget->Visible = si.first == st;
 			}
 		}
 
@@ -86,7 +86,7 @@ namespace SuperTed {
 		static bool go_on{ true };
 		static void dquit(j19gadget* g, j19action a) { go_on = false; }
 
-		void UI::Start() {
+		void _UI::Start() {
 
 
 			// JCR6
@@ -156,7 +156,7 @@ namespace SuperTed {
 
 		}
 
-		bool UI::Run() {
+		bool _UI::Run() {
 			auto CS{ CurrentStage() };
 			//auto go_on{ true };
 			go_on = true;
@@ -176,7 +176,7 @@ namespace SuperTed {
 			return go_on; 
 		}
 
-		void UI::Done() {
+		void _UI::Done() {
 			if (!_initialized) return;
 			_initialized = false;
 			QCol->Doing("Closing","User Interface");
