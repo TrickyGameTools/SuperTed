@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.26
+// Version: 22.11.27
 // EndLic
 
 #pragma once
@@ -31,6 +31,7 @@ namespace SuperTed {
 	namespace Editor {
 		// General
 		void AdeptStatus();
+		void DrawMap();
 
 		// Pulldown menu callbacks
 		void ToggleShowGrid(june19::j19gadget*, june19::j19action);
