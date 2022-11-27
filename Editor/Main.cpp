@@ -109,9 +109,9 @@ int main(int argcount, char** args) {
 	LoadMap();
 
 	// Run
-	UI::Start();
+	_UI::Start();
 	do {} while (Run());
-	UI::Done();
+	_UI::Done();
 
 	// Close
 	if (Script != NULL) { QCol->Doing("Disposing", "Script");  lua_close(Script); }
