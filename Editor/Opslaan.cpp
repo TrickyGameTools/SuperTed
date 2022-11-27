@@ -24,17 +24,92 @@
 // Version: 22.11.26
 // EndLic
 
-#include <QCol.hpp>
+#include <SuperTed_Save.hpp>
 
+#include <QCol.hpp>
+#include <QuickStream.hpp>
+#include <Ask.hpp>
+
+
+#include "Globals.hpp"
 #include "Opslaan.hpp"
+
+#define __DPanic TeddyPanicFunction = TCrash
+#define __ZLIB_Broken
 
 using namespace june19;
 using namespace TrickyUnits;
 
 namespace SuperTed {
 	namespace Editor {
+
+		void TCrash(std::string e) { Throw(e); }
+		
 		void MenuSave(j19gadget*, j19action) {
-			QCol->Error("Saving not yet implemented");
+			__DPanic;
+			SaveMap();
+		}
+
+		void CreateMap(std::string f) { 
+			__DPanic;
+			QCol->Doing("Creating", f);
+			static vector<string> BaseRoom{ "__BASE" };
+			if (!ProjectConfig.ListCount("LAYERS", "LAYERS")) {
+				ProjectConfig.Add("LAYERS", "LAYERS", "FLOORS");
+				ProjectConfig.Add("LAYERS", "LAYERS", "WALLS");
+			}
+			TheMap = CreateTeddy(
+				AskInt(&ProjectConfig,"Default Map Format","Width","Default width in tiles:",64),
+				AskInt(&ProjectConfig, "Default Map Format", "Height", "Default height in tiles:", 64),
+				AskInt(&ProjectConfig, "Grid", "Width", "Default Tile Width:", 32),
+				AskInt(&ProjectConfig, "Grid", "Height", "Default Tile Height:", 32),
+				BaseRoom,
+				*ProjectConfig.List("LAYERS","LAYERS")
+			);
+			TheMap->BaseZones = *ProjectConfig.List("LAYERS", "ZONES");
+			SaveMap(f);
+		}
+
+		void CreateMap() { CreateMap(EdtProjectMapFile()); }
+
+		void LoadMap(std::string f, bool CreateIfNonExistent) {
+			__DPanic;
+			if (!FileExists(f)) {
+				if (CreateIfNonExistent) {
+					CreateMap(f);
+					return;
+				} else {
+					Throw("Map '" + f + "', could not be loaded. File not found");
+					return;
+				}
+			}
+			QCol->Doing("Loading", f);
+			TheMap = LoadTeddy(f, ProjectConfig.Value("Save", "Prefix"));
+			if (!TheMap) Throw("Map not properly loaded");
+		}
+
+
+		void LoadMap() { LoadMap(EdtProjectMapFile()); }
+		void SaveMap() { SaveMap(EdtProjectMapFile()); }
+		void SaveMap(std::string f) {
+			if (!TheMap) {
+				QCol->Warn("Map was never properly loaded, so it cannot be saved either!");
+				return;
+			}
+			QCol->Doing("Saving", f);
+			#ifdef __ZLIB_Broken
+			if (ProjectConfig.Value("Save", "Storage") != "Store") {
+				if (ProjectConfig.Value("Save", "Storage") != "")
+					QCol->Warn("Compression storage method is set to '" + ProjectConfig.Value("Save", "Storage") + "'. Due to trouble with the compression this has been set to 'Store'");
+				ProjectConfig.Value("Save", "Storage", "Store");
+			}
+			#endif
+			TeddySave(
+				TheMap,
+				f,
+				ProjectConfig.Value("Save", "Prefix"),
+				Ask(&ProjectConfig, "Save", "Storage", "Please name the storage method: ", "zlib")
+			);
 		}
 	}
 }

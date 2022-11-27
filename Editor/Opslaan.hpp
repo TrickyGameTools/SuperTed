@@ -32,5 +32,12 @@
 namespace SuperTed {
 	namespace Editor {
 		void MenuSave(june19::j19gadget*, june19::j19action);
+
+		void CreateMap(std::string f);
+		void CreateMap();
+		void LoadMap(std::string f, bool CreateIfNonExistent = true);
+		void LoadMap();
+		void SaveMap();
+		void SaveMap(std::string f);
 	}
 }
