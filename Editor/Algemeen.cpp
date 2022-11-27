@@ -43,6 +43,9 @@ namespace SuperTed {
 		TQSG_AutoImage UI::Mouse{ nullptr };
 		UI* UI::_Current{ nullptr };
 		std::map<std::string, UI> UI::Stage{};
+		
+
+
 
 		UI::UI(std::string name) {
 			_Name = name;
@@ -147,6 +150,8 @@ namespace SuperTed {
 			DebugMenu->AddItem("Optimize To Origin", OptimizeToOrigin, SDLK_F2);
 			//DebugMenu->AddItem("Next Object", NextObject, SDLK_TAB);
 			// Stages
+
+
 			UI_MapStart(); // Must be last
 
 		}
