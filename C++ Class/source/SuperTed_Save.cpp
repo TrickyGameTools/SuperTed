@@ -69,7 +69,7 @@ namespace SuperTed {
 
 		// Data
 		{
-			auto bdata = resource->StartEntry(dir + "Data", Storage);
+			auto bdata = resource->StartEntry(dir + "Data", Storage);			
 			for (auto i : TeddyMap->Data) {
 				bdata->Write((byte)1);
 				bdata->Write(i.first);
@@ -122,18 +122,20 @@ namespace SuperTed {
 					{
 						auto bob{ resource->StartEntry(dir + "Rooms/" + room.first + "/Objects") };
 						for (uint32 y = 0; y < room.second->H(); y++)for (uint32 x = 0; x < room.second->W(); x++) {
-							auto l{ *(room.second->MapObjects->Value(x, y).get()) };
-							for (auto obj :l ){
-								bob->Write((byte)1);
-								bob->Write((byte)2);
-								bob->Write(x);
-								bob->Write(y);
-								bob->Write((byte)3);
-								bob->Write(obj->kind);
-								for (auto d : obj->Data){
-									bob->Write((byte)4);
-									bob->Write(d.first);
-									bob->Write(d.second);
+							if (room.second->MapObjects->Value(x, y)) {
+								auto l{ *(room.second->MapObjects->Value(x, y).get()) };
+								for (auto obj : l) {
+									bob->Write((byte)1);
+									bob->Write((byte)2);
+									bob->Write(x);
+									bob->Write(y);
+									bob->Write((byte)3);
+									bob->Write(obj->kind);
+									for (auto d : obj->Data) {
+										bob->Write((byte)4);
+										bob->Write(d.first);
+										bob->Write(d.second);
+									}
 								}
 							}
 						}
