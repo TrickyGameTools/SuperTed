@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.26
+// Version: 22.11.27
 // EndLic
 
 
@@ -35,6 +35,9 @@
 #include <TQSE.hpp>
 
 #include <jcr6_realdir.hpp>
+
+#include <SuperTed_Core.hpp>
+#include <SuperTed_Draw_TQSG.hpp>
 
 #include "../SupJCR/SupJCR.hpp"
 #include "builddate.hpp"
@@ -100,6 +103,8 @@ int main(int argcount, char** args) {
 	TQSG_Flip();
 	QCol->Doing("Initizing", "TQSE");	
 	TQSE_Init();
+	QCol->Doing("Initizing", "SuperTed TQSG Driver");
+	SuperTed_InitTQSG(&JTEX);
 
 
 	// Run
