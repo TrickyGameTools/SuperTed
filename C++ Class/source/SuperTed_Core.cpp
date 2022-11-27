@@ -165,6 +165,16 @@ namespace SuperTed {
 
 	int _Teddy::ID() { return _ID; }
 
+	void _Teddy::RenameRoom(std::string original, std::string target) {
+		auto ErTag{ TrSPrintF("Teddy->RenameRoom(\"%s\",\"%s\"): ",original.c_str(),target.c_str()) };
+		original = Upper(original);
+		target = Upper(target);
+		TedAssert(Rooms.count(original), ErTag + "Original room not found!");
+		TedAssert(!Rooms.count(target), ErTag + "Target room already exists");
+		Rooms[target] = Rooms[original];
+		Rooms.erase(original);
+	}
+
 	TeddyTex _Teddy::Tex(TrickyUnits::uint32 idx) {
 		if (!Textures.count(idx)) Textures[idx] = std::make_shared<_TeddyTex>();
 		return Textures[idx];
