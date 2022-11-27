@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.26
+// Version: 22.11.27
 // EndLic
 #pragma once
 
@@ -57,9 +57,9 @@ namespace SuperTed {
 			static bool _initialized;
 			static TrickyUnits::TQSG_AutoImage Mouse;
 			static std::map<std::string, UI> Stage;
-			std::string _Name{};
-			_UI(std::string name);
+			std::string _Name{""};
 			static UI _Current;
+			_UI(std::string name);
 		public:
 			_UI();
 
