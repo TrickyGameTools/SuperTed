@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.27
+// Version: 22.11.28
 // EndLic
 
 #include <SuperTed_Save.hpp>
@@ -86,6 +86,8 @@ namespace SuperTed {
 			QCol->Doing("Loading", f);
 			TheMap = LoadTeddy(f, ProjectConfig.Value("Save", "Prefix"));
 			if (!TheMap) Throw("Map not properly loaded");
+			TheMap->BaseZones = *ProjectConfig.List("LAYERS", "ZONES");
+			TheMap->BaseLayers = *ProjectConfig.List("LAYERS", "LAYERS");
 		}
 
 
