@@ -36,6 +36,7 @@ namespace SuperTed {
 		void DrawMap();
 		void RenewRooms();
 		void RenewLayers();
+		void RenewTextures();
 		std::string CurrentRoom();
 		TeddyRoom Room(std::string groom = "");
 

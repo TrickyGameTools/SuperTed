@@ -58,9 +58,12 @@ namespace SuperTed {
 			* RadAddZone{ nullptr },
 
 			* TexList{ nullptr },
-			* TexR{ nullptr },
-			* TexG{ nullptr },
-			* TexB{ nullptr },
+			* AddTex{nullptr},
+			* EdtTex{nullptr},
+			* RemTex{nullptr},
+			//* TexR{ nullptr },
+			//* TexG{ nullptr },
+			//* TexB{ nullptr },
 
 			* DataPanel{ nullptr };
 #pragma endregion
@@ -76,6 +79,7 @@ namespace SuperTed {
 		static void LayerStringAction(j19gadget*, j19action);
 		static void ButtonAddLayer(j19gadget*, j19action);
 		static void ActRemoveLayer(j19gadget*, j19action);
+		static void DwTextButton(j19gadget*, j19action);
 #pragma endregion
 
 
@@ -176,18 +180,28 @@ namespace SuperTed {
 			LayerTypeTabs[TeddyRoomLayerType::Layer] = CreateGroup(0, bly + 50, DataPanel->W()-4, EMT->H() - (bly + 50), EMT);
 			auto LTLT = LayerTypeTabs[TeddyRoomLayerType::Layer];
 			// Texture			
-			TexList = CreateListBox(0, 0, LTLT->W(), LTLT->H() - 100, LTLT);
+			TexList = CreateListBox(0, 0, LTLT->W(), LTLT->H() - 40, LTLT);
 			TexList->SetForeground(255, 255, 0);
 			TexList->SetBackground(255, 0, 0, 255);
+			AddTex = CreateButton("New", 0, TexList->H(), LTLT); AddTex->SetForeground(0, 255, 0, 255); AddTex->SetBackground(0, 25, 0, 255);
+			EdtTex = CreateButton("Edit", 0, TexList->H(), LTLT); EdtTex->SetForeground(255, 255, 0, 255); EdtTex->SetBackground(25, 25, 0, 255);
+			RemTex = CreateButton("Remove", 0, TexList->H(), LTLT); RemTex->SetForeground(255, 0, 0, 255); RemTex->SetBackground(25, 0, 0, 255);
+			RemTex->CBDraw = DwTextButton;
+			RenewTextures();
+
+
+			
 			// Color
-			int CH = TexList->H();
-			int CW = (int)floor(LTLT->W() * .35);
+			//int CH = TexList->H()+40;
+			//int CW = (int)floor(LTLT->W() * .35);
+			/*
 			TexR = CreateTextfield(0, CH, CW, LTLT);
 			TexR->SetBackground(100, 0, 0, 255);
 			TexG = CreateTextfield(CW, CH, CW, LTLT);
 			TexG->SetBackground(0, 100, 0, 255);
-			TexG = CreateTextfield(CW*2, CH, CW, LTLT);
-			TexG->SetBackground(0, 0, 100, 255);
+			TexB = CreateTextfield(CW*2, CH, CW, LTLT);
+			TexB->SetBackground(0, 0, 100, 255);
+			//*/
 
 			// DrawType
 			// Anim
@@ -254,6 +268,11 @@ namespace SuperTed {
 			};
 			AddLayer->Enabled = allow;
 			if (allow && a == j19action::Enter) ButtonAddLayer(g, a);
+		}
+
+		static void DwTextButton(j19gadget*, j19action) {
+			EdtTex->X(AddTex->W());
+			RemTex->X(EdtTex->X() + EdtTex->W());			
 		}
 
 #pragma endregion
@@ -343,6 +362,16 @@ namespace SuperTed {
 			LayerList->ClearItems();
 			for (auto k : Room()->Layers) LayerList->AddItem(k.first);
 			LayerList->SelectItem(0);
+		}
+
+		void RenewTextures() {
+			TexList->ClearItems();
+			TexList->AddItem("$000000 <Nothing>");
+			for (auto tex : TheMap->Textures) {
+				if(tex.first && tex.second && tex.second->TexFile.size())
+					TexList->AddItem(TrSPrintF("$%06X %s",tex.first,tex.second->TexFile.c_str()));
+			}
+			TexList->SelectItem(0);
 		}
 
 		std::string CurrentRoom() { return RoomList->ItemText(); }
