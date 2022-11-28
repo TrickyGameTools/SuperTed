@@ -41,6 +41,7 @@ namespace SuperTed {
 		static bool ShowGrid{ true };
 		static int ScrollX{ 0 };
 		static int ScrollY{ 0 };
+		static map<string, j19gadget*> DataTabs;
 
 		static j19gadget* MapGroup;
 		static j19gadget* RoomPanel{ nullptr };
