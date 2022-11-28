@@ -66,6 +66,8 @@ namespace SuperTed {
 		static void RoomSelected(j19gadget*, j19action);
 		static void TabRadioAct(j19gadget*, j19action);
 		static void LayerStringAction(j19gadget*, j19action);
+		static void ButtonAddLayer(j19gadget*, j19action);
+		static void ActRemoveLayer(j19gadget*, j19action);
 #pragma endregion
 
 
@@ -153,7 +155,16 @@ namespace SuperTed {
 			LayerString->BR = 12;
 			LayerString->BG = 9;
 			LayerString->BB = 0;
-
+			auto LayZon = CreateGroup(0, bly + 30, 10, 10, EMT);
+			RadAddLayer = CreateRadioButton("Layer", 0, 0, EMT->W() / 2, 25, LayZon);
+			RadAddZone = CreateRadioButton("Zone", RadAddLayer->W(), 0, EMT->W() / 2, 25, LayZon);
+			RadAddLayer->SetForeground(255, 180, 0);
+			RadAddZone->SetForeground(255, 180, 0);
+			RadAddLayer->checked = true;
+			RadAddZone->checked = false;
+			LayerString->CBAction = LayerStringAction;
+			AddLayer->CBAction = ButtonAddLayer;
+			RemLayer->CBAction = ActRemoveLayer;
 
 			// Script Spot Tab
 			if (ProjectConfig.ListCount("Script", "Spot")) {
@@ -185,17 +196,36 @@ namespace SuperTed {
 			if (g->checked) GoDTap(g->Caption);
 		}
 
-		static void ButtonAddLayer(j19gadget*,j19action){
-			Room()->CreateLayer(Upper(LayerString->Text));
-			// TODO: Add zone!
+		static void ButtonAddLayer(j19gadget*, j19action) {
+			if (RadAddLayer->checked)
+				Room()->CreateLayer(Upper(LayerString->Text));
+			else if (RadAddZone->checked)
+				Room()->CreateZone(Upper(LayerString->Text));
+			AddLayer->Enabled = false;
+			LayerString->Text = "";
+			RenewLayers();
+		}
+
+		static void ActRemoveLayer(j19gadget*, j19action) {
+			if (LayerList->ItemText() == "OBJECTS")
+				NFE("The layer OBJECTS may NOT be removed!");
+			else if (LayerList->ItemText() == "")
+				NFE("No layer chosen"); 
+			else {
+				Room()->Layers.erase(LayerList->ItemText());
+				RenewLayers();
+			}
+			
 		}
 
 		static void LayerStringAction(j19gadget* g, j19action a){
 			string nLay{ Upper(g->Text) };
 			bool allow{
 				nLay.size() &&
-				(!Room()->Layers.count(nLay))
+				(!Room()->Layers.count(nLay)) &&
+				DataTabs["Edit Map"]->Visible
 			};
+			AddLayer->Enabled = allow;
 			if (allow && a == j19action::Enter) ButtonAddLayer(g, a);
 		}
 
@@ -285,6 +315,7 @@ namespace SuperTed {
 		void RenewLayers() {
 			LayerList->ClearItems();
 			for (auto k : Room()->Layers) LayerList->AddItem(k.first);
+			LayerList->SelectItem(0);
 		}
 
 		std::string CurrentRoom() { return RoomList->ItemText(); }
