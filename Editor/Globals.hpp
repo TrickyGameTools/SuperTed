@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.27
+// Version: 22.11.28
 // EndLic
 
 #pragma once
@@ -64,5 +64,7 @@ namespace SuperTed {
 		void Throw(std::string message, std::string TraceBack = "", ThrowAct A = ThrowAct::LogForRun);
 		bool GetThrown();
 
+
+		void NFE(std::string message,std::string e="ERROR"); // Non-Fatal Error
 	}
 }

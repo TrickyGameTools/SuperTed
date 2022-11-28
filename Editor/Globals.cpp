@@ -21,8 +21,10 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.27
+// Version: 22.11.28
 // EndLic
+
+#include <SDL.h>
 
 #include "Globals.hpp"
 #include <Dirry.hpp>
@@ -100,7 +102,13 @@ namespace SuperTed {
 			}
 		}
 		bool GetThrown() { return ErrorThrown; }
+		void NFE(std::string message,std::string head) {
+			QCol->Error(message);
+			SDL_ShowSimpleMessageBox(0, head.c_str(), message.c_str(), nullptr);
+		}
 		std::string EdtProjectScript() { return EdtProjectDir() + "/" + EdtProject + ".neil"; }
 
+
+	
 	}
 }
