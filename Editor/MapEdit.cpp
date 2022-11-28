@@ -43,7 +43,7 @@ namespace SuperTed {
 		static int ScrollY{ 0 };
 		static map<string, j19gadget*> DataTabs;
 		static map<TeddyRoomLayerType, j19gadget*> LayerTypeTabs;
-		static map<string, map<string, bool>> ShowLayer;
+		static map<string, map<string, bool>> ShowLayerReg;
 
 		static j19gadget
 			* MapGroup{ nullptr },
@@ -57,11 +57,17 @@ namespace SuperTed {
 			* RadAddLayer{ nullptr },
 			* RadAddZone{ nullptr },
 
+			* TexList{ nullptr },
+			* TexR{ nullptr },
+			* TexG{ nullptr },
+			* TexB{ nullptr },
+
 			* DataPanel{ nullptr };
 #pragma endregion
 
 #pragma region General_Static_Headers
 		static void GoDTap(string);
+		static bool ShowLayer();
 #pragma endregion
 
 #pragma region CallBackHeaders
@@ -167,6 +173,25 @@ namespace SuperTed {
 			LayerString->CBAction = LayerStringAction;
 			AddLayer->CBAction = ButtonAddLayer;
 			RemLayer->CBAction = ActRemoveLayer;
+			LayerTypeTabs[TeddyRoomLayerType::Layer] = CreateGroup(0, bly + 50, DataPanel->W()-4, EMT->H() - (bly + 50), EMT);
+			auto LTLT = LayerTypeTabs[TeddyRoomLayerType::Layer];
+			// Texture			
+			TexList = CreateListBox(0, 0, LTLT->W(), LTLT->H() - 100, LTLT);
+			TexList->SetForeground(255, 255, 0);
+			TexList->SetBackground(255, 0, 0, 255);
+			// Color
+			int CH = TexList->H();
+			int CW = (int)floor(LTLT->W() * .35);
+			TexR = CreateTextfield(0, CH, CW, LTLT);
+			TexR->SetBackground(100, 0, 0, 255);
+			TexG = CreateTextfield(CW, CH, CW, LTLT);
+			TexG->SetBackground(0, 100, 0, 255);
+			TexG = CreateTextfield(CW*2, CH, CW, LTLT);
+			TexG->SetBackground(0, 0, 100, 255);
+
+			// DrawType
+			// Anim
+			
 
 			// Script Spot Tab
 			if (ProjectConfig.ListCount("Script", "Spot")) {
@@ -321,10 +346,16 @@ namespace SuperTed {
 		}
 
 		std::string CurrentRoom() { return RoomList->ItemText(); }
+		std::string CurrentLayer() { return LayerList->ItemText(); }
 
 		TeddyRoom Room(std::string groom) {
 			if (!groom.size()) return Room(CurrentRoom());
 			return TheMap->Rooms[groom];
+		}
+
+		static bool ShowLayer() {
+			if (!ShowLayerReg[CurrentRoom()].count(CurrentLayer())) return true;
+			return ShowLayerReg[CurrentRoom()][CurrentLayer()];
 		}
 
 #pragma endregion
