@@ -39,6 +39,8 @@ namespace SuperTed {
 
 #pragma region Variables
 		bool ShowGrid{ true };
+		static int ScrollX{ 0 };
+		static int ScrollY{ 0 };
 
 		static j19gadget* MapGroup;
 		static j19gadget* RoomPanel{ nullptr };
@@ -98,10 +100,16 @@ namespace SuperTed {
 			QCol->Error("Grid toggling not yet implemented");
 		}
 
-		void ScrollDn(june19::j19gadget*, june19::j19action) { QCol->Error("Scrolling not yet implemented"); }
-		void ScrollUp(june19::j19gadget*, june19::j19action) { QCol->Error("Scrolling not yet implemented"); }
-		void ScrollRi(june19::j19gadget*, june19::j19action) { QCol->Error("Scrolling not yet implemented"); }
-		void ScrollLe(june19::j19gadget*, june19::j19action) { QCol->Error("Scrolling not yet implemented"); }
+		void ScrollDn(june19::j19gadget*, june19::j19action) {
+			int SMax{ max(0,(Room()->GH()*Room()->H())-MapGroup->H()) };
+			ScrollY = min(SMax, ScrollY + 16);
+		}
+		void ScrollUp(june19::j19gadget*, june19::j19action) { ScrollY = max(0, ScrollY - 16); }
+		void ScrollRi(june19::j19gadget*, june19::j19action) {
+			int SMax{ max(0,(Room()->GW() * Room()->W()) - MapGroup->W()) };
+			ScrollX = min(SMax, ScrollX + 16);
+		}
+		void ScrollLe(june19::j19gadget*, june19::j19action) { ScrollX = max(0, ScrollX - 16); }
 		void OptimizeToOrigin(june19::j19gadget*, june19::j19action) { QCol->Error("No optimizing to origin yet"); }
 #pragma endregion
 
@@ -115,6 +123,7 @@ namespace SuperTed {
 
 		static void MouseStatus() {
 			auto s{ TrSPrintF("%s:\tMouse(%04d,%04d)",CurrentRoom().c_str(),TQSE_MouseX(),TQSE_MouseY()) };
+			s += TrSPrintF("\tScroll (%04d,%04d)", ScrollX, ScrollY);
 			AdeptStatus(s);
 		}
 
