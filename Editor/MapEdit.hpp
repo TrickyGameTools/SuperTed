@@ -35,6 +35,7 @@ namespace SuperTed {
 		void AdeptStatus(std::string st);
 		void DrawMap();
 		void RenewRooms();
+		void RenewLayers();
 		std::string CurrentRoom();
 		TeddyRoom Room(std::string groom = "");
 

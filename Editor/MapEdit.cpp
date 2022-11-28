@@ -46,12 +46,18 @@ namespace SuperTed {
 		static j19gadget* MapGroup;
 		static j19gadget* RoomPanel{ nullptr };
 		static j19gadget* RoomList{ nullptr };
+		static j19gadget* LayerList{ nullptr };
 
 		static j19gadget* DataPanel{ nullptr };
 #pragma endregion
 
+#pragma region General_Static_Headers
+		static void GoDTap(string);
+#pragma endregion
+
 #pragma region CallBackHeaders
 		static void RoomSelected(j19gadget*, j19action);
+		static void TabRadioAct(j19gadget*, j19action);
 #pragma endregion
 
 
@@ -88,19 +94,33 @@ namespace SuperTed {
 			REdit->FG = 180;
 			REdit->FB = 0;
 			REdit->checked = true;
+			REdit->CBAction = TabRadioAct;
 			auto RScriptSpot = CreateRadioButton("Script Spot", 5, 25, OptionGroup->W() - 10, 20, OptionGroup);
 			RScriptSpot->FR = 255;
 			RScriptSpot->FG = 180;
 			RScriptSpot->FB = 0;
 			RScriptSpot->checked = false;
+			RScriptSpot->CBAction = TabRadioAct;
 			auto RScriptArea = CreateRadioButton("Script Area", 5, 45, OptionGroup->W() - 10, 20, OptionGroup);
 			RScriptArea->FR = 255;
 			RScriptArea->FG = 180;
 			RScriptArea->FB = 0;
 			RScriptArea->checked = false;
+			RScriptArea->CBAction = TabRadioAct;
 
 			// Map Tab
 			DataTabs["Edit Map"] = CreateGroup(5, 65, DataPanel->W(), DataPanel->H() - 65,DataPanel);
+			
+			auto
+				EMT = DataTabs["Edit Map"];
+			LayerList = CreateListBox(2, 0, EMT->W() - 6, EMT->H() / 4, EMT);
+			LayerList->FR = 0;
+			LayerList->FG = 255;
+			LayerList->FB = 0;
+			LayerList->BR = 0;
+			LayerList->BG = 25;
+			LayerList->BB = 0;
+
 
 			// Script Spot Tab
 			if (ProjectConfig.ListCount("Script", "Spot")) {
@@ -112,6 +132,8 @@ namespace SuperTed {
 				DataTabs["Script Area"] = CreateGroup(5, 65, DataPanel->W(), DataPanel->H() - 65, DataPanel);
 			} else RScriptArea->Enabled = false;
 
+
+			GoDTap("Edit Map");
 			// Map Itself
 			MapGroup = CreateGroup(RoomPanel->W(), RoomPanel->DrawY(), TQSG_ScreenWidth() - (RoomPanel->W() + DataPanel->W()), RoomPanel->H(), MG);
 
@@ -123,8 +145,13 @@ namespace SuperTed {
 
 #pragma region CallBackFunctions
 		static void RoomSelected(j19gadget*, j19action) {
-			QCol->Error("Layer selection NOT yet present");
+			RenewLayers();
 		}
+
+		static void TabRadioAct(j19gadget* g, j19action) {
+			if (g->checked) GoDTap(g->Caption);
+		}
+
 #pragma endregion
 
 #pragma region CallBackFunctionPullDownMenus
@@ -146,6 +173,10 @@ namespace SuperTed {
 #pragma endregion
 
 #pragma region GeneralFunctions
+		static void GoDTap(string k) {
+			for (auto i : DataTabs) i.second->Visible = Upper(i.first) == Upper(k);
+		}
+
 		void AdeptStatus(std::string st) {
 			//auto st{ "Actual stuff comes later!" };
 			june19::j19gadget::StatusText(st);
@@ -201,6 +232,12 @@ namespace SuperTed {
 			RoomList->ClearItems();
 			for (auto r : TheMap->Rooms) RoomList->AddItem(r.first);
 			RoomList->SelectItem(0);
+			RenewLayers();
+		}
+
+		void RenewLayers() {
+			LayerList->ClearItems();
+			for (auto k : Room()->Layers) LayerList->AddItem(k.first);
 		}
 
 		std::string CurrentRoom() { return RoomList->ItemText(); }
