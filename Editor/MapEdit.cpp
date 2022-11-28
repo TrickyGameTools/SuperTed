@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.27
+// Version: 22.11.28
 // EndLic
 #include <QCol.hpp>
 
@@ -155,8 +155,8 @@ namespace SuperTed {
 						MapY{ (int)floor((MY - GBY) / Room()->GH()) };
 					TQSG_Color(255, 255, 0);
 					TQSG_Rect(
-						(MapX * Room()->GW()) + MapGroup->DrawX(),
-						(MapY * Room()->GH()) + MapGroup->DrawY(),
+						(MapX * Room()->GW()) + MapGroup->DrawX() - (ScrollX%Room()->GW()),
+						(MapY * Room()->GH()) + MapGroup->DrawY() - (ScrollY%Room()->GH()),
 						Room()->GW(),
 						Room()->GH(),
 						true
