@@ -43,12 +43,19 @@ namespace SuperTed {
 		static int ScrollY{ 0 };
 		static map<string, j19gadget*> DataTabs;
 
-		static j19gadget* MapGroup;
-		static j19gadget* RoomPanel{ nullptr };
-		static j19gadget* RoomList{ nullptr };
-		static j19gadget* LayerList{ nullptr };
+		static j19gadget
+			* MapGroup{ nullptr },
+			* RoomPanel{ nullptr },
+			* RoomList{ nullptr },
 
-		static j19gadget* DataPanel{ nullptr };
+			* LayerList{ nullptr },
+			* AddLayer{ nullptr },
+			* RemLayer{ nullptr },
+			* LayerString{ nullptr },
+			* RadAddLayer{ nullptr },
+			* RadAddZone{ nullptr },
+
+			* DataPanel{ nullptr };
 #pragma endregion
 
 #pragma region General_Static_Headers
@@ -58,6 +65,7 @@ namespace SuperTed {
 #pragma region CallBackHeaders
 		static void RoomSelected(j19gadget*, j19action);
 		static void TabRadioAct(j19gadget*, j19action);
+		static void LayerStringAction(j19gadget*, j19action);
 #pragma endregion
 
 
@@ -122,21 +130,29 @@ namespace SuperTed {
 			LayerList->BR = 0;
 			LayerList->BG = 25;
 			LayerList->BB = 0;
-			auto
-				AddLayer = CreateButton("+", 2, bly + 5, EMT),
-				RemLayer = CreateButton("-", 25, bly + 5, EMT);
+			
+			AddLayer = CreateButton("+", 0, bly + 5, EMT);
+			RemLayer = CreateButton("-", 25, bly + 5, EMT);
+			LayerString = CreateTextfield(50, bly + 5, EMT->W() - 50, 20, EMT);			
 			AddLayer->FR = 0;
 			AddLayer->FG = 255;
 			AddLayer->FB = 0;
 			AddLayer->BR = 0;
 			AddLayer->BG = 25;
 			AddLayer->BB = 0;
+			AddLayer->Enabled = false;
 			RemLayer->FG = 0;
 			RemLayer->FR = 255;
 			RemLayer->FB = 0;
 			RemLayer->BG = 0;
 			RemLayer->BR = 25;
 			RemLayer->BB = 0;
+			LayerString->FR = 255;
+			LayerString->FG = 180;
+			LayerString->FB = 0;
+			LayerString->BR = 12;
+			LayerString->BG = 9;
+			LayerString->BB = 0;
 
 
 			// Script Spot Tab
@@ -167,6 +183,20 @@ namespace SuperTed {
 
 		static void TabRadioAct(j19gadget* g, j19action) {
 			if (g->checked) GoDTap(g->Caption);
+		}
+
+		static void ButtonAddLayer(j19gadget*,j19action){
+			Room()->CreateLayer(Upper(LayerString->Text));
+			// TODO: Add zone!
+		}
+
+		static void LayerStringAction(j19gadget* g, j19action a){
+			string nLay{ Upper(g->Text) };
+			bool allow{
+				nLay.size() &&
+				(!Room()->Layers.count(nLay))
+			};
+			if (allow && a == j19action::Enter) ButtonAddLayer(g, a);
 		}
 
 #pragma endregion
