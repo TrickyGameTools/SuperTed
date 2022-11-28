@@ -10,7 +10,9 @@ x64
 *.dll
 *.obj
 
-
+# This folder appears to be created (temporarily) when 
+# modifying C++ file wile running.
+enc_temp_folder
 
 
 # C# junk in project creation wizard
