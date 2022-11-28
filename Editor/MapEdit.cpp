@@ -99,7 +99,20 @@ namespace SuperTed {
 			RScriptArea->FB = 0;
 			RScriptArea->checked = false;
 
-			// Map
+			// Map Tab
+			DataTabs["Edit Map"] = CreateGroup(5, 65, DataPanel->W(), DataPanel->H() - 65,DataPanel);
+
+			// Script Spot Tab
+			if (ProjectConfig.ListCount("Script", "Spot")) {
+				DataTabs["Script Spot"] = CreateGroup(5, 65, DataPanel->W(), DataPanel->H() - 65, DataPanel);
+			} else RScriptSpot->Enabled = false;
+
+			// Script Area Tab
+			if (ProjectConfig.ListCount("Script", "Area")) {
+				DataTabs["Script Area"] = CreateGroup(5, 65, DataPanel->W(), DataPanel->H() - 65, DataPanel);
+			} else RScriptArea->Enabled = false;
+
+			// Map Itself
 			MapGroup = CreateGroup(RoomPanel->W(), RoomPanel->DrawY(), TQSG_ScreenWidth() - (RoomPanel->W() + DataPanel->W()), RoomPanel->H(), MG);
 
 			RenewRooms();
