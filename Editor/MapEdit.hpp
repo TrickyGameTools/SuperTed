@@ -26,6 +26,7 @@
 
 #pragma once
 #include <june19.hpp>
+#include <SuperTed_Core.hpp>
 
 namespace SuperTed {
 	namespace Editor {
@@ -35,6 +36,7 @@ namespace SuperTed {
 		void DrawMap();
 		void RenewRooms();
 		std::string CurrentRoom();
+		TeddyRoom Room(std::string groom = "");
 
 		// Pulldown menu callbacks
 		void ToggleShowGrid(june19::j19gadget*, june19::j19action);

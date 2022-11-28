@@ -38,7 +38,7 @@ namespace SuperTed {
 	namespace Editor {
 
 #pragma region Variables
-		bool ShowGrid{ true };
+		static bool ShowGrid{ true };
 		static int ScrollX{ 0 };
 		static int ScrollY{ 0 };
 
@@ -63,6 +63,7 @@ namespace SuperTed {
 			UI_MapEdit = _UI::GetStage("Map");
 			UI_MapEdit->PreJune = DrawMap;
 			auto MG{ UI_MapEdit->MainGadget };
+			// Left
 			RoomPanel = CreatePanel(0, 0, 125, MG->H(), MG);
 			RoomPanel->BR = 25; RoomPanel->BB = 0; RoomPanel->BG = 18;
 			RoomList = CreateListBox(1, 0, RoomPanel->W() - 2, RoomPanel->H() - 120, RoomPanel);
@@ -74,13 +75,30 @@ namespace SuperTed {
 			RoomList->FB = 255;
 			RoomList->CBAction = RoomSelected;
 
-			DataPanel = CreatePanel(TQSG_ScreenWidth() - 400, 0, 400, MG->H(), MG);
-			DataPanel->BR = 25; DataPanel->BG = 18; DataPanel->BB = 0;
-
 			auto TedPic = CreatePicture(0, RoomPanel->H() - 120, RoomPanel->W(), 120, RoomPanel, Pic_FullStretch);
 			TedPic->Image(*JAS, "Img/TeddyBear.png");
 
+			// Right
+			DataPanel = CreatePanel(TQSG_ScreenWidth() - 400, 0, 400, MG->H(), MG);
+			DataPanel->BR = 25; DataPanel->BG = 18; DataPanel->BB = 0;
+			auto OptionGroup = CreateGroup(0, 0, DataPanel->W(), 50, DataPanel);
+			auto REdit = CreateRadioButton("Edit Map", 5, 5, OptionGroup->W() - 10, 20,OptionGroup);
+			REdit->FR = 255;
+			REdit->FG = 180;
+			REdit->FB = 0;
+			REdit->checked = true;
+			auto RScriptSpot = CreateRadioButton("Script Spot", 5, 25, OptionGroup->W() - 10, 20, OptionGroup);
+			RScriptSpot->FR = 255;
+			RScriptSpot->FG = 180;
+			RScriptSpot->FB = 0;
+			RScriptSpot->checked = false;
+			auto RScriptArea = CreateRadioButton("Script Area", 5, 45, OptionGroup->W() - 10, 20, OptionGroup);
+			RScriptArea->FR = 255;
+			RScriptArea->FG = 180;
+			RScriptArea->FB = 0;
+			RScriptArea->checked = false;
 
+			// Map
 			MapGroup = CreateGroup(RoomPanel->W(), RoomPanel->DrawY(), TQSG_ScreenWidth() - (RoomPanel->W() + DataPanel->W()), RoomPanel->H(), MG);
 
 			RenewRooms();
@@ -122,12 +140,44 @@ namespace SuperTed {
 		void AdeptStatus() { AdeptStatus("Welcome to SuperTed"); }
 
 		static void MouseStatus() {
-			auto s{ TrSPrintF("%s:\tMouse(%04d,%04d)",CurrentRoom().c_str(),TQSE_MouseX(),TQSE_MouseY()) };
+			// BUG: Things spook up when scrolling, but I need more time to check this all out.
+			auto
+				MX{ TQSE_MouseX() },
+				MY{ TQSE_MouseY() },
+				GBX{ MapGroup->DrawX() },
+				GEX{ MapGroup->DrawX() + MapGroup->W() },
+				GBY{ MapGroup->DrawY() },
+				GEY{ MapGroup->DrawY() + MapGroup->H() };
+				auto s{ TrSPrintF("%s:\tMouse(%04d,%04d)",CurrentRoom().c_str(),MX,MY) };
+				if (MX > GBX && MX<GEX && MY>GBY && MY < GEY) {
+					int
+						MapX{ (int)floor((MX - GBX) / Room()->GW()) },
+						MapY{ (int)floor((MY - GBY) / Room()->GH()) };
+					TQSG_Color(255, 255, 0);
+					TQSG_Rect(
+						(MapX * Room()->GW()) + MapGroup->DrawX(),
+						(MapY * Room()->GH()) + MapGroup->DrawY(),
+						Room()->GW(),
+						Room()->GH(),
+						true
+					);
+					s += TrSPrintF("  Map(%03d,%03d)", MapX, MapY);
+
+			}
+			
 			s += TrSPrintF("\tScroll (%04d,%04d)", ScrollX, ScrollY);
 			AdeptStatus(s);
 		}
 
 		void DrawMap() {
+			if (ShowGrid) {
+				TQSG_Color(100, 100, 100);
+				for (int y = MapGroup->DrawY() - (ScrollY % TheMap->Rooms[CurrentRoom()]->GH()); y < MapGroup->DrawY() + MapGroup->H(); y += TheMap->Rooms[CurrentRoom()]->GH())
+					TQSG_Line(0, y, TQSG_ScreenWidth(), y);
+
+				for (int x = MapGroup->DrawX() - (ScrollX % TheMap->Rooms[CurrentRoom()]->GW()); x < MapGroup->DrawX() + MapGroup->W(); x += TheMap->Rooms[CurrentRoom()]->GW())
+					TQSG_Line(x, 0, x, TQSG_ScreenHeight());
+			}
 			MouseStatus();
 		}
 
@@ -138,6 +188,11 @@ namespace SuperTed {
 		}
 
 		std::string CurrentRoom() { return RoomList->ItemText(); }
+
+		TeddyRoom Room(std::string groom) {
+			if (!groom.size()) return Room(CurrentRoom());
+			return TheMap->Rooms[groom];
+		}
 
 #pragma endregion
 	}
