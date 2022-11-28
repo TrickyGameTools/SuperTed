@@ -140,7 +140,6 @@ namespace SuperTed {
 		void AdeptStatus() { AdeptStatus("Welcome to SuperTed"); }
 
 		static void MouseStatus() {
-			// BUG: Things spook up when scrolling, but I need more time to check this all out.
 			auto
 				MX{ TQSE_MouseX() },
 				MY{ TQSE_MouseY() },
@@ -152,7 +151,10 @@ namespace SuperTed {
 				if (MX > GBX && MX<GEX && MY>GBY && MY < GEY) {
 					int
 						MapX{ (int)floor((MX - GBX) / Room()->GW()) },
-						MapY{ (int)floor((MY - GBY) / Room()->GH()) };
+						MapY{ (int)floor((MY - GBY) / Room()->GH()) },
+						PlMX{ (int)floor(((MapX * Room()->GW()) + ScrollX) / Room()->GW()) },
+						PlMY{ (int)floor(((MapY * Room()->GH()) + ScrollY) / Room()->GH()) };
+
 					TQSG_Color(255, 255, 0);
 					TQSG_Rect(
 						(MapX * Room()->GW()) + MapGroup->DrawX() - (ScrollX%Room()->GW()),
@@ -161,7 +163,7 @@ namespace SuperTed {
 						Room()->GH(),
 						true
 					);
-					s += TrSPrintF("  Map(%03d,%03d)", MapX, MapY);
+					s += TrSPrintF("  Map(%03d,%03d)", PlMX, PlMY);
 
 			}
 			
