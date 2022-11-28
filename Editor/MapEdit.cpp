@@ -113,13 +113,30 @@ namespace SuperTed {
 			
 			auto
 				EMT = DataTabs["Edit Map"];
-			LayerList = CreateListBox(2, 0, EMT->W() - 6, EMT->H() / 4, EMT);
+			auto
+				bly = (int)EMT->H() / 4;
+			LayerList = CreateListBox(2, 0, EMT->W() - 6, bly, EMT);
 			LayerList->FR = 0;
 			LayerList->FG = 255;
 			LayerList->FB = 0;
 			LayerList->BR = 0;
 			LayerList->BG = 25;
 			LayerList->BB = 0;
+			auto
+				AddLayer = CreateButton("+", 2, bly + 5, EMT),
+				RemLayer = CreateButton("-", 25, bly + 5, EMT);
+			AddLayer->FR = 0;
+			AddLayer->FG = 255;
+			AddLayer->FB = 0;
+			AddLayer->BR = 0;
+			AddLayer->BG = 25;
+			AddLayer->BB = 0;
+			RemLayer->FG = 0;
+			RemLayer->FR = 255;
+			RemLayer->FB = 0;
+			RemLayer->BG = 0;
+			RemLayer->BR = 25;
+			RemLayer->BB = 0;
 
 
 			// Script Spot Tab
