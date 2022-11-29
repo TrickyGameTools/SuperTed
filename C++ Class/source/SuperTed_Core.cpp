@@ -1,7 +1,7 @@
 // Lic:
 // C++ Class/source/SuperTed_Core.cpp
 // SuperTed Core
-// version: 22.11.27
+// version: 22.11.29
 // Copyright (C) 2022 Jeroen P. Broks
 // This software is provided 'as-is', without any express or implied
 // warranty.  In no event will the authors be held liable for any damages
