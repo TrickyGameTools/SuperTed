@@ -91,8 +91,8 @@ namespace SuperTed {
 			TexOkay->BR = 0;
 			TexOkay->BG = min(25, TexOkay->BG + 1);
 			TexOkay->BB = 0;
-			TexCancel->SetBackground(TexOkay->BG, 0, 0, 255);			
 			TexCancel->SetForeground(255,TexOkay->FR, TexOkay->FR, 255);
+			TexCancel->SetBackground(TexOkay->BG, 0, 0, 255);
 		}
 
 		static int GetTexIndex() { 
