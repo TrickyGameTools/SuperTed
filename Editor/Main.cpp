@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.27
+// Version: 22.11.29
 // EndLic
 
 
@@ -115,5 +115,7 @@ int main(int argcount, char** args) {
 
 	// Close
 	if (Script != NULL) { QCol->Doing("Disposing", "Script");  lua_close(Script); }
+
+	QCol->Doing("Terminating", args[0]);
 	return 0;
 }

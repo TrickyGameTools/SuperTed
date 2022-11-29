@@ -108,9 +108,6 @@
     <ClCompile Include="..\..\JCR6\src\jcr6_realdir.cpp">
       <Filter>Source Files\JCR6</Filter>
     </ClCompile>
-    <ClCompile Include="Textures.cpp">
-      <Filter>Source Files\Editor</Filter>
-    </ClCompile>
     <ClCompile Include="Script_API.cpp">
       <Filter>Source Files\Editor</Filter>
     </ClCompile>
@@ -177,12 +174,12 @@
     <ClCompile Include="..\C++ Class\source\SuperTed_Save.cpp">
       <Filter>Source Files\SuperTed Class</Filter>
     </ClCompile>
+    <ClCompile Include="Textures.cpp">
+      <Filter>Source Files\Editor\User Interface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.hpp">
-      <Filter>Header Files\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="Textures.hpp">
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
     <ClInclude Include="Script_API.hpp">
@@ -247,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="..\C++ Class\headers\SuperTed_Save.hpp">
       <Filter>Header Files\SuperTed Class</Filter>
+    </ClInclude>
+    <ClInclude Include="Textures.hpp">
+      <Filter>Header Files\Editor\UserInterface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.27
+// Version: 22.11.29
 // EndLic
 
 #include <QCol.hpp>
@@ -182,6 +182,8 @@ namespace SuperTed {
 			_initialized = false;
 			QCol->Doing("Closing","User Interface");
 			MenuSave(nullptr, j19action::Unknown);	
+			QCol->Doing("Closing", "June19");
+			FreeJune19();
 		}
 
 

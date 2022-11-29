@@ -21,14 +21,16 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.28
+// Version: 22.11.29
 // EndLic
 #include <QCol.hpp>
+#include <TrickySTOI.hpp>
 
 #include <june19.hpp>
 
 #include "Globals.hpp"
 #include "Algemeen.hpp"
+#include "Textures.hpp"
 
 
 using namespace june19;
@@ -82,6 +84,8 @@ namespace SuperTed {
 		static void ActRemoveLayer(j19gadget*, j19action);
 		static void DwTextButton(j19gadget*, j19action);
 		static void SelectLayer(j19gadget*, j19action);
+		static void B_AddTexture(j19gadget*, j19action) { GoTextures(); }
+		static void B_EditTexture(j19gadget*, j19action);
 #pragma endregion
 
 
@@ -190,6 +194,8 @@ namespace SuperTed {
 			EdtTex = CreateButton("Edit", 0, TexList->H(), LTLT); EdtTex->SetForeground(255, 255, 0, 255); EdtTex->SetBackground(25, 25, 0, 255);
 			RemTex = CreateButton("Remove", 0, TexList->H(), LTLT); RemTex->SetForeground(255, 0, 0, 255); RemTex->SetBackground(25, 0, 0, 255);
 			RemTex->CBDraw = DwTextButton;
+			AddTex->CBAction = B_AddTexture;
+			EdtTex->CBAction = B_EditTexture;
 			RenewTextures();
 
 
@@ -283,6 +289,20 @@ namespace SuperTed {
 
 		static void SelectLayer(j19gadget*, j19action) {
 			LayTabShow();
+		}
+
+		static void B_EditTexture(j19gadget*, j19action) {
+			if (!TexList->ItemText().size()) {
+				QCol->Error("No texture chosen");
+				return;
+			}
+			auto s = Split(TexList->ItemText(), ' ');
+			auto i = ToInt(s[0]);
+			if (i <= 0) {
+				QCol->Error("$000000 reseved for 'nothing'.");
+				return;
+			}
+			GoTextures(i);
 		}
 
 #pragma endregion

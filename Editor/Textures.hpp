@@ -21,16 +21,18 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.25
+// Version: 22.11.29
 // EndLic
 
 #pragma once
 
+#include <QuickTypes.hpp>
 #include "Globals.hpp"
 
 namespace SuperTed {
 	namespace Editor {
 
 		void ScanForTextures();
+		void GoTextures(TrickyUnits::uint32 idx = 0);
 	}
 }
