@@ -177,6 +177,7 @@ namespace SuperTed {
 
 	TeddyTex _Teddy::Tex(TrickyUnits::uint32 idx) {
 		if (!Textures.count(idx)) Textures[idx] = std::make_shared<_TeddyTex>();
+		if (!Textures[idx]) Textures[idx] = std::make_shared<_TeddyTex>();
 		return Textures[idx];
 	}
 
