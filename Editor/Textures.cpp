@@ -136,6 +136,7 @@ namespace SuperTed {
 			TexOkay = CreateButton("Okay", 0, 0, TexGroup);
 			TexCancel = CreateButton("Cancel", 0, 0, TexGroup);
 			TexCancel->CBDraw = DrawOkayCancel;
+			TexCancel->CBAction = TexCancelAct;
 			CreateLabel("Texture Index:", 2, 2, 200, 30, TexGroup)->SetForeground(255, 180, 0, 255);
 			TexIndex = CreateTextfield(200, 2, 200, 30, TexGroup);
 			TexIndex->SetForeground(0, 180, 255, 255);
