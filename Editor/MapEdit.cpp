@@ -46,6 +46,7 @@ namespace SuperTed {
 		static map<string, j19gadget*> DataTabs;
 		static map<TeddyRoomLayerType, j19gadget*> LayerTypeTabs;
 		static map<string, map<string, bool>> ShowLayerReg;
+		 
 
 		static j19gadget
 			* MapGroup{ nullptr },
