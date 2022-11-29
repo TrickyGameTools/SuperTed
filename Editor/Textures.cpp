@@ -155,7 +155,7 @@ namespace SuperTed {
 				int x = 200;
 				for (auto ttr : TexTypesReg) {
 					auto r = CreateRadioButton(ttr.first, x, 0, 200, 25, TTGroup, ttr.first=="Stretch");
-					TexRadioReg[ttr.first].push_back(r);
+					TexRadioReg["Type"].push_back(r);
 					r->SetForeground(180, 255, 0, 255);
 					x += 202;
 				}
