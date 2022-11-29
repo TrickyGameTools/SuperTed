@@ -86,19 +86,21 @@ namespace SuperTed {
 			jerchk();
 			bttex->Write((byte)1); bttex->Write((uint32)TeddyMap->_MaxTiles);
 			for (auto i : TeddyMap->Textures) {
-				bttex->Write((byte)2);
-				WriteTexCode(TeddyMap, bttex, i.first);
-				bttex->Write(i.second->TexFile);
-				bttex->Write((byte)3);
-				bttex->Write(i.second->r);
-				bttex->Write(i.second->g);
-				bttex->Write(i.second->b);
-				bttex->Write((byte)4);
-				bttex->Write(i.second->alpha);
-				bttex->Write((byte)5);
-				bttex->Write(i.second->Frame);
-				bttex->Write((byte)6);
-				bttex->Write(i.second->AnimSpeed);
+				if (i.second) {
+					bttex->Write((byte)2);
+					WriteTexCode(TeddyMap, bttex, i.first);
+					bttex->Write(i.second->TexFile);
+					bttex->Write((byte)3);
+					bttex->Write(i.second->r);
+					bttex->Write(i.second->g);
+					bttex->Write(i.second->b);
+					bttex->Write((byte)4);
+					bttex->Write(i.second->alpha);
+					bttex->Write((byte)5);
+					bttex->Write(i.second->Frame);
+					bttex->Write((byte)6);
+					bttex->Write(i.second->AnimSpeed);
+				}
 			}
 			bttex->Write((byte)0);
 			bttex->Close();
