@@ -27,9 +27,13 @@
 #include <QCol.hpp>
 #include <QuickString.hpp>
 #include <FileList.hpp>
+#include <TrickyMath.hpp>
 
+#include "Globals.hpp"
 #include "Algemeen.hpp"
 #include "Textures.hpp"
+#include <TrickySTOI.hpp>
+
 
 using namespace june19;
 using namespace TrickyUnits;
@@ -47,14 +51,16 @@ namespace SuperTed {
 			* TexR{ nullptr },
 			* TexG{ nullptr },
 			* TexB{ nullptr },
-			* TexAlpha{ nullptr };
+			* TexAlpha{ nullptr },
+			* TexAnimSpeed{ nullptr };
 
 		static map<string, TeddyTexType> TexTypesReg{
-			{"Stetch",TeddyTexType::Stretch},
+			{"Stretch",TeddyTexType::Stretch},
 			{"Bottom Center",TeddyTexType::BottomCenter},
 			{"Auto Correct Type",TeddyTexType::ACT}
 		};
 		static map < string, j19gadget*> TexFieldReg;
+		static map<string, vector<j19gadget*>> TexRadioReg;
 
 
 		void ScanForTextures() {
@@ -89,6 +95,28 @@ namespace SuperTed {
 			TexCancel->SetBackground(TexOkay->BG, 0, 0, 255);			
 		}
 
+		static int GetTexIndex() { 
+			if (!prefixed(TexIndex->Text, "$")) TexIndex->Text = "$" + TexIndex->Text;
+			return ToInt(TexIndex->Text); 
+		}
+
+		static void DrawTexList(j19gadget* tl, j19action) {
+			double ticks = ((double)SDL_GetTicks()/6400);
+			auto dsr = sin((double)ticks);
+			auto dsg = cos((double)ticks);
+			auto dsb = sin((double)ticks / (double)300);
+			int r = floor(abs(dsr * 255)); 
+			int g = floor(abs(dsg * 255));
+			int b = floor(abs(dsb * 255));
+			tl->SetForeground(abs(r), g, b, 255);
+			tl->SetBackground(r / 10, g / 10, b / 10, 255);
+			// j19gadget::StatusText(TrSPrintF("DEBUG! Ticks: %f   color:%02x%02x%02x (%3.1f)", ticks, r, g, b,dsr)); // Debug Only!
+			tl->Enabled = GetTexIndex();
+			bool reqallow= tl->Enabled && tl->ItemText().size();
+			for (auto k : TexRadioReg) for(auto l:k.second) l->Enabled = reqallow;
+			for (auto k : TexFieldReg) k.second->Enabled = reqallow;
+		}
+
 		static void InitTexSelectUI() {
 			if (TexStage) return;
 			_UI::AddStage("Textures");
@@ -121,17 +149,39 @@ namespace SuperTed {
 			TexAlpha->Text = "255";
 
 			auto TexTypeY = ColY - 25;
-			CreateLabel("Texturing Type:", 2, TexTypeY, 200, 25, TexGroup)->SetForeground(255, 180, 0, 255);
+			auto TTGroup = CreateGroup(0, TexTypeY, TexGroup->W(), 25, TexGroup);
+			CreateLabel("Texturing Type:", 2, 0, 200, 25, TTGroup)->SetForeground(255, 180, 0, 255);
 			{
 				int x = 200;
-				for (auto ttr : TexTypesReg)
+				for (auto ttr : TexTypesReg) {
+					auto r = CreateRadioButton(ttr.first, x, 0, 200, 25, TTGroup, ttr.first=="Stretch");
+					TexRadioReg[ttr.first].push_back(r);
+					r->SetForeground(180, 255, 0, 255);
+					x += 202;
+				}
 			}
+			auto AnimY = TexTypeY - 25;
+			CreateLabel("Animation speed:", 2, AnimY, 200, 25, TexGroup)->SetForeground(255, 180, 0, 255);
+			TexAnimSpeed = CreateTextfield(200, AnimY, 200, 24, TexGroup);
+			TexAnimSpeed->SetForeground(180, 0, 255, 255);
+			TexAnimSpeed->SetBackground(18, 0, 25, 255);
+			TexAnimSpeed->Text = "-1";
+
+			auto TLY = TexIndex->Y() + TexIndex->H();
+			TexList = CreateListBox(150, TLY, TexGroup->W() - (300), TexTypeY - TLY - 30, TexGroup);
+			TexList->CBDraw = DrawTexList;
+			TexList->ClearItems();
+			for (auto t : JTEX.Entries()) {
+				TexList->AddItem(t.second.Entry());
+			}
+
 
 			TexFieldReg = {
 				{"Red",TexR},
 				{"Green",TexG},
 				{"Blue",TexB},
-				{"Alpha",TexAlpha}
+				{"Alpha",TexAlpha},
+				{"AnimSpeed",TexAnimSpeed}
 			};
 
 			_UI::GoToStage("Textures");
