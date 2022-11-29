@@ -184,7 +184,6 @@ namespace SuperTed {
 				{"AnimSpeed",TexAnimSpeed}
 			};
 
-			_UI::GoToStage("Textures");
 		}
 
 		void GoTextures(TrickyUnits::uint32 idx) {
@@ -195,6 +194,7 @@ namespace SuperTed {
 			} else
 				j19gadget::StatusText("Edit Texture: " + TrSPrintF("$%06x", idx));
 			TexIndex->Text = TrSPrintF("$%06x", idx);
+			_UI::GoToStage("Textures");
 		}
 	}
 }
