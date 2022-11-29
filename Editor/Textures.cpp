@@ -115,6 +115,7 @@ namespace SuperTed {
 			bool reqallow= tl->Enabled && tl->ItemText().size();
 			for (auto k : TexRadioReg) for(auto l:k.second) l->Enabled = reqallow;
 			for (auto k : TexFieldReg) k.second->Enabled = reqallow;
+			TexOkay->Enabled = reqallow;
 		}
 
 		static void SelectTexList(j19gadget* tl, j19action) {
@@ -127,6 +128,27 @@ namespace SuperTed {
 
 		static void TexCancelAct(j19gadget*, j19action) { _UI::GoToStage("Map"); }
 
+		static void TexOkayAct(j19gadget*, j19action) {
+			auto idx{ GetTexIndex() };
+			auto tex{ TheMap->Tex(idx) };
+			auto tag{ string("Texture::") + TexList->ItemText() };
+			tex->TexFile = TexList->ItemText();
+			tex->r = ToInt(TexR->Text);
+			tex->g = ToInt(TexG->Text);
+			tex->g = ToInt(TexB->Text);
+			tex->alpha = ToInt(TexB->Text);
+			tex->AnimSpeed = ToInt(TexAnimSpeed->Text);
+			for (auto k : TexRadioReg["Type"]) if (k->checked) {
+				tex->Type = TexTypesReg[k->Caption];
+				ProjectConfig.Value(tag, "Type",k->Caption);
+			}
+			for (auto k : TexFieldReg) {
+				ProjectConfig.Value(tag, k.first, k.second->Text);
+			}
+			_UI::GoToStage("Map");
+			RenewTextures();
+		}
+
 		static void InitTexSelectUI() {
 			if (TexStage) return;
 			_UI::AddStage("Textures");
@@ -134,6 +156,7 @@ namespace SuperTed {
 			TexGroup = TexStage->MainGadget;
 			
 			TexOkay = CreateButton("Okay", 0, 0, TexGroup);
+			TexOkay->CBAction = TexOkayAct;
 			TexCancel = CreateButton("Cancel", 0, 0, TexGroup);
 			TexCancel->CBDraw = DrawOkayCancel;
 			TexCancel->CBAction = TexCancelAct;
