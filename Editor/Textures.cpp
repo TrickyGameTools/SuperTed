@@ -117,6 +117,16 @@ namespace SuperTed {
 			for (auto k : TexFieldReg) k.second->Enabled = reqallow;
 		}
 
+		static void SelectTexList(j19gadget* tl, j19action) {
+			auto tex{ tl->ItemText() }; //cout << "Selected: " << tex << endl;
+			if (!tex.size()) return;
+			ProjectConfig.GetNewValue("Texture::" + tex, "AnimSpeed", "-1");
+			for (auto k : TexRadioReg) for (auto l : k.second) l->checked = ProjectConfig.GetNewValue("Texture::" + tex, k.first,"Stretch") == l->Caption;
+			for (auto k : TexFieldReg) k.second->Text = ProjectConfig.GetNewValue("Texture::" + tex, k.first, "255");
+		}
+
+		static void TexCancelAct(j19gadget*, j19action) { _UI::GoToStage("Map"); }
+
 		static void InitTexSelectUI() {
 			if (TexStage) return;
 			_UI::AddStage("Textures");
@@ -170,6 +180,7 @@ namespace SuperTed {
 			auto TLY = TexIndex->Y() + TexIndex->H();
 			TexList = CreateListBox(150, TLY, TexGroup->W() - (300), TexTypeY - TLY - 30, TexGroup);
 			TexList->CBDraw = DrawTexList;
+			TexList->CBAction = SelectTexList;
 			TexList->ClearItems();
 			for (auto t : JTEX.Entries()) {
 				TexList->AddItem(t.second.Entry());
