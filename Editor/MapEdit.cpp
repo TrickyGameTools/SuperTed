@@ -71,6 +71,7 @@ namespace SuperTed {
 #pragma region General_Static_Headers
 		static void GoDTap(string);
 		static bool ShowLayer();
+		static void LayTabShow();
 #pragma endregion
 
 #pragma region CallBackHeaders
@@ -80,6 +81,7 @@ namespace SuperTed {
 		static void ButtonAddLayer(j19gadget*, j19action);
 		static void ActRemoveLayer(j19gadget*, j19action);
 		static void DwTextButton(j19gadget*, j19action);
+		static void SelectLayer(j19gadget*, j19action);
 #pragma endregion
 
 
@@ -144,6 +146,7 @@ namespace SuperTed {
 			LayerList->BR = 0;
 			LayerList->BG = 25;
 			LayerList->BB = 0;
+			LayerList->CBAction = SelectLayer;
 			
 			AddLayer = CreateButton("+", 0, bly + 5, EMT);
 			RemLayer = CreateButton("-", 25, bly + 5, EMT);
@@ -223,6 +226,9 @@ namespace SuperTed {
 			MapGroup = CreateGroup(RoomPanel->W(), RoomPanel->DrawY(), TQSG_ScreenWidth() - (RoomPanel->W() + DataPanel->W()), RoomPanel->H(), MG);
 
 			RenewRooms();
+			RenewLayers();
+			RenewTextures();
+			LayTabShow();
 
 		}
 #pragma endregion
@@ -273,6 +279,10 @@ namespace SuperTed {
 		static void DwTextButton(j19gadget*, j19action) {
 			EdtTex->X(AddTex->W());
 			RemTex->X(EdtTex->X() + EdtTex->W());			
+		}
+
+		static void SelectLayer(j19gadget*, j19action) {
+			LayTabShow();
 		}
 
 #pragma endregion
@@ -362,6 +372,7 @@ namespace SuperTed {
 			LayerList->ClearItems();
 			for (auto k : Room()->Layers) LayerList->AddItem(k.first);
 			LayerList->SelectItem(0);
+			LayTabShow();
 		}
 
 		void RenewTextures() {
@@ -382,9 +393,18 @@ namespace SuperTed {
 			return TheMap->Rooms[groom];
 		}
 
+		TeddyRoomLayer Layer(std::string glayer) {
+			if (!glayer.size()) return Layer(CurrentLayer());
+			return Room()->Layers[glayer];
+		}
+
 		static bool ShowLayer() {
 			if (!ShowLayerReg[CurrentRoom()].count(CurrentLayer())) return true;
 			return ShowLayerReg[CurrentRoom()][CurrentLayer()];
+		}
+
+		static void LayTabShow() {
+			for (auto l : LayerTypeTabs) l.second->Visible = l.first == Layer()->GetType();
 		}
 
 #pragma endregion

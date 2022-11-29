@@ -39,6 +39,7 @@ namespace SuperTed {
 		void RenewTextures();
 		std::string CurrentRoom();
 		TeddyRoom Room(std::string groom = "");
+		TeddyRoomLayer Layer(std::string glayer = "");
 
 		// Pulldown menu callbacks
 		void ToggleShowGrid(june19::j19gadget*, june19::j19action);
