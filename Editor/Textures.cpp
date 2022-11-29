@@ -43,7 +43,18 @@ namespace SuperTed {
 			* TexList{ nullptr },
 			* TexOkay{ nullptr },
 			* TexCancel{ nullptr },
-			* TexIndex{ nullptr };
+			* TexIndex{ nullptr },
+			* TexR{ nullptr },
+			* TexG{ nullptr },
+			* TexB{ nullptr },
+			* TexAlpha{ nullptr };
+
+		static map<string, TeddyTexType> TexTypesReg{
+			{"Stetch",TeddyTexType::Stretch},
+			{"Bottom Center",TeddyTexType::BottomCenter},
+			{"Auto Correct Type",TeddyTexType::ACT}
+		};
+		static map < string, j19gadget*> TexFieldReg;
 
 
 		void ScanForTextures() {
@@ -92,7 +103,36 @@ namespace SuperTed {
 			TexIndex->SetForeground(0, 180, 255, 255);
 			TexIndex->SetBackground(0, 18, 25, 255);
 
+			auto ColY{ TexGroup->H() - 50 };
+			CreateLabel("Color & Alpha:", 2, ColY, 200, 25, TexGroup)->SetForeground(255, 180, 0, 255);
+			TexR = CreateTextfield(200, ColY, 200, 25, TexGroup); 
+			TexR->SetForeground(255, 0, 0, 255);
+			TexR->SetBackground(25, 0, 0, 255);
+			TexG = CreateTextfield(402, ColY, 200, 25, TexGroup);
+			TexG->SetForeground(0, 255, 0, 255);
+			TexG->SetBackground(0, 25, 0, 255);
+			TexB = CreateTextfield(604, ColY, 200, 25, TexGroup);
+			TexB->SetForeground(0, 0,255,  255);
+			TexB->SetBackground(0, 0,25, 255);
+			TexAlpha = CreateTextfield(806, ColY, 200, 25, TexGroup);
+			TexR->Text = "255";
+			TexG->Text = "255";
+			TexB->Text = "255";
+			TexAlpha->Text = "255";
 
+			auto TexTypeY = ColY - 25;
+			CreateLabel("Texturing Type:", 2, TexTypeY, 200, 25, TexGroup)->SetForeground(255, 180, 0, 255);
+			{
+				int x = 200;
+				for (auto ttr : TexTypesReg)
+			}
+
+			TexFieldReg = {
+				{"Red",TexR},
+				{"Green",TexG},
+				{"Blue",TexB},
+				{"Alpha",TexAlpha}
+			};
 
 			_UI::GoToStage("Textures");
 		}
