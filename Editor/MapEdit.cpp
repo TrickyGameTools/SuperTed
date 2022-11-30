@@ -76,6 +76,7 @@ namespace SuperTed {
 #pragma region General_Static_Headers
 		static void GoDTap(string);
 		static bool ShowLayer();
+		static void ShowLayer(bool);
 		static void LayTabShow();
 #pragma endregion
 
@@ -433,8 +434,13 @@ namespace SuperTed {
 			return ShowLayerReg[CurrentRoom()][CurrentLayer()];
 		}
 
+		static void ShowLayer(bool value) { ShowLayerReg[CurrentRoom()][CurrentLayer()] = value; }
+
 		static void LayTabShow() {
 			for (auto l : LayerTypeTabs) l.second->Visible = l.first == Layer()->GetType();
+			if (Layer()->GetType()==TeddyRoomLayerType::Layer) {
+				ChkShowLayer->checked = ShowLayer();
+			}
 		}
 
 #pragma endregion
