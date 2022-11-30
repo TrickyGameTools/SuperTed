@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.28
+// Version: 22.11.30
 // EndLic
 
 #include <SuperTed_Save.hpp>
@@ -64,9 +64,9 @@ namespace SuperTed {
 				AskInt(&ProjectConfig, "Grid", "Width", "Default Tile Width:", 32),
 				AskInt(&ProjectConfig, "Grid", "Height", "Default Tile Height:", 32),
 				BaseRoom,
-				*ProjectConfig.List("LAYERS","LAYERS")
-			);
-			TheMap->BaseZones = *ProjectConfig.List("LAYERS", "ZONES");
+				*ProjectConfig.List("LAYERS","LAYERS"),
+				*ProjectConfig.List("LAYERS", "ZONES")
+			);			
 			SaveMap(f);
 		}
 

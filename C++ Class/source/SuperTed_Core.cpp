@@ -1,7 +1,7 @@
 // Lic:
 // C++ Class/source/SuperTed_Core.cpp
 // SuperTed Core
-// version: 22.11.29
+// version: 22.11.30
 // Copyright (C) 2022 Jeroen P. Broks
 // This software is provided 'as-is', without any express or implied
 // warranty.  In no event will the authors be held liable for any damages
@@ -79,6 +79,18 @@ namespace SuperTed {
 		ret->defaultgw = gw;
 		ret->defaultgh = gh;
 		ret->BaseLayers = layers;
+		for (auto r : rooms) ret->CreateRoom(r, w, h, gw, gh);
+		return ret;
+	}
+
+	Teddy CreateTeddy(int w, int h, int gw, int gh, std::vector<std::string> rooms, std::vector<std::string> layers, std::vector<std::string> zones) {
+		auto ret{ std::make_shared<_Teddy>() };
+		ret->default_w = w;
+		ret->default_h = h;
+		ret->defaultgw = gw;
+		ret->defaultgh = gh;
+		ret->BaseLayers = layers;
+		ret->BaseZones = zones;
 		for (auto r : rooms) ret->CreateRoom(r, w, h, gw, gh);
 		return ret;
 	}

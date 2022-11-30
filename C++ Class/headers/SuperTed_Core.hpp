@@ -1,7 +1,7 @@
 // Lic:
 // C++ Class/headers/SuperTed_Core.hpp
 // SuperTed Core (header)
-// version: 22.11.27
+// version: 22.11.30
 // Copyright (C) 2022 Jeroen P. Broks
 // This software is provided 'as-is', without any express or implied
 // warranty.  In no event will the authors be held liable for any damages
@@ -204,6 +204,7 @@ namespace SuperTed {
 
 
 	Teddy CreateTeddy(int w , int h , int gw, int gh, std::vector<std::string> rooms , std::vector<std::string> layers);
+	Teddy CreateTeddy(int w, int h, int gw, int gh, std::vector<std::string> rooms, std::vector<std::string> layers,std::vector<std::string> Zones);
 
 	Teddy LoadTeddy(std::string File,std::string prefix="");
 	Teddy LoadTeddy(jcr6::JT_Dir* JCRResource, std::string prefix = "");
