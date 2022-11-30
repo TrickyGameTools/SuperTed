@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.29
+// Version: 22.11.30
 // EndLic
 #include <QCol.hpp>
 #include <TrickySTOI.hpp>
@@ -61,12 +61,14 @@ namespace SuperTed {
 			* RadAddZone{ nullptr },
 
 			* TexList{ nullptr },
-			* AddTex{nullptr},
-			* EdtTex{nullptr},
-			* RemTex{nullptr},
+			* AddTex{ nullptr },
+			* EdtTex{ nullptr },
+			* RemTex{ nullptr },
 			//* TexR{ nullptr },
 			//* TexG{ nullptr },
 			//* TexB{ nullptr },
+
+			* ChkShowLayer{ nullptr },
 
 			* DataPanel{ nullptr };
 #pragma endregion
@@ -199,6 +201,12 @@ namespace SuperTed {
 			EdtTex->CBAction = B_EditTexture;
 			RenewTextures();
 
+			ChkShowLayer = CreateCheckBox("Show layer", 0, TexList->H(), 50,25, LTLT);
+			ChkShowLayer->SetForeground(255, 180, 0, 255);
+			ChkShowLayer->checked = true;
+
+
+
 
 			
 			// Color
@@ -286,6 +294,7 @@ namespace SuperTed {
 		static void DwTextButton(j19gadget*, j19action) {
 			EdtTex->X(AddTex->W());
 			RemTex->X(EdtTex->X() + EdtTex->W());			
+			ChkShowLayer->X(RemTex->X() + RemTex->W() + 4);
 		}
 
 		static void SelectLayer(j19gadget*, j19action) {
