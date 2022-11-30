@@ -391,6 +391,7 @@ namespace SuperTed {
 				for (int x = MapGroup->DrawX() - (ScrollX % TheMap->Rooms[CurrentRoom()]->GW()); x < MapGroup->DrawX() + MapGroup->W(); x += TheMap->Rooms[CurrentRoom()]->GW())
 					TQSG_Line(x, 0, x, TQSG_ScreenHeight());
 			}
+			// TODO: Draw layers and stuff in order
 			MouseStatus();
 		}
 
