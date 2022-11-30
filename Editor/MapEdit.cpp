@@ -90,6 +90,7 @@ namespace SuperTed {
 		static void SelectLayer(j19gadget*, j19action);
 		static void B_AddTexture(j19gadget*, j19action) { GoTextures(); }
 		static void B_EditTexture(j19gadget*, j19action);
+		static void ActShowLayer(j19gadget* g, j19action) { ShowLayer(g->checked); }
 #pragma endregion
 
 
@@ -205,6 +206,7 @@ namespace SuperTed {
 			ChkShowLayer = CreateCheckBox("Show layer", 0, TexList->H(), 50,25, LTLT);
 			ChkShowLayer->SetForeground(255, 180, 0, 255);
 			ChkShowLayer->checked = true;
+			ChkShowLayer->CBAction = ActShowLayer;
 
 
 
