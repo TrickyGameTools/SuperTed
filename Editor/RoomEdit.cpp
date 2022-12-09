@@ -125,7 +125,8 @@ namespace SuperTed {
 			REAlreadyThere->BG = 0;
 			REAlreadyThere->BB = 0;
 
-			REOK = CreateButton("Okay", 20, RERoomName->Y() + 40, REG());
+
+			REOK = CreateButton("Okay", 20, RERoomName->Y() + 80, REG());
 			REOK->FR = 0;
 			REOK->FG = 255;
 			REOK->FB = 0;
