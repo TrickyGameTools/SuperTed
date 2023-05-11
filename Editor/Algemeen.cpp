@@ -34,7 +34,7 @@
 #include "Opslaan.hpp"
 #include "Globals.hpp"
 
-using namespace Slyvina::june19;
+using namespace Slyvina::June19;
 using namespace Slyvina::Units;
 
 namespace Slyvina {
