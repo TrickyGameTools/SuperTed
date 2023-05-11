@@ -34,159 +34,161 @@
 #include "Opslaan.hpp"
 #include "Globals.hpp"
 
-using namespace june19;
-using namespace TrickyUnits;
+using namespace Slyvina::june19;
+using namespace Slyvina::Units;
 
-namespace SuperTed {
-	namespace Editor {
-		bool _UI::_initialized{ false };
-		TQSG_AutoImage _UI::Mouse{ nullptr };
-		UI _UI::_Current{ nullptr };
-		std::map<std::string, std::shared_ptr<_UI>> _UI::Stage{};
-		
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
+			bool _UI::_initialized{ false };
+			TQSG_AutoImage _UI::Mouse{ nullptr };
+			UI _UI::_Current{ nullptr };
+			std::map<std::string, std::shared_ptr<_UI>> _UI::Stage{};
 
 
 
-		_UI::_UI(std::string name) {
-			_Name = name;
-		}
-		_UI::_UI() {}
-		void _UI::Crash(std::string m) {
-			Throw(m);
-		}
 
-		void _UI::AddStage(std::string st) {
-			st = Upper(st);
-			if (Stage.count(st)) Crash("Dupe stage: " + st);
-			Stage[st] = std::make_shared<_UI>(  );
-			Stage[st]->_Name = st;
-			Stage[st]->MainGadget = CreateGroup(0, 0, TQSG_ScreenWidth(), TQSG_ScreenHeight() - 36, WorkScreen());
-		}
-
-		UI _UI::GetStage(std::string st) {
-			st = Upper(st);
-			if (!Stage.count(st)) Crash("Non-existent stage: " + st);
-			return Stage[st];
-		}
-
-		UI _UI::CurrentStage() {
-			return _Current;
-		}
-
-		void _UI::GoToStage(std::string st) {
-			st = Upper(st);
-			if (!Stage.count(st)) Crash("Non-existent stage: " + st);
-			_Current = Stage[st];
-			for (auto si : Stage) {
-				si.second->MainGadget->Visible = si.first == st;
+			_UI::_UI(std::string name) {
+				_Name = name;
 			}
-		}
+			_UI::_UI() {}
+			void _UI::Crash(std::string m) {
+				Throw(m);
+			}
 
-		static void JPanic(std::string msg) { Throw(msg); }
+			void _UI::AddStage(std::string st) {
+				st = Upper(st);
+				if (Stage.count(st)) Crash("Dupe stage: " + st);
+				Stage[st] = std::make_shared<_UI>();
+				Stage[st]->_Name = st;
+				Stage[st]->MainGadget = CreateGroup(0, 0, TQSG_ScreenWidth(), TQSG_ScreenHeight() - 36, WorkScreen());
+			}
 
-		static bool go_on{ true };
-		static void dquit(j19gadget* g, j19action a) { go_on = false; }
+			UI _UI::GetStage(std::string st) {
+				st = Upper(st);
+				if (!Stage.count(st)) Crash("Non-existent stage: " + st);
+				return Stage[st];
+			}
 
-		void _UI::Start() {
+			UI _UI::CurrentStage() {
+				return _Current;
+			}
 
+			void _UI::GoToStage(std::string st) {
+				st = Upper(st);
+				if (!Stage.count(st)) Crash("Non-existent stage: " + st);
+				_Current = Stage[st];
+				for (auto si : Stage) {
+					si.second->MainGadget->Visible = si.first == st;
+				}
+			}
 
-			// JCR6
-			//auto J{ JAS };
-			
-			jcr6::JCRPanic = JPanic; 
+			static void JPanic(std::string msg) { Throw(msg); }
 
+			static bool go_on{ true };
+			static void dquit(j19gadget* g, j19action a) { go_on = false; }
 
-			// Interface load
-			_initialized = true;
-			QCol->Doing( "Staring","User Interface");
-
-			// Mouse
-			TQSE_Init();
-			HideMouse();
-			jcr6::JT_Dir* JD{ JAS };
-			Mouse = TQSG_LoadAutoImage(JD, std::string("Img/Mouse.png"));
-
-			// SuperTed
-			// TODO: Init SuperTed and the TQSG driver
-
-
-			// Main screen config
-			AdeptStatus();
-			j19gadget::SetDefaultFont(JD, "Fonts/DOS.jfbf");
-			auto Scr = WorkScreen();
-			Scr->BR = 25;
-			Scr->BG = 18;
-			Scr->BB = 0;
-			Scr->BA = 255;
-			Scr->FR = 255;
-			Scr->FG = 180;
-			Scr->FB = 0;
-			Scr->FA = 255;
-			auto
-				MenuFile = Scr->AddMenu("File"),
-				GridMenu = Scr->AddMenu("Grid"),
-				RoomMenu = Scr->AddMenu("Rooms"),
-				ScrollMenu = Scr->AddMenu("Scroll"),
-				OptionsMenu = Scr->AddMenu("Options"),
-				DebugMenu = Scr->AddMenu("Debug");
-			MenuFile->AddItem("Save", MenuSave, SDLK_s);
-			MenuFile->AddStrike();
-			MenuFile->AddItem("Edit Meta Data", GoMeta, SDLK_m);
-			MenuFile->AddStrike();
-			MenuFile->AddItem("Quit", dquit, SDLK_q);
-			//std::cout << "GridMenu=" << (unsigned long long)GridMenu << "\t"<<GridMenu->Caption<<std::endl;
-			//GridMenu->AddItem("Toggle Grid", ToggleUseGrid, SDLK_g);
-			GridMenu->AddItem("Toggle GridShow", ToggleShowGrid, SDLK_d);
-			RoomMenu->AddItem("New Room", NewRoom, SDLK_n);
-			RoomMenu->AddItem("Rename Room", RenameRoom, SDLK_KP_5);
-			ScrollMenu->AddItem("Down", ScrollDn, SDLK_DOWN);
-			ScrollMenu->AddItem("Left", ScrollLe, SDLK_LEFT);
-			ScrollMenu->AddItem("Up", ScrollUp, SDLK_UP);
-			ScrollMenu->AddItem("Right", ScrollRi, SDLK_RIGHT);
-			//DebugMenu->AddItem("View BlockMap", ShowBlockMap, SDLK_b);
-			//DebugMenu->AddItem("Tag Overview", ShowTags, SDLK_z);
-			//DebugMenu->AddItem("PNG to JPBF", PNG2JPBF, SDLK_F12);
-			//DebugMenu->AddItem("Remove \"Rotten\" Objects", RemoveRottenObjects, SDLK_INSERT);
-			//DebugMenu->AddItem("Pic Remove", RemovePicObjects, SDLK_F9);
-			DebugMenu->AddItem("Optimize To Origin", OptimizeToOrigin, SDLK_F2);
-			//DebugMenu->AddItem("Next Object", NextObject, SDLK_TAB);
-			// Stages
+			void _UI::Start() {
 
 
-			UI_MapStart(); // Must be last
+				// JCR6
+				//auto J{ JAS };
 
-		}
+				jcr6::JCRPanic = JPanic;
 
-		bool _UI::Run() {
-			auto CS{ CurrentStage() };
-			//auto go_on{ true };
-			go_on = true;
-			TQSG_Cls();
-			if (!CS) { Throw("No stage"); return false; }
-			if (CS->PreJune) CS->PreJune();
-			//TQSE_Poll();
-			Screen()->Draw();
-			if (CS->PostJune) CS->PostJune();
-			if (TQSE_Quit()) go_on = false;
+
+				// Interface load
+				_initialized = true;
+				QCol->Doing("Staring", "User Interface");
+
+				// Mouse
+				TQSE_Init();
+				HideMouse();
+				jcr6::JT_Dir* JD{ JAS };
+				Mouse = TQSG_LoadAutoImage(JD, std::string("Img/Mouse.png"));
+
+				// SuperTed
+				// TODO: Init SuperTed and the TQSG driver
+
+
+				// Main screen config
+				AdeptStatus();
+				j19gadget::SetDefaultFont(JD, "Fonts/DOS.jfbf");
+				auto Scr = WorkScreen();
+				Scr->BR = 25;
+				Scr->BG = 18;
+				Scr->BB = 0;
+				Scr->BA = 255;
+				Scr->FR = 255;
+				Scr->FG = 180;
+				Scr->FB = 0;
+				Scr->FA = 255;
+				auto
+					MenuFile = Scr->AddMenu("File"),
+					GridMenu = Scr->AddMenu("Grid"),
+					RoomMenu = Scr->AddMenu("Rooms"),
+					ScrollMenu = Scr->AddMenu("Scroll"),
+					OptionsMenu = Scr->AddMenu("Options"),
+					DebugMenu = Scr->AddMenu("Debug");
+				MenuFile->AddItem("Save", MenuSave, SDLK_s);
+				MenuFile->AddStrike();
+				MenuFile->AddItem("Edit Meta Data", GoMeta, SDLK_m);
+				MenuFile->AddStrike();
+				MenuFile->AddItem("Quit", dquit, SDLK_q);
+				//std::cout << "GridMenu=" << (unsigned long long)GridMenu << "\t"<<GridMenu->Caption<<std::endl;
+				//GridMenu->AddItem("Toggle Grid", ToggleUseGrid, SDLK_g);
+				GridMenu->AddItem("Toggle GridShow", ToggleShowGrid, SDLK_d);
+				RoomMenu->AddItem("New Room", NewRoom, SDLK_n);
+				RoomMenu->AddItem("Rename Room", RenameRoom, SDLK_KP_5);
+				ScrollMenu->AddItem("Down", ScrollDn, SDLK_DOWN);
+				ScrollMenu->AddItem("Left", ScrollLe, SDLK_LEFT);
+				ScrollMenu->AddItem("Up", ScrollUp, SDLK_UP);
+				ScrollMenu->AddItem("Right", ScrollRi, SDLK_RIGHT);
+				//DebugMenu->AddItem("View BlockMap", ShowBlockMap, SDLK_b);
+				//DebugMenu->AddItem("Tag Overview", ShowTags, SDLK_z);
+				//DebugMenu->AddItem("PNG to JPBF", PNG2JPBF, SDLK_F12);
+				//DebugMenu->AddItem("Remove \"Rotten\" Objects", RemoveRottenObjects, SDLK_INSERT);
+				//DebugMenu->AddItem("Pic Remove", RemovePicObjects, SDLK_F9);
+				DebugMenu->AddItem("Optimize To Origin", OptimizeToOrigin, SDLK_F2);
+				//DebugMenu->AddItem("Next Object", NextObject, SDLK_TAB);
+				// Stages
+
+
+				UI_MapStart(); // Must be last
+
+			}
+
+			bool _UI::Run() {
+				auto CS{ CurrentStage() };
+				//auto go_on{ true };
+				go_on = true;
+				TQSG_Cls();
+				if (!CS) { Throw("No stage"); return false; }
+				if (CS->PreJune) CS->PreJune();
+				//TQSE_Poll();
+				Screen()->Draw();
+				if (CS->PostJune) CS->PostJune();
+				if (TQSE_Quit()) go_on = false;
 #ifdef QUICK_QUIT
-			if (TQSE_KeyHit(SDLK_ESCAPE)) go_on = false;
+				if (TQSE_KeyHit(SDLK_ESCAPE)) go_on = false;
 #endif
-			TQSG_ACol(255, 255, 255, 255);
-			Mouse->Draw(TQSE_MouseX(), TQSE_MouseY());
-			TQSG_Flip(20);
-			return go_on; 
+				TQSG_ACol(255, 255, 255, 255);
+				Mouse->Draw(TQSE_MouseX(), TQSE_MouseY());
+				TQSG_Flip(20);
+				return go_on;
+			}
+
+			void _UI::Done() {
+				if (!_initialized) return;
+				_initialized = false;
+				QCol->Doing("Closing", "User Interface");
+				MenuSave(nullptr, j19action::Unknown);
+				QCol->Doing("Closing", "June19");
+				FreeJune19();
+			}
+
+
+
 		}
-
-		void _UI::Done() {
-			if (!_initialized) return;
-			_initialized = false;
-			QCol->Doing("Closing","User Interface");
-			MenuSave(nullptr, j19action::Unknown);	
-			QCol->Doing("Closing", "June19");
-			FreeJune19();
-		}
-
-
-
 	}
 }
