@@ -232,10 +232,13 @@
     <ClCompile Include="..\..\Launcher\Glob.cpp" />
     <ClCompile Include="..\..\Launcher\Main.cpp" />
     <ClCompile Include="..\..\Launcher\Run.cpp" />
+    <ClCompile Include="..\..\SupJCR\SupJCR.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvMath.hpp" />
     <ClInclude Include="..\..\Launcher\Glob.hpp" />
     <ClInclude Include="..\..\Launcher\Run.hpp" />
+    <ClInclude Include="..\..\SupJCR\SupJCR.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
