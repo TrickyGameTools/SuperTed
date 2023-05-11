@@ -23,15 +23,20 @@
 // 
 // Version: 23.05.11
 // EndLic
+
 #pragma once
+
 #include <string>
-#include <jcr6_core.hpp>
-namespace SuperTed {
-	namespace Launcher {
-		extern std::string MyDir;
-		extern jcr6::JT_Dir* JAS;
-		std::string ProjectsDir();
-		int WW();
-		int WH();
+#include <JCR6_Core.hpp>
+
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Launcher {
+			extern std::string MyDir;
+			extern JCR6::JT_Dir JAS;
+			std::string ProjectsDir();
+			int WW();
+			int WH();
+		}
 	}
 }

@@ -24,10 +24,12 @@
 // Version: 23.05.11
 // EndLic
 #pragma once
-namespace SuperTed {
-	namespace Launcher {
-		void LoadBackGround();
-		void CreateUI();
-		bool Run();
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Launcher {
+			void LoadBackGround();
+			void CreateUI();
+			bool Run();
+		}
 	}
 }
