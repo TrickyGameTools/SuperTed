@@ -46,6 +46,15 @@
     <Filter Include="Header Files\Slyvina\Units">
       <UniqueIdentifier>{6c5cf14e-ad4b-479c-9597-c8e656a850ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Copy">
+      <UniqueIdentifier>{c6df2751-6144-4199-a829-43ad1cd162cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Copy\SDL2">
+      <UniqueIdentifier>{0704d052-b070-45a3-bc4a-3d634f1d8b6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Copy\zlib">
+      <UniqueIdentifier>{0334d644-8630-436f-8002-930194f47719}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Editor\Algemeen.cpp">
@@ -356,5 +365,60 @@
     <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvVolumes.hpp">
       <Filter>Header Files\Slyvina\Units</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libmodplug-1.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libmpg123-0.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libogg-0.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libopus-0.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libopusfile-0.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libpng16-16.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libtiff-5.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libvorbis-0.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libvorbisfile-3.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\libwebp-7.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\SDL2.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\SDL2_image.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\SDL2_mixer.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+    <None Include="..\..\..\..\Libs\TQSL\SDL2\zlib1.dll">
+      <Filter>Copy\SDL2</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libFLAC-8.dll">
+      <Filter>Copy\SDL2</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\JCR6\3rdParty\zlib\zlib.dll">
+      <Filter>Copy\zlib</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>
