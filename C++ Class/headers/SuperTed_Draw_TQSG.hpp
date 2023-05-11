@@ -31,6 +31,6 @@ namespace Slyvina {
 		/// <summary>
 		/// Sets the TQSG driver! Whatch out! If you have maps loaded, some data in them may not be properly disposed.
 		/// </summary>
-		void SuperTed_InitTQSG(jcr6::JT_Dir Res);
+		void SuperTed_InitTQSG(JCR6::JT_Dir Res);
 	}
 }
