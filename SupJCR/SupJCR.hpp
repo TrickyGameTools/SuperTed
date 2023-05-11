@@ -25,13 +25,15 @@
 // EndLic
 #pragma once
 
-#include <jcr6_core.hpp>
-#include <QCol.hpp>
+#include <JCR6_Core.hpp>
+#include <SlyvQCol.hpp>
 
-namespace SuperTed {
-	namespace JCR6 {
+namespace Slyvina {
+	namespace SuperTed {
+		namespace JCR6 {
 
-		jcr6::JT_Dir* STED_Assets(std::string d);
+			Slyvina::JCR6::JT_Dir STED_Assets(std::string d);
 
+		}
 	}
 }

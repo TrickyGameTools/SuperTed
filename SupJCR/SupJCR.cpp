@@ -25,33 +25,38 @@
 // EndLic
 #include "SupJCR.hpp"
 #include <jcr6_zlib.hpp>
-#include <GINIE.hpp>
-#include <QuickString.hpp>
+#include <SlyvGINIE.hpp>
+#include <SlyvString.hpp>
 
-using namespace jcr6;
-using namespace TrickyUnits;
+#define sJCR6 Slyvina::JCR6
 
-namespace SuperTed {
-	namespace JCR6 {
+//using namespace jcr6;
 
-		static bool Loaded{false};
-		static JT_Dir STEDA;
+namespace Slyvina {
+	using namespace Units;
 
-		static GINIE STEDA_ID;
+	namespace SuperTed {
+		namespace JCR6 {
 
-		jcr6::JT_Dir* STED_Assets(std::string d) {
+			static bool Loaded{ false };
+			static Slyvina::JCR6::JT_Dir STEDA;
 
-			if (!Loaded) {
-				QCol->Doing("Initializing", "JCR6"); init_JCR6();
-				QCol->Doing("Initializing", "JCR6 zlib driver"); init_zlib();
-				QCol->Doing("Analyzing", "SuperTed.JCR");
-				STEDA = Dir(d + "/SuperTed.JCR");
-				STEDA_ID.Parse(STEDA.String("ID/ID.ini"));
-				QCol->Doing("Checking", "SuperTed.JCR");
-				if (Lower(STEDA_ID.Value("ID", "Sig")) != "fbeb79a1") { QCol->Error("SuperTed.JCR signature incorrect!"); exit(255); }
-				QCol->Doing("JCR file build", STEDA_ID.Value("Build", "Date"));
+			static GINIE STEDA_ID;
+
+			Slyvina::JCR6::JT_Dir STED_Assets(std::string d) {
+
+				if (!Loaded) {
+					QCol->Doing("Initializing", "JCR6"); // init_JCR6(); // Will be done automatically
+					QCol->Doing("Initializing", "JCR6 zlib driver"); sJCR6::init_zlib();
+					QCol->Doing("Analyzing", "SuperTed.JCR");
+					STEDA = sJCR6::JCR6_Dir(d + "/SuperTed.JCR");
+					STEDA_ID->Parse(STEDA->GetString("ID/ID.ini"));
+					QCol->Doing("Checking", "SuperTed.JCR");
+					if (Lower(STEDA_ID->Value("ID", "Sig")) != "fbeb79a1") { QCol->Error("SuperTed.JCR signature incorrect!"); exit(255); }
+					QCol->Doing("JCR file build", STEDA_ID->Value("Build", "Date"));
+				}
+				return STEDA;
 			}
-			return &STEDA;
 		}
 	}
 }
