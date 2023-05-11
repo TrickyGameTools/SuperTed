@@ -23,17 +23,19 @@
 // 
 // Version: 23.05.11
 // EndLic
+
 #pragma once
 
 #include <string>
 
 #include <lua.hpp>
 
-
-namespace SuperTed {
-	namespace Editor {
-		void InitState(lua_State* L, std::string ScriptFile);
-		void LoadScript(std::string);
-		void LoadScript();
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
+			void InitState(lua_State* L, std::string ScriptFile);
+			void LoadScript(std::string);
+			void LoadScript();
+		}
 	}
 }
