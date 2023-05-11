@@ -44,40 +44,41 @@
 #include "RoomEdit.hpp"
 
 
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
 
-namespace SuperTed {
-	namespace Editor {
+			typedef void(*UIV)();
 
-		typedef void(*UIV)();
+			class _UI; typedef	std::shared_ptr<_UI> UI;
 
-		class _UI; typedef	std::shared_ptr<_UI> UI;
+			class _UI {
+			private:
+				static bool _initialized;
+				static Slyvina::TQSG::TQSG_AutoImage Mouse;
+				static std::map<std::string, UI> Stage;
+				std::string _Name{ "" };
+				static UI _Current;
+				_UI(std::string name);
+			public:
+				_UI();
 
-		class _UI {
-		private:
-			static bool _initialized;
-			static TrickyUnits::TQSG_AutoImage Mouse;
-			static std::map<std::string, UI> Stage;
-			std::string _Name{""};
-			static UI _Current;
-			_UI(std::string name);
-		public:
-			_UI();
+				static void Crash(std::string m);
 
-			static void Crash(std::string m);
+				june19::j19gadget* MainGadget{ nullptr };
+				UIV PreJune{ nullptr };
+				UIV PostJune{ nullptr };
 
-			june19::j19gadget* MainGadget{ nullptr };
-			UIV PreJune{ nullptr };
-			UIV PostJune{ nullptr };
+				static void AddStage(std::string st);
+				static UI GetStage(std::string st);
+				static UI CurrentStage();
+				static void GoToStage(std::string st);
 
-			static void AddStage(std::string st);
-			static UI GetStage(std::string st);
-			static UI CurrentStage();
-			static void GoToStage(std::string st);
-
-			// Notify
-			static void Start();
-			static bool Run();
-			static void Done();
-		};
+				// Notify
+				static void Start();
+				static bool Run();
+				static void Done();
+			};
+		}
 	}
 }
