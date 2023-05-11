@@ -218,7 +218,7 @@ namespace Slyvina {
 				SetColor(255, 255, 255);
 				Background->Tile(0, 0, ScreenWidth(), ScreenHeight(), floor((ScreenWidth() / 2) + (DegSin(r) * 250)), floor((ScreenHeight() / 2) + (DegCos(r) * 250)));
 				r = (r + 1) % 360;
-				Bear->Draw(ScreenWidth() - Bear->Width(), ceil(ScreenHeight() / 2) - ceil(Bear->H() / 2));
+				Bear->Draw(ScreenWidth() - Bear->Width(), ceil(ScreenHeight() / 2) - ceil(Bear->Height() / 2));
 				UI->Draw();
 				KeepGoing = KeepGoing && !AppTerminate();
 #ifdef ESCAPE_IS_QUIT
