@@ -23,11 +23,15 @@
 // 
 // Version: 23.05.11
 // EndLic
+
 #pragma once
 #include <june19.hpp>
 
-namespace SuperTed {
-	namespace Editor {
-		void GoMeta(june19::j19gadget*, june19::j19action);
+namespace Slyvina {
+
+	namespace SuperTed {
+		namespace Editor {
+			void GoMeta(june19::j19gadget*, june19::j19action);
+		}
 	}
 }

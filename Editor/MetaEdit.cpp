@@ -24,16 +24,18 @@
 // Version: 23.05.11
 // EndLic
 
-#include <QCol.hpp>
+#include <SlyvQCol.hpp>
 
 #include "MetaEdit.hpp"
 
-using namespace TrickyUnits;
+using namespace Slyvina::Units;
 
-namespace SuperTed {
-	namespace Editor {
-		void GoMeta(june19::j19gadget*, june19::j19action) {
-			QCol->Error("Meta data editor not yet implemented");
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
+			void GoMeta(june19::j19gadget*, june19::j19action) {
+				QCol->Error("Meta data editor not yet implemented");
+			}
 		}
 	}
 }
