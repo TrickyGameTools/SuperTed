@@ -158,7 +158,7 @@ namespace Slyvina {
 			int H();
 			int Dominance();
 			void Dominance(int value);
-			std::shared_ptr < TrickyUnits::Array2D<int>> Field{ nullptr };
+			std::shared_ptr < Units::Array2D<int>> Field{ nullptr };
 			static _TeddyRoomLayer* ObjectLayer(_TeddyRoom* ouwe);
 			TeddyRoomLayerType GetType();
 			void SetType(TeddyRoomLayerType t); // NEVER use this unless you know what you are doing!
