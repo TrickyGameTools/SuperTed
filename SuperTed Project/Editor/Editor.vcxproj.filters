@@ -128,9 +128,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Editor\MapEdit.hpp">
-      <Filter>Source Files\Editor</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Editor\MetaEdit.hpp">
       <Filter>Source Files\Editor</Filter>
     </ClInclude>
@@ -153,6 +150,9 @@
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Editor\Globals.hpp">
+      <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\MapEdit.hpp">
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
   </ItemGroup>
