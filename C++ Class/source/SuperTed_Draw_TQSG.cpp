@@ -1,8 +1,8 @@
 // Lic:
 // C++ Class/source/SuperTed_Draw_TQSG.cpp
 // SuperTed Drawing driver for the TQSG system
-// version: 22.11.23
-// Copyright (C) 2022 Jeroen P. Broks
+// version: 23.05.11
+// Copyright (C) 2022, 2023 Jeroen P. Broks
 // This software is provided 'as-is', without any express or implied
 // warranty.  In no event will the authors be held liable for any damages
 // arising from the use of this software.
