@@ -26,13 +26,15 @@
 
 #pragma once
 
-#include <QuickTypes.hpp>
+#include <Slyvina.hpp>
 #include "Globals.hpp"
 
-namespace SuperTed {
-	namespace Editor {
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
 
-		void ScanForTextures();
-		void GoTextures(TrickyUnits::uint32 idx = 0);
+			void ScanForTextures();
+			void GoTextures(uint32 idx = 0);
+		}
 	}
 }
