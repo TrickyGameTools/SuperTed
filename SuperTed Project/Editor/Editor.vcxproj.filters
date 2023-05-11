@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Slyvina\JCR6">
       <UniqueIdentifier>{5b1a32de-94ea-4052-9ae5-cc166d775665}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Lua">
+      <UniqueIdentifier>{f8002662-f345-4233-ab66-73e14fbd0ad4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Editor\Algemeen.cpp">
@@ -126,11 +129,104 @@
     <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_zlib.cpp">
       <Filter>Source Files\Slyvina\JCR6</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lzio.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lvm.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lutf8lib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lundump.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ltm.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ltablib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ltable.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lstrlib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lstring.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lstate.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lparser.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\loslib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lopcodes.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lobject.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\loadlib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lmem.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lmathlib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\llex.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\liolib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\linit.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lgc.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lfunc.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ldump.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ldo.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ldebug.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ldblib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lctype.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lcorolib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lcode.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lbaselib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lauxlib.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lapi.c">
+      <Filter>Source Files\Lua</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Editor\Textures.hpp">
-      <Filter>Source Files\Editor</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Editor\Algemeen.hpp">
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
@@ -153,6 +249,9 @@
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Editor\Script_API.hpp">
+      <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\Textures.hpp">
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
   </ItemGroup>
