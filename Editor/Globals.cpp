@@ -31,6 +31,7 @@
 #include <SlyvQCol.hpp>
 #include <SlyvString.hpp>
 #include <SlyvAsk.hpp>
+#include <SlyvArgParse.hpp>
 
 //using namespace TrickyUnits;
 using namespace Slyvina;
