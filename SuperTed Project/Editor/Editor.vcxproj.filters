@@ -13,5 +13,117 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Editor">
+      <UniqueIdentifier>{df439116-50dd-46ce-a6f4-56d56cef37df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Editor">
+      <UniqueIdentifier>{571ede7e-7bdc-40a5-8d9b-aa38ba342391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slyvina">
+      <UniqueIdentifier>{f1e5244a-dfda-4c35-8174-c21e9f403025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Slyvina\Units">
+      <UniqueIdentifier>{3979b6ce-b433-4dc5-b543-420c8495ee97}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Editor\Algemeen.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Editor\Globals.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Editor\Main.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Editor\MapEdit.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Editor\MetaEdit.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Editor\Opslaan.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Editor\RoomEdit.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Editor\Run.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Editor\Script_API.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Editor\Textures.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvArgParse.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvAsk.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvBank.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvDir.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvDirry.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvMD5.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvQCol.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvRequestFile.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvSTOI.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvStream.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvString.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvTime.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvVolumes.cpp">
+      <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Editor\Globals.hpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\MapEdit.hpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\MetaEdit.hpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\Opslaan.hpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\RoomEdit.hpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\Run.hpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\Script_API.hpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\Textures.hpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\Algemeen.hpp">
+      <Filter>Header Files\Editor</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
