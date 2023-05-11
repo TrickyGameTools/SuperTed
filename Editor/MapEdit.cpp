@@ -23,8 +23,8 @@
 // 
 // Version: 23.05.11
 // EndLic
-#include <QCol.hpp>
-#include <TrickySTOI.hpp>
+#include <SlyvQCol.hpp>
+#include <SlyvSTOI.hpp>
 
 #include <june19.hpp>
 
