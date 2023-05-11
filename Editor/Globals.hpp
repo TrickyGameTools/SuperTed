@@ -33,7 +33,7 @@
 #include <lua.hpp>
 
 // JCR
-#include <jcr6_core.hpp>
+#include <JCR6::ore.hpp>
 
 // SuperTed
 #include <SuperTed_Core.hpp>
@@ -47,11 +47,11 @@ namespace Slyvina {
 	namespace SuperTed {
 		namespace Editor {
 			extern std::string MyDir;
-			extern jcr6::JT_Dir* JAS;
-			extern jcr6::JT_Dir JTEX;
-			extern TrickyUnits::GINIE GlobalConfig;
-			extern TrickyUnits::GINIE ProjectConfig;
-			extern TrickyUnits::ParsedArg CLIOptions;
+			extern JCR6::JT_Dir JAS;
+			extern JCR6::JT_Dir JTEX;
+			extern Units::GINIE GlobalConfig;
+			extern Units::GINIE ProjectConfig;
+			extern Units::ParsedArg CLIOptions;
 			extern std::string EdtProject;
 			extern std::string EdtMap;
 			extern lua_State* Script;
@@ -67,7 +67,7 @@ namespace Slyvina {
 
 			std::string TextureDir();
 
-			inline bool cBool(TrickyUnits::GINIE& C, std::string k, std::string v) { return TrickyUnits::Upper(C.Value(k, v)) == "TRUE"; }
+			inline bool cBool(Units::GINIE C, std::string k, std::string v) { return Units::Upper(C->Value(k, v)) == "TRUE"; }
 
 			enum class ThrowAct { None, InstantEnd, LogForRun };
 			extern ThrowAct PanicAct;

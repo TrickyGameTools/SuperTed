@@ -36,14 +36,15 @@
 //using namespace TrickyUnits;
 using namespace Slyvina;
 using namespace Units;
+using namespace JCR6;
 
 namespace Slyvina {
 
 	namespace SuperTed {
 		namespace Editor {
 			std::string MyDir{ "." };
-			jcr6::JT_Dir* JAS;
-			jcr6::JT_Dir JTEX;
+			JT_Dir JAS;
+			JT_Dir JTEX;
 			GINIE GlobalConfig;
 			GINIE ProjectConfig;
 			ParsedArg CLIOptions;
@@ -60,8 +61,8 @@ namespace Slyvina {
 				static auto ginie_file{ Dirry("$AppSupport$/SuperTed.ini") };
 				if (first || force) {
 					QCol->Doing("Reading", ginie_file);
-					GlobalConfig.FromFile(ginie_file);
-					GlobalConfig.AutoSave = ginie_file;
+					GlobalConfig->FromFile(ginie_file);
+					GlobalConfig->AutoSave = ginie_file;
 					first = false;
 				}
 			}
