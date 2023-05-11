@@ -33,7 +33,7 @@
 #include <lua.hpp>
 
 // JCR
-#include <JCR6::ore.hpp>
+#include <JCR6_Core.hpp>
 
 // SuperTed
 #include <SuperTed_Core.hpp>

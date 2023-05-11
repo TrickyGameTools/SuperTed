@@ -69,18 +69,18 @@ namespace Slyvina {
 
 			static string AltMount(string file) {
 				auto spfile = Split(file, ':');
-				if (spfile.size() <= 0) { QCol->Error("Invalid file (" + file + ")"); return "???"; }
-				if (spfile.size() > 2) { QCol->Error("Illegal file name (" + file + "). I'll try to go on, but results may be funny"); }
-				auto drv{ Upper(spfile[0]) };
-				auto path{ spfile[1] };
-				auto mdrv{ Ask(&GlobalConfig,"Mount",drv,TrSPrintF("In file \"%s\" the unrecognized drive '%s' appears to be requested.\nI can mount a directory to that.\nPlease give me one: ",file.c_str(),drv.c_str())) };
-				return TReplace(mdrv + "/" + path, '\\', '/');
+				if (spfile->size() <= 0) { QCol->Error("Invalid file (" + file + ")"); return "???"; }
+				if (spfile->size() > 2) { QCol->Error("Illegal file name (" + file + "). I'll try to go on, but results may be funny"); }
+				auto drv{ Upper((*spfile)[0]) };
+				auto path{ (*spfile)[1] };
+				auto mdrv{ Ask(GlobalConfig,"Mount",drv,TrSPrintF("In file \"%s\" the unrecognized drive '%s' appears to be requested.\nI can mount a directory to that.\nPlease give me one: ",file.c_str(),drv.c_str())) };
+				return ChReplace(mdrv + "/" + path, '\\', '/');
 
 			}
 
 			std::string ProjectsDir() {
 				LoadGlobalConfig();
-				auto ret = AltMount(GlobalConfig.Value("Directories", "Projects"));
+				auto ret = AltMount(GlobalConfig->Value("Directories", "Projects"));
 				if (!ret.size()) { QCol->Error("No project directory set"); exit(1); }
 
 				return ret;

@@ -79,7 +79,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)..\Release</OutDir>
-    <IncludePath>E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Libs\Units\Headers;$(IncludePath)</IncludePath>
+    <IncludePath>E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;E:\Projects\Applications\Slyvina\Libs\Lunatic\Lua\Raw\src;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Libs\Units\Headers;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -141,6 +141,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_Core.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_JQL.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_RealDir.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_Write.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_zlib.cpp" />
     <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSA.cpp" />
     <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSE.cpp" />
     <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSG.cpp" />

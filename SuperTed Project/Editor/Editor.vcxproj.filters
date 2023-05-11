@@ -28,6 +28,9 @@
     <Filter Include="Source Files\Slyvina\TQSG">
       <UniqueIdentifier>{7ea77822-0979-4e38-b4bb-ae26502e08ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Slyvina\JCR6">
+      <UniqueIdentifier>{5b1a32de-94ea-4052-9ae5-cc166d775665}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Editor\Algemeen.cpp">
@@ -107,6 +110,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSG.cpp">
       <Filter>Source Files\Slyvina\TQSG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_Core.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_JQL.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_RealDir.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_Write.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_zlib.cpp">
+      <Filter>Source Files\Slyvina\JCR6</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
