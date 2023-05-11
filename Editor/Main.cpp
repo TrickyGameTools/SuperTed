@@ -25,16 +25,16 @@
 // EndLic
 
 
-#include <Ask.hpp>
-#include <Platform.hpp>
-#include <QCol.hpp>
-#include <QuickString.hpp>
-#include <QuickStream.hpp>
+#include <SlyvAsk.hpp>
+//#include <SlyvPlatform.hpp>
+#include <SlyvQCol.hpp>
+#include <SlyvString.hpp>
+#include <SlyvStream.hpp>
 
 #include <TQSG.hpp>
 #include <TQSE.hpp>
 
-#include <jcr6_realdir.hpp>
+#include <JCR6_RealDir.hpp>
 
 #include <SuperTed_Core.hpp>
 #include <SuperTed_Draw_TQSG.hpp>
@@ -49,9 +49,10 @@
 
 #include "Algemeen.hpp"
 
-using namespace TrickyUnits;
-using namespace SuperTed;
-using namespace SuperTed::Editor;
+using namespace Slyvina;
+using namespace Units;
+using namespace Slyvina::SuperTed;
+using namespace Editor;
 
 void CLIParse(int argcount, char** args) {
 	QCol->Doing("Parsing", "CLI arguments");
@@ -64,8 +65,8 @@ void CLIParse(int argcount, char** args) {
 	if (CLIOptions.bool_flags["dc"]) {
 		for (char ch = -125; ch < 127; ch++) {
 			string rc = ""; rc += ch;
-			EdtProject = TReplace(EdtProject, TrSPrintF(":%d:", (int)ch), rc);
-			EdtMap = TReplace(EdtMap, TrSPrintF(":%d:", (int)ch), rc);
+			EdtProject = ChReplace(EdtProject, TrSPrintF(":%d:", (int)ch), rc);
+			EdtMap = ChReplace(EdtMap, TrSPrintF(":%d:", (int)ch), rc);
 		}
 	}
 	QCol->Doing("Project", EdtProject);
@@ -73,12 +74,12 @@ void CLIParse(int argcount, char** args) {
 
 	QCol->Doing("Reading", EdtProjectIni());
 	if (!FileExists(EdtProjectIni())) { QCol->Error("File not found"); exit(2); }
-	ProjectConfig.FromFile(EdtProjectIni());
-	ProjectConfig.AutoSave = EdtProjectIni();
+	ProjectConfig->FromFile(EdtProjectIni());
+	ProjectConfig->AutoSave = EdtProjectIni();
 }
 
 int main(int argcount, char** args) {
-	MyDir = TReplace(ExtractDir(args[0]), '\\', '/');
+	MyDir = ChReplace(ExtractDir(args[0]), '\\', '/');
 	// Start
 	QCol->LGreen("SuperTed - Editor\n");
 	QCol->Magenta("(c) 2022 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
@@ -87,25 +88,26 @@ int main(int argcount, char** args) {
 	QCol->Doing("Platform", Platform());
 	QCol->Doing("PlatformX", Platform(false));
 	QCol->Doing("SuperTed Dir", MyDir);
-	QCol->Doing("Called from", TReplace(CurrentDir(), '\\', '/'));
+	QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));
 	QCol->Doing("Project Dir", ProjectsDir());
 	JAS = SuperTed::JCR6::STED_Assets(MyDir);
 	CLIParse(argcount, args);
-	jcr6::InitRealDir(); ScanForTextures();
+	JCR6::JCR6_InitRealDir(); ScanForTextures();
 	LoadScript();
 	// Start TQSG (always after all non-SDL2 things are done).
 	QCol->Doing("Initizing", "SDL2 and TQSG");
-	TQSG_Init(
-		TrSPrintF("SuperTed - %s - %s", EdtProject.c_str(), EdtMap.c_str()),
-		AskInt(&ProjectConfig, "Editor", "Width", "Preferred window width for editor: ", 1600),
-		AskInt(&ProjectConfig, "Editor", "Height", "Preferred window height for editor: ", 900),
-		false);
-	TQSG_Cls();
-	TQSG_Flip();
+	TQSG::Graphics(
+		AskInt(ProjectConfig, "Editor", "Width", "Preferred window width for editor: ", 1600),
+		AskInt(ProjectConfig, "Editor", "Height", "Preferred window height for editor: ", 900),
+		TrSPrintF("SuperTed - %s - %s", EdtProject.c_str(), EdtMap.c_str()) //,
+		//false
+	);
+	TQSG::Cls();
+	TQSG::Flip();
 	QCol->Doing("Initizing", "TQSE");	
-	TQSE_Init();
+	TQSE::Init();
 	QCol->Doing("Initizing", "SuperTed TQSG Driver");
-	SuperTed_InitTQSG(&JTEX);
+	SuperTed_InitTQSG(JTEX);
 	LoadMap();
 
 	// Run
