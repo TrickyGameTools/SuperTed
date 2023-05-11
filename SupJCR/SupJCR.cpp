@@ -50,7 +50,7 @@ namespace Slyvina {
 					QCol->Doing("Initializing", "JCR6 zlib driver"); sJCR6::init_zlib();
 					QCol->Doing("Analyzing", "SuperTed.JCR");
 					STEDA = sJCR6::JCR6_Dir(d + "/SuperTed.JCR");
-					STEDA_ID->Parse(STEDA->GetString("ID/ID.ini"));
+					STEDA_ID = ParseGINIE(STEDA->GetString("ID/ID.ini"));
 					QCol->Doing("Checking", "SuperTed.JCR");
 					if (Lower(STEDA_ID->Value("ID", "Sig")) != "fbeb79a1") { QCol->Error("SuperTed.JCR signature incorrect!"); exit(255); }
 					QCol->Doing("JCR file build", STEDA_ID->Value("Build", "Date"));

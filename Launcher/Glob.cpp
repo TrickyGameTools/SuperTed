@@ -54,8 +54,8 @@ namespace Slyvina {
 				static bool Loaded{ false };
 				if ((!Loaded) || force) {
 					QCol->Doing("Reading", Dirry(gfile));
-					_globalconfig->FromFile(Dirry(gfile));
-					_globalconfig->AutoSave = Dirry(gfile);
+					_globalconfig = LoadGINIE(Dirry(gfile),Dirry(gfile));
+					//_globalconfig->AutoSave = Dirry(gfile);
 					Loaded = true;
 				}
 			}

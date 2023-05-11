@@ -82,7 +82,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\include;E:\Projects\Applications\Slyvina\Libs\June19\head;E:\Projects\Applications\Slyvina\Libs\Units\Headers;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Apps\SuperTed\C++ Class\headers;E:\Projects\Applications\Slyvina\Libs\Lunatic\Lua\Raw\src;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;</IncludePath>
-    <OutDir>$(SolutionDir)$(Platform)\..\Release</OutDir>
+    <OutDir>$(SolutionDir)$(Platform)\..\..\Release</OutDir>
+    <LibraryPath>E:\Projects\Applications\Slyvina\Libs\JCR6\3rdParty\zlib\;E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -138,6 +139,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>zlib.lib;SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>pwsh bd.ps1</Command>
@@ -229,6 +231,36 @@
     </CopyFileToFolders>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_Core.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_JQL.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_RealDir.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_Write.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_zlib.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_button.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_checkbox.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_core.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_label.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_listbox.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_picture.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_radio.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_scrollbar.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_tabber.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_textfield.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSA.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSE.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSG.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvArgParse.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvAsk.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvBank.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvDir.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvDirry.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvMD5.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvQCol.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvSTOI.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvStream.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvString.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvTime.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvVolumes.cpp" />
     <ClCompile Include="..\..\Launcher\Glob.cpp" />
     <ClCompile Include="..\..\Launcher\Main.cpp" />
     <ClCompile Include="..\..\Launcher\Run.cpp" />
