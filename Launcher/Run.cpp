@@ -75,7 +75,7 @@ namespace Slyvina {
 #endif
 				Cls();
 				SetColor(255, 0, 0);
-				j19gadget::GetDefaultFont()->Text("External call in session...", floor(ScreenWidth() / 2), floor(ScreenHeight() / 2), 2, 2);
+				j19gadget::GetDefaultFont()->Text("External call in session...", floor(ScreenWidth() / 2), floor(ScreenHeight() / 2), Align::Center, Align::Center);
 				Flip();
 				auto ret = system(cmd.c_str());
 				return ret;
@@ -87,9 +87,9 @@ namespace Slyvina {
 
 			static void PCheck(j19gadget* j, j19action a);
 			static void ActRenewProjectList(j19gadget* j, j19action a) {
-				auto List = FileList(ProjectsDir(), Directories);
+				auto List = FileList(ProjectsDir(), DirWant::Directories);
 				selPrj->ClearItems();
-				for (auto F : List) selPrj->AddItem(F);
+				for (auto F : *List) selPrj->AddItem(F);
 				PCheck(j, a);
 			}
 
@@ -218,11 +218,11 @@ namespace Slyvina {
 				SetColor(255, 255, 255);
 				Background->Tile(0, 0, ScreenWidth(), ScreenHeight(), floor((ScreenWidth() / 2) + (DegSin(r) * 250)), floor((ScreenHeight() / 2) + (DegCos(r) * 250)));
 				r = (r + 1) % 360;
-				Bear->Draw(ScreenWidth() - Bear->W(), ceil(ScreenHeight() / 2) - ceil(Bear->H() / 2));
+				Bear->Draw(ScreenWidth() - Bear->Width(), ceil(ScreenHeight() / 2) - ceil(Bear->H() / 2));
 				UI->Draw();
-				KeepGoing = KeepGoing && !TQSE_Quit();
+				KeepGoing = KeepGoing && !AppTerminate();
 #ifdef ESCAPE_IS_QUIT
-				KeepGoing = KeepGoing && !TQSE_KeyHit(SDLK_ESCAPE);
+				KeepGoing = KeepGoing && !KeyHit(SDLK_ESCAPE);
 #endif
 				Flip(30);
 				if (!KeepGoing) FreeGadget(UI);
