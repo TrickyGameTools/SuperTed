@@ -24,7 +24,7 @@
 // Version: 22.11.29
 // EndLic
 
-#include <QCol.hpp>
+#include <SlyvQCol.hpp>
 
 #include <TQSG.hpp>
 
