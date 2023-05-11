@@ -34,14 +34,16 @@
 #include "Opslaan.hpp"
 #include "Globals.hpp"
 
-using namespace Slyvina::June19;
-using namespace Slyvina::Units;
+using namespace Slyvina;
+using namespace June19;
+using namespace Units;
+using namespace TQSG;
 
 namespace Slyvina {
 	namespace SuperTed {
 		namespace Editor {
 			bool _UI::_initialized{ false };
-			TQSG_AutoImage _UI::Mouse{ nullptr };
+			TImage _UI::Mouse{ nullptr };
 			UI _UI::_Current{ nullptr };
 			std::map<std::string, std::shared_ptr<_UI>> _UI::Stage{};
 
@@ -172,9 +174,9 @@ namespace Slyvina {
 #ifdef QUICK_QUIT
 				if (TQSE_KeyHit(SDLK_ESCAPE)) go_on = false;
 #endif
-				TQSG_ACol(255, 255, 255, 255);
+				SetColor(255, 255, 255, 255);
 				Mouse->Draw(TQSE_MouseX(), TQSE_MouseY());
-				TQSG_Flip(20);
+				Flip(20);
 				return go_on;
 			}
 
