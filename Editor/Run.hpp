@@ -26,8 +26,10 @@
 
 #pragma once
 
-namespace SuperTed {
-	namespace Editor {
-		bool Run();
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
+			bool Run();
+		}
 	}
 }

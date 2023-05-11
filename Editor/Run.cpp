@@ -30,17 +30,19 @@
 
 #include "Algemeen.hpp"
 
-using namespace TrickyUnits;
+using namespace Slyvina::Units;
 
-namespace SuperTed {
-	namespace Editor {
-		bool Run() {
-			TQSE_Poll();
-			if (TQSE_Quit()) {
-				// TODO: Save on quit
-				return false;
-			}						
-			return(!GetThrown()) && (_UI::Run());
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
+			bool Run() {
+				TQSE::Poll();
+				if (TQSE::AppTerminate()) {
+					// TODO: Save on quit
+					return false;
+				}
+				return(!GetThrown()) && (_UI::Run());
+			}
 		}
 	}
 }

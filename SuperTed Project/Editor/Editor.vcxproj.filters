@@ -128,18 +128,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Editor\MetaEdit.hpp">
-      <Filter>Source Files\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Editor\Opslaan.hpp">
-      <Filter>Source Files\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Editor\RoomEdit.hpp">
-      <Filter>Source Files\Editor</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Editor\Run.hpp">
-      <Filter>Source Files\Editor</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Editor\Script_API.hpp">
       <Filter>Source Files\Editor</Filter>
     </ClInclude>
@@ -153,6 +141,18 @@
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Editor\MapEdit.hpp">
+      <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\MetaEdit.hpp">
+      <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\Opslaan.hpp">
+      <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\RoomEdit.hpp">
+      <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Editor\Run.hpp">
       <Filter>Header Files\Editor</Filter>
     </ClInclude>
   </ItemGroup>
