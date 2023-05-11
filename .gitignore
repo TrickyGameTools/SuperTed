@@ -22,7 +22,7 @@ enc_temp_folder
 # C# junk in project creation wizard
 NewProjectWizard/bin
 NewProjectWizard/obj
-
+NewProjectWizard/Properties/
 
 Release
 NewProjectWizard/builddate.cs
