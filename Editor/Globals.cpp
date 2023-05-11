@@ -27,10 +27,10 @@
 #include <SDL.h>
 
 #include "Globals.hpp"
-#include <Dirry.hpp>
-#include <QCol.hpp>
-#include <QuickString.hpp>
-#include <Ask.hpp>
+#include <SlyvDirry.hpp>
+#include <SlyvQCol.hpp>
+#include <SlyvString.hpp>
+#include <SlyvAsk.hpp>
 
 //using namespace TrickyUnits;
 using namespace Slyvina;
