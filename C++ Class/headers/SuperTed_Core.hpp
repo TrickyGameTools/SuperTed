@@ -87,10 +87,10 @@ namespace Slyvina {
 		class _Teddy {
 		private:
 			static TeddyDraw* DrawDriver;
-			static TrickyUnits::uint64 Teller;
-			TrickyUnits::uint64 _ID{ Teller++ };
-			void LoadLayer(TeddyRoom R, std::string Layer, jcr6::JT_Dir* J, std::string EntryName, TeddyRoomLayerType t = TeddyRoomLayerType::Layer);
-			void LoadObjects(TeddyRoom R, jcr6::JT_Dir* J, std::string p, std::string r);
+			static uint64 Teller;
+			uint64 _ID{ Teller++ };
+			void LoadLayer(TeddyRoom R, std::string Layer, JCR6::JT_Dir J, std::string EntryName, TeddyRoomLayerType t = TeddyRoomLayerType::Layer);
+			void LoadObjects(TeddyRoom R, JCR6::JT_Dir J, std::string p, std::string r);
 		public:
 			TeddyMaxTile _MaxTiles{ TeddyMaxTile::B8 };
 			int
@@ -102,16 +102,16 @@ namespace Slyvina {
 			std::vector<std::string> BaseLayers;
 			std::vector<std::string> BaseZones;
 			std::map<std::string, TeddyRoom> Rooms;
-			std::map<TrickyUnits::uint32, TeddyTex> Textures;
+			std::map<uint32, TeddyTex> Textures;
 			std::map<std::string, std::string> Data;
 
 
 			void RenameRoom(std::string original, std::string target);
-			TeddyTex Tex(TrickyUnits::uint32 idx);
+			TeddyTex Tex(uint32 idx);
 			TeddyRoom CreateRoom(std::string n, int w = 64, int h = 64, int gw = 32, int gh = 32, bool layerless = false);
 			void DrawLayer(std::string R, std::string L, int scrollx = 0, int scrolly = 0);
 
-			static Teddy Load(jcr6::JT_Dir* J, std::string p); // Don't call this directly. Use LoadTeddy() in stead
+			static Teddy Load(JCR6::JT_Dir J, std::string p); // Don't call this directly. Use LoadTeddy() in stead
 
 			static void SetDrawDriver(TeddyDraw* DD = nullptr); // To be used by draw drivers
 			~_Teddy();
@@ -126,7 +126,7 @@ namespace Slyvina {
 		public:
 			_TeddyRoom();
 			_TeddyRoom(_Teddy* ouwe, int _w, int _h, int _gw, int gh);
-			std::shared_ptr<TrickyUnits::Array2D<TeddyObjectList>> MapObjects{ nullptr };
+			std::shared_ptr<Units::Array2D<TeddyObjectList>> MapObjects{ nullptr };
 			bool AutoRemap{ true };
 			std::map<std::string, TeddyRoomLayer> Layers;
 			TeddyRoomLayer CreateLayer(std::string a, bool dontremap = false);
@@ -169,7 +169,7 @@ namespace Slyvina {
 
 		class _TeddyObject {
 		public:
-			TrickyUnits::uint32 kind;
+			uint32 kind;
 			std::map<std::string, std::string> Data;
 		};
 
@@ -178,15 +178,15 @@ namespace Slyvina {
 		class _TeddyTex {
 		public:
 			std::string TexFile{ "" };
-			TrickyUnits::byte
+			byte
 				r{ 255 },
 				g{ 255 },
 				b{ 255 },
 				alpha{ 255 };
 			TeddyTexType Type{ TeddyTexType::Stretch };
 			int AnimSpeed{ -1 };
-			TrickyUnits::uint32 Frame{ 0 };
-			void Col(TrickyUnits::byte _r, TrickyUnits::byte _g, TrickyUnits::byte _b);
+			uint32 Frame{ 0 };
+			void Col(byte _r, byte _g, byte _b);
 
 		};
 
@@ -208,6 +208,6 @@ namespace Slyvina {
 		Teddy CreateTeddy(int w, int h, int gw, int gh, std::vector<std::string> rooms, std::vector<std::string> layers, std::vector<std::string> Zones);
 
 		Teddy LoadTeddy(std::string File, std::string prefix = "");
-		Teddy LoadTeddy(jcr6::JT_Dir* JCRResource, std::string prefix = "");
+		Teddy LoadTeddy(JCR6::JT_Dir JCRResource, std::string prefix = "");
 	}
 }

@@ -34,6 +34,18 @@
     <Filter Include="Source Files\Lua">
       <UniqueIdentifier>{f8002662-f345-4233-ab66-73e14fbd0ad4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Teddy Class">
+      <UniqueIdentifier>{0824a0bd-7c98-4188-a60b-d1bf6768de85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Teddy Class">
+      <UniqueIdentifier>{78df78d5-5418-4b2a-b61f-3161bd90b10f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Slyvina">
+      <UniqueIdentifier>{f2d666f3-5579-4b43-8af3-7c22327ceb36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Slyvina\Units">
+      <UniqueIdentifier>{6c5cf14e-ad4b-479c-9597-c8e656a850ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Editor\Algemeen.cpp">
@@ -225,6 +237,15 @@
     <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lapi.c">
       <Filter>Source Files\Lua</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\C++ Class\source\SuperTed_Core.cpp">
+      <Filter>Source Files\Teddy Class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\C++ Class\source\SuperTed_Draw_TQSG.cpp">
+      <Filter>Source Files\Teddy Class</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\C++ Class\source\SuperTed_Save.cpp">
+      <Filter>Source Files\Teddy Class</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Editor\Algemeen.hpp">
@@ -253,6 +274,87 @@
     </ClInclude>
     <ClInclude Include="..\..\Editor\Textures.hpp">
       <Filter>Header Files\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C++ Class\headers\SuperTed_Core.hpp">
+      <Filter>Header Files\Teddy Class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C++ Class\headers\SuperTed_Draw_TQSG.hpp">
+      <Filter>Header Files\Teddy Class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\C++ Class\headers\SuperTed_Save.hpp">
+      <Filter>Header Files\Teddy Class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\DieParse.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\Slyv2DArray.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvArgParse.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvAsk.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvBank.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvConInput.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvDir.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvDirry.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvEndian.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvGINIE.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvHSVRGB.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\Slyvina.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvMD5.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvMKL.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvQCol.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvQuickHead.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvRandom.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvRequestFile.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvSTOI.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvStream.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvString.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvTime.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvVecSearch.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvVolumes.hpp">
+      <Filter>Header Files\Slyvina\Units</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

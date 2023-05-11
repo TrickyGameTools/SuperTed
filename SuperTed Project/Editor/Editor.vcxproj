@@ -79,7 +79,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)..\Release</OutDir>
-    <IncludePath>E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\include;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;E:\Projects\Applications\Slyvina\Libs\Lunatic\Lua\Raw\src;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Libs\Units\Headers;$(IncludePath)</IncludePath>
+    <IncludePath>E:\Projects\Applications\Slyvina\Apps\SuperTed\C++ Class\headers;E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\include;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;E:\Projects\Applications\Slyvina\Libs\Lunatic\Lua\Raw\src;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Libs\Units\Headers;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -194,6 +194,9 @@
     <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvString.cpp" />
     <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvTime.cpp" />
     <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvVolumes.cpp" />
+    <ClCompile Include="..\..\C++ Class\source\SuperTed_Core.cpp" />
+    <ClCompile Include="..\..\C++ Class\source\SuperTed_Draw_TQSG.cpp" />
+    <ClCompile Include="..\..\C++ Class\source\SuperTed_Save.cpp" />
     <ClCompile Include="..\..\Editor\Algemeen.cpp" />
     <ClCompile Include="..\..\Editor\Globals.cpp" />
     <ClCompile Include="..\..\Editor\Main.cpp" />
@@ -206,6 +209,33 @@
     <ClCompile Include="..\..\Editor\Textures.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\DieParse.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\Slyv2DArray.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvArgParse.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvAsk.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvBank.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvConInput.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvDir.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvDirry.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvEndian.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvGINIE.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvHSVRGB.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\Slyvina.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvMD5.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvMKL.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvQCol.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvQuickHead.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvRandom.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvRequestFile.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvSTOI.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvStream.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvString.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvTime.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvVecSearch.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvVolumes.hpp" />
+    <ClInclude Include="..\..\C++ Class\headers\SuperTed_Core.hpp" />
+    <ClInclude Include="..\..\C++ Class\headers\SuperTed_Draw_TQSG.hpp" />
+    <ClInclude Include="..\..\C++ Class\headers\SuperTed_Save.hpp" />
     <ClInclude Include="..\..\Editor\Algemeen.hpp" />
     <ClInclude Include="..\..\Editor\Globals.hpp" />
     <ClInclude Include="..\..\Editor\MapEdit.hpp" />
