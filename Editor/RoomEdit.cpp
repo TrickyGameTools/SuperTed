@@ -24,9 +24,9 @@
 // Version: 23.05.11
 // EndLic
 
-#include <Ask.hpp>
-#include <QCol.hpp>
-#include <QuickString.hpp>
+#include <SlyvAsk.hpp>
+#include <SlyvQCol.hpp>
+#include <SlyvString.hpp>
 
 #include <june19.hpp>
 
