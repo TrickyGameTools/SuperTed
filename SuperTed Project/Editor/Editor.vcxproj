@@ -83,7 +83,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\Projects\Applications\Slyvina\Libs\Units\Headers;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Apps\SuperTed\C++ Class\headers;E:\Projects\Applications\Slyvina\Libs\Lunatic\Lua\Raw\src;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;$(IncludePath)</IncludePath>
+    <IncludePath>E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\include;E:\Projects\Applications\Slyvina\Libs\June19\head;E:\Projects\Applications\Slyvina\Libs\Units\Headers;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Apps\SuperTed\C++ Class\headers;E:\Projects\Applications\Slyvina\Libs\Lunatic\Lua\Raw\src;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,6 +147,16 @@
     <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_RealDir.cpp" />
     <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_Write.cpp" />
     <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_zlib.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_button.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_checkbox.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_core.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_label.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_listbox.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_picture.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_radio.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_scrollbar.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_tabber.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_textfield.cpp" />
     <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lapi.c" />
     <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lauxlib.c" />
     <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lbaselib.c" />
@@ -210,6 +220,17 @@
     <ClCompile Include="..\..\Editor\Textures.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_button.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_checkbox.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_core.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_label.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_listbox.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_picture.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_radio.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_scrollbar.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_tabber.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_textfield.hpp" />
     <ClInclude Include="..\..\..\..\Libs\Units\Headers\DieParse.hpp" />
     <ClInclude Include="..\..\..\..\Libs\Units\Headers\Slyv2DArray.hpp" />
     <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvArgParse.hpp" />

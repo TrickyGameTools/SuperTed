@@ -55,6 +55,12 @@
     <Filter Include="Copy\zlib">
       <UniqueIdentifier>{0334d644-8630-436f-8002-930194f47719}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Slyvina\June19">
+      <UniqueIdentifier>{f12d5fcd-f3c6-46e6-a654-9e010ad76fb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Slyvina\June19">
+      <UniqueIdentifier>{37b4f64d-d8cb-4a32-99ec-0adb987f151d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Editor\Algemeen.cpp">
@@ -255,6 +261,36 @@
     <ClCompile Include="..\..\C++ Class\source\SuperTed_Save.cpp">
       <Filter>Source Files\Teddy Class</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_picture.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_radio.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_scrollbar.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_tabber.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_textfield.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_button.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_checkbox.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_core.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_label.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_listbox.cpp">
+      <Filter>Source Files\Slyvina\June19</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Editor\Algemeen.hpp">
@@ -364,6 +400,39 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvVolumes.hpp">
       <Filter>Header Files\Slyvina\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_radio.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_scrollbar.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_tabber.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_textfield.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_button.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_checkbox.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_core.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_label.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_listbox.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_picture.hpp">
+      <Filter>Header Files\Slyvina\June19</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
