@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Slyvina\Units">
       <UniqueIdentifier>{3979b6ce-b433-4dc5-b543-420c8495ee97}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Slyvina\TQSG">
+      <UniqueIdentifier>{7ea77822-0979-4e38-b4bb-ae26502e08ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Editor\Algemeen.cpp">
@@ -95,6 +98,15 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvVolumes.cpp">
       <Filter>Source Files\Slyvina\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSA.cpp">
+      <Filter>Source Files\Slyvina\TQSG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSE.cpp">
+      <Filter>Source Files\Slyvina\TQSG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSG.cpp">
+      <Filter>Source Files\Slyvina\TQSG</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
