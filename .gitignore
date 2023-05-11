@@ -10,6 +10,10 @@ x64
 *.dll
 *.obj
 
+
+# Backup of files that I no longer need since the move to Slyvina
+
+
 # This folder appears to be created (temporarily) when 
 # modifying C++ file wile running.
 enc_temp_folder
