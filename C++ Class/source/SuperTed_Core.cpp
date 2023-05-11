@@ -1,7 +1,7 @@
 // Lic:
 // C++ Class/source/SuperTed_Core.cpp
 // SuperTed Core
-// version: 23.05.11
+// version: 23.05.12
 // Copyright (C) 2022, 2023 Jeroen P. Broks
 // This software is provided 'as-is', without any express or implied
 // warranty.  In no event will the authors be held liable for any damages
@@ -97,9 +97,10 @@ namespace Slyvina {
 		}
 
 		Teddy LoadTeddy(std::string File, std::string prefix) {
-			auto J{ JCR6::Dir(File) };
-			if (JCR_Error != "" && Upper(JCR_Error) != "OK") return nullptr;
-			return _Teddy::Load(&J, prefix);
+			auto J{ JCR6::JCR6_Dir(File) };
+			//if (JCR_Error != "" && Upper(JCR_Error) != "OK") return nullptr;
+			if (JCR6::Last()->Error) return nullptr;
+			return _Teddy::Load(J, prefix);
 		}
 
 		Teddy LoadTeddy(JCR6::JT_Dir JCRResource, std::string prefix) { return _Teddy::Load(JCRResource, prefix); }
@@ -188,14 +189,14 @@ namespace Slyvina {
 			Rooms.erase(original);
 		}
 
-		TeddyTex _Teddy::Tex(TrickyUnits::uint32 idx) {
+		TeddyTex _Teddy::Tex(uint32 idx) {
 			if (!Textures.count(idx)) Textures[idx] = std::make_shared<_TeddyTex>();
 			if (!Textures[idx]) Textures[idx] = std::make_shared<_TeddyTex>();
 			return Textures[idx];
 		}
 
 		TeddyRoom _Teddy::CreateRoom(std::string n, int w, int h, int gw, int gh, bool layerless) {
-			using namespace TrickyUnits;
+			using namespace Units;
 			auto ret{ std::make_shared<_TeddyRoom>(this, w,  h,  gw, gh) };
 			ret->Remap_Dom();
 			ret->W(w);
@@ -217,13 +218,14 @@ namespace Slyvina {
 		}
 
 		static bool JEC() {
-			if (JCR_Error != "" && Upper(JCR_Error) != "OK") { _Panic("JCR Error: " + JCR_Error); return false; }
+			//if (JCR_Error != "" && Upper(JCR_Error) != "OK") { _Panic("JCR Error: " + JCR_Error); return false; }
+			if (JCR6::Last()->Error) { _Panic("JCR Error: " + JCR6::Last()->ErrorMessage); return false; }
 			return true;
 		}
 #define JECO if (!JEC()) return nullptr
 		Teddy _Teddy::Load(JCR6::JT_Dir J, std::string p) {
 			using namespace std;
-			if (p.size() && !suffixed(p, "/")) p += "/";
+			if (p.size() && !Suffixed(p, "/")) p += "/";
 			LChat("Reading: " + p + "Data");
 			auto ret{ make_shared<_Teddy>() };
 			auto BT{ J->B(p + "Data") }; JECO; ret->Data.clear();
@@ -310,7 +312,8 @@ namespace Slyvina {
 			ret->Rooms.clear();
 			BT = J->B(p + "RoomTable");
 			Tag = BT->ReadByte();
-			std::shared_ptr<JCR6::JT_EntryReader> BR{ nullptr };
+			//std::shared_ptr<JCR6::JT_EntryReader> BR{ nullptr };
+			Bank BR{ nullptr };
 			std::string Rm{ "" };
 			TeddyRoom WR{ nullptr };
 			while (Tag) {
@@ -391,28 +394,28 @@ namespace Slyvina {
 			gw = _gw;
 			gh = _gh;
 			parent = ouwe;
-			MapObjects = TrickyUnits::Array2D<TeddyObjectList>::Dim(_w, _h);
+			MapObjects = Array2D<TeddyObjectList>::Dim(_w, _h);
 		}
 
 		TeddyRoomLayer _TeddyRoom::CreateLayer(std::string a, bool dontremap) {
-			a = TrickyUnits::Upper(a); TedAssert(a != "OBJECTS", "Layer cannot be named OBJECTS!");
+			a = Upper(a); TedAssert(a != "OBJECTS", "Layer cannot be named OBJECTS!");
 			auto ret{ std::make_shared<_TeddyRoomLayer>(this) };
 			//std::cout << "Created layer: " << a << "\n"; // debug only
 			Layers[a] = ret;
 			ret->SetParent(this);
-			ret->Field = TrickyUnits::Array2D<int>::Dim(w, h);
+			ret->Field = Array2D<int>::Dim(w, h);
 			ret->Field->SetAll(0);
 			return ret;
 		}
 
 		TeddyRoomLayer _TeddyRoom::CreateZone(std::string a) {
-			a = TrickyUnits::Upper(a); TedAssert(a != "OBJECTS", "Zone cannot be named OBJECTS!");
+			a = Upper(a); TedAssert(a != "OBJECTS", "Zone cannot be named OBJECTS!");
 			auto ret{ std::make_shared<_TeddyRoomLayer>(this) };
 			//std::cout << "Created zone: " << a << "\n"; // debug only
 			Layers[a] = ret;
 			ret->SetType(TeddyRoomLayerType::Zones);
 			ret->SetParent(this);
-			ret->Field = TrickyUnits::Array2D<int>::Dim(w, h);
+			ret->Field = Array2D<int>::Dim(w, h);
 			ret->Field->SetAll(0);
 			return ret;
 		}
@@ -493,8 +496,8 @@ namespace Slyvina {
 
 
 		_TeddyRoomLayer::_TeddyRoomLayer(_TeddyRoom* ouwe, std::string cmd) {
-			using namespace TrickyUnits;
-			auto cmds{ Split(cmd,';') };
+			using namespace Units;
+			auto cmds{ *Split(cmd,';') };
 			for (auto c : cmds) {
 				if (Upper(c) == "ZONE" || Upper(c) == "ZONE") Type = TeddyRoomLayerType::Zones;
 			}

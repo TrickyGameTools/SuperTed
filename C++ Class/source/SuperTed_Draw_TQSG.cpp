@@ -1,7 +1,7 @@
 // Lic:
 // C++ Class/source/SuperTed_Draw_TQSG.cpp
 // SuperTed Drawing driver for the TQSG system
-// version: 23.05.11
+// version: 23.05.12
 // Copyright (C) 2022, 2023 Jeroen P. Broks
 // This software is provided 'as-is', without any express or implied
 // warranty.  In no event will the authors be held liable for any damages
@@ -98,10 +98,10 @@ namespace Slyvina {
 					Img->Draw(x, y, Frame);
 					break;
 				case TeddyTexType::Stretch:
-					Img->Stretch(x, y, gw, gh);
+					Img->StretchDraw(x, y, gw, gh);
 					break;
 				case TeddyTexType::BottomCenter:
-					Img->Draw((x + (gw / 2)) - (Img->W() / 2), (y + gh) - Img->H());
+					Img->Draw((x + (gw / 2)) - (Img->Width() / 2), (y + gh) - Img->Height());
 					break;
 				case TeddyTexType::ACT:
 					Img->Tile(x, y, gw, gh, tx % gw, ty % gh);
