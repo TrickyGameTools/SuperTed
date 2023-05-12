@@ -28,7 +28,7 @@
 #include <SlyvQCol.hpp>
 #include <SlyvString.hpp>
 
-#include <june19.hpp>
+#include <June19::.hpp>
 
 #include <SuperTed_Core.hpp>
 
@@ -153,7 +153,7 @@ namespace Slyvina {
 				Allowed();
 			}
 
-			void NewRoom(june19::j19gadget*, june19::j19action) {
+			void NewRoom(June19::j19gadget*, June19::j19action) {
 				if (!REStage) CreateRoomStage();
 				_UI::GoToStage("RoomEdit");
 				j19gadget::StatusText("Create a new room");
@@ -162,7 +162,7 @@ namespace Slyvina {
 				Status = REStatus::NewRoom;
 			}
 
-			void RenameRoom(june19::j19gadget*, june19::j19action) {
+			void RenameRoom(June19::j19gadget*, June19::j19action) {
 				if (!REStage) CreateRoomStage();
 				_UI::GoToStage("RoomEdit");
 				j19gadget::StatusText("Rename room: " + CurrentRoom());
