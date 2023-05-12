@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.05.11
+// Version: 23.05.12
 // EndLic
 #include <SlyvQCol.hpp>
 #include <SlyvSTOI.hpp>
