@@ -84,15 +84,15 @@ namespace Slyvina {
 				switch (what) {
 				case 0:
 					if (!FileExists(file)) { QCol->Error("Request to load " + file + " as a string failed. File not found!"); return 0; }
-					lua_pushstring(L, LoadString(file).c_str());
+					lua_pushstring(L, FLoadString(file).c_str());
 					return 1;
 				case 1:
 					if (!JAS->EntryExists(file)) { QCol->Error("Request to load " + file + " (from SuperTed's resource) as a string failed. Entry not found!"); return 0; }
-					lua_pushstring(L, JAS->String(file).c_str());
+					lua_pushstring(L, JAS->GetString(file).c_str());
 					return 1;
 				case 2:
-					if (!JTEX.EntryExists(file)) { QCol->Error("Request to load " + file + " (from Texture resource) as a string failed. Entry not found!"); return 0; }
-					lua_pushstring(L, JTEX.String(file).c_str());
+					if (!JTEX->EntryExists(file)) { QCol->Error("Request to load " + file + " (from Texture resource) as a string failed. Entry not found!"); return 0; }
+					lua_pushstring(L, JTEX->GetString(file).c_str());
 					return 1;
 				default:
 					QCol->Error("Request to load " + file + " as a string failed. The what-colde (" + to_string(what) + ") is unknown!");
