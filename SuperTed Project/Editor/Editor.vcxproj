@@ -225,6 +225,7 @@
     <ClCompile Include="..\..\Editor\Run.cpp" />
     <ClCompile Include="..\..\Editor\Script_API.cpp" />
     <ClCompile Include="..\..\Editor\Textures.cpp" />
+    <ClCompile Include="..\..\SupJCR\SupJCR.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Libs\June19\head\june19.hpp" />

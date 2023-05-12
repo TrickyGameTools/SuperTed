@@ -291,6 +291,9 @@
     <ClCompile Include="..\..\..\..\Libs\June19\src\june19_listbox.cpp">
       <Filter>Source Files\Slyvina\June19</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\SupJCR\SupJCR.cpp">
+      <Filter>Source Files\Editor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Editor\Algemeen.hpp">
