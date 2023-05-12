@@ -80,10 +80,10 @@ namespace Slyvina {
 				case REStatus::NewRoom:
 					TheMap->CreateRoom(
 						RoomName(),
-						AskInt(&ProjectConfig, "Default Map Format", "Width", "Default width in tiles:", 64),
-						AskInt(&ProjectConfig, "Default Map Format", "Height", "Default height in tiles:", 64),
-						AskInt(&ProjectConfig, "Grid", "Width", "Default Tile Width:", 32),
-						AskInt(&ProjectConfig, "Grid", "Height", "Default Tile Height:", 32)
+						AskInt(ProjectConfig, "Default Map Format", "Width", "Default width in tiles:", 64),
+						AskInt(ProjectConfig, "Default Map Format", "Height", "Default height in tiles:", 64),
+						AskInt(ProjectConfig, "Grid", "Width", "Default Tile Width:", 32),
+						AskInt(ProjectConfig, "Grid", "Height", "Default Tile Height:", 32)
 					);
 					break;
 				case REStatus::RenameRoom:
