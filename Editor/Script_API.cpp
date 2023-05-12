@@ -149,7 +149,7 @@ namespace Slyvina {
 				NeilGroup += "\nEnd\n\n";
 
 				QCol->Doing("Compiling", "Neil");
-				string Neil{ "-- Neil --\nlocal function loadneil()\n" + JAS->String("Neil/Neil.lua") + "\n\nend Neil=loadneil()" };
+				string Neil{ "-- Neil --\nlocal function loadneil()\n" + JAS->GetString("Neil/Neil.lua") + "\n\nend Neil=loadneil()" };
 				luaL_loadstring(L, Neil.c_str()); lua_call(L, 0, 0);
 				QCol->Doing("Compiling", "Neil Group");
 				//cout << "<DEBUG>\n" << NeilGroup << "\n</DEBUG>\n\n"; // DEBUG ONLY!
