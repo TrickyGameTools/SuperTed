@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.05.11
+// Version: 23.05.12
 // EndLic
  
  
@@ -165,13 +165,13 @@ namespace Slyvina {
 					luaL_loadstring(L, src.c_str()); lua_call(L, 0, 0);
 				} else if (ExtractExt(Lower(ScriptFile)) == "lua") {
 					if (!FileExists(ScriptFile)) { Throw("Script file not found", ScriptFile, ThrowAct::InstantEnd); return; }
-					auto src = LoadString(ScriptFile);
+					auto src = FLoadString(ScriptFile);
 					src = "-- " + ScriptFile + "\n\n" + src + "\n\nif not SuperTedCallBack  then SuperTed.Crash(\"No SuperTed group present\") end\n\n";
 					luaL_loadstring(L, src.c_str());
 					lua_call(L, 0, 0);
 				} else if (ScriptFile == "*NOSCRIPT*") {
 					string src{ "-- NoScript --\n\n" };
-					src += JAS->String("Script/NoScript.lua");
+					src += JAS->GetString("Script/NoScript.lua");
 					luaL_loadstring(L, src.c_str());
 					lua_call(L, 0, 0);
 				} else {
