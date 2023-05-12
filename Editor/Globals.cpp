@@ -73,6 +73,9 @@ namespace Slyvina {
 				if (spfile->size() > 2) { QCol->Error("Illegal file name (" + file + "). I'll try to go on, but results may be funny"); }
 				auto drv{ Upper((*spfile)[0]) };
 				auto path{ (*spfile)[1] };
+#ifdef SlyvWindows
+				if (drv.size() == 1) return ChReplace(file,'\\','/'); // One letter will just mean a drive letter in Windows. On Unix based systems (such as BSD or Linux) this is not so automatic, so there this will be ignored.
+#endif
 				auto mdrv{ Ask(GlobalConfig,"Mount",drv,TrSPrintF("In file \"%s\" the unrecognized drive '%s' appears to be requested.\nI can mount a directory to that.\nPlease give me one: ",file.c_str(),drv.c_str())) };
 				return ChReplace(mdrv + "/" + path, '\\', '/');
 

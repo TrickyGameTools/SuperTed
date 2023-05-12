@@ -75,7 +75,7 @@ void CLIParse(int argcount, char** args) {
 
 	QCol->Doing("Reading", EdtProjectIni());
 	if (!FileExists(EdtProjectIni())) { QCol->Error("File not found"); exit(2); }
-	ProjectConfig->FromFile(EdtProjectIni());
+	ProjectConfig = LoadGINIE(EdtProjectIni());
 	ProjectConfig->AutoSave = EdtProjectIni();
 }
 
