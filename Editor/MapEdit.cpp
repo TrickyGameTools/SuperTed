@@ -246,7 +246,7 @@ namespace Slyvina {
 
 				GoDTap("Edit Map");
 				// Map Itself
-				MapGroup = CreateGroup(RoomPanel->W(), RoomPanel->DrawY(), TQSG_ScreenWidth() - (RoomPanel->W() + DataPanel->W()), RoomPanel->H(), MG);
+				MapGroup = CreateGroup(RoomPanel->W(), RoomPanel->DrawY(), ScreenWidth() - (RoomPanel->W() + DataPanel->W()), RoomPanel->H(), MG);
 
 				RenewRooms();
 				RenewLayers();
