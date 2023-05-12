@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2022
+// (c) Jeroen P. Broks, 2022, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,23 +21,24 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.27
+// Version: 23.05.12
 // EndLic
 
 #include <june19.hpp>
 
 
 
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
+			void MenuSave(June19::j19gadget*, June19::j19action);
 
-namespace SuperTed {
-	namespace Editor {
-		void MenuSave(june19::j19gadget*, june19::j19action);
-
-		void CreateMap(std::string f);
-		void CreateMap();
-		void LoadMap(std::string f, bool CreateIfNonExistent = true);
-		void LoadMap();
-		void SaveMap();
-		void SaveMap(std::string f);
+			void CreateMap(std::string f);
+			void CreateMap();
+			void LoadMap(std::string f, bool CreateIfNonExistent = true);
+			void LoadMap();
+			void SaveMap();
+			void SaveMap(std::string f);
+		}
 	}
 }

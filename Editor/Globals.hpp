@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2022
+// (c) Jeroen P. Broks, 2022, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,50 +21,61 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.28
+// Version: 23.05.12
 // EndLic
 
 #pragma once
 
+// C++
 #include <string>
+
+// Lua
 #include <lua.hpp>
-#include <jcr6_core.hpp>
+
+// JCR
+#include <JCR6_Core.hpp>
+
+// SuperTed
 #include <SuperTed_Core.hpp>
-#include <GINIE.hpp>
-#include <QuickString.hpp>
-#include <ArgParse.h>
 
-namespace SuperTed {
-	namespace Editor {
-		extern std::string MyDir;
-		extern jcr6::JT_Dir* JAS;
-		extern jcr6::JT_Dir JTEX;
-		extern TrickyUnits::GINIE GlobalConfig;
-		extern TrickyUnits::GINIE ProjectConfig;
-		extern TrickyUnits::ParsedArg CLIOptions;
-		extern std::string EdtProject;
-		extern std::string EdtMap;
-		extern lua_State* Script;
-		extern SuperTed::Teddy TheMap;
-		
+// Slyvina Units
+#include <SlyvGINIE.hpp>
+#include <SlyvString.hpp>
+#include <SlyvArgParse.hpp>
 
-		std::string ProjectsDir();
-		std::string EdtProjectDir();
-		std::string EdtProjectIni();
-		std::string EdtProjectLua();
-		std::string EdtProjectNeil();
-		std::string EdtProjectMapFile();
-		
-		std::string TextureDir();
-
-		inline bool cBool(TrickyUnits::GINIE& C, std::string k, std::string v) { return TrickyUnits::Upper(C.Value(k, v)) == "TRUE"; }
-
-		enum class ThrowAct{None,InstantEnd,LogForRun};
-		extern ThrowAct PanicAct;
-		void Throw(std::string message, std::string TraceBack = "", ThrowAct A = ThrowAct::LogForRun);
-		bool GetThrown();
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
+			extern std::string MyDir;
+			extern Slyvina::JCR6::JT_Dir JAS;
+			extern Slyvina::JCR6::JT_Dir JTEX;
+			extern Units::GINIE GlobalConfig;
+			extern Units::GINIE ProjectConfig;
+			extern Units::ParsedArg CLIOptions;
+			extern std::string EdtProject;
+			extern std::string EdtMap;
+			extern lua_State* Script;
+			extern SuperTed::Teddy TheMap;
 
 
-		void NFE(std::string message,std::string e="ERROR"); // Non-Fatal Error
+			std::string ProjectsDir();
+			std::string EdtProjectDir();
+			std::string EdtProjectIni();
+			std::string EdtProjectLua();
+			std::string EdtProjectNeil();
+			std::string EdtProjectMapFile();
+
+			std::string TextureDir();
+
+			inline bool cBool(Units::GINIE C, std::string k, std::string v) { return Units::Upper(C->Value(k, v)) == "TRUE"; }
+
+			enum class ThrowAct { None, InstantEnd, LogForRun };
+			extern ThrowAct PanicAct;
+			void Throw(std::string message, std::string TraceBack = "", ThrowAct A = ThrowAct::LogForRun);
+			bool GetThrown();
+
+
+			void NFE(std::string message, std::string e = "ERROR"); // Non-Fatal Error
+		}
 	}
 }

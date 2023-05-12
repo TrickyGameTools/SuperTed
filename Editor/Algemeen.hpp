@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2021, 2022
+// (c) Jeroen P. Broks, 2021, 2022, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.27
+// Version: 23.05.12
 // EndLic
 #pragma once
 
@@ -44,40 +44,41 @@
 #include "RoomEdit.hpp"
 
 
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
 
-namespace SuperTed {
-	namespace Editor {
+			typedef void(*UIV)();
 
-		typedef void(*UIV)();
+			class _UI; typedef	std::shared_ptr<_UI> UI;
 
-		class _UI; typedef	std::shared_ptr<_UI> UI;
+			class _UI {
+			private:
+				static bool _initialized;
+				static Slyvina::TQSG::TImage Mouse;
+				static std::map<std::string, UI> Stage;
+				std::string _Name{ "" };
+				static UI _Current;
+				_UI(std::string name);
+			public:
+				_UI();
 
-		class _UI {
-		private:
-			static bool _initialized;
-			static TrickyUnits::TQSG_AutoImage Mouse;
-			static std::map<std::string, UI> Stage;
-			std::string _Name{""};
-			static UI _Current;
-			_UI(std::string name);
-		public:
-			_UI();
+				static void Crash(std::string m);
 
-			static void Crash(std::string m);
+				June19::j19gadget* MainGadget{ nullptr };
+				UIV PreJune{ nullptr };
+				UIV PostJune{ nullptr };
 
-			june19::j19gadget* MainGadget{ nullptr };
-			UIV PreJune{ nullptr };
-			UIV PostJune{ nullptr };
+				static void AddStage(std::string st);
+				static UI GetStage(std::string st);
+				static UI CurrentStage();
+				static void GoToStage(std::string st);
 
-			static void AddStage(std::string st);
-			static UI GetStage(std::string st);
-			static UI CurrentStage();
-			static void GoToStage(std::string st);
-
-			// Notify
-			static void Start();
-			static bool Run();
-			static void Done();
-		};
+				// Notify
+				static void Start();
+				static bool Run();
+				static void Done();
+			};
+		}
 	}
 }

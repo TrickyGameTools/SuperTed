@@ -10,6 +10,10 @@ x64
 *.dll
 *.obj
 
+
+# Backup of files that I no longer need since the move to Slyvina
+Trash/*
+
 # This folder appears to be created (temporarily) when 
 # modifying C++ file wile running.
 enc_temp_folder
@@ -18,9 +22,10 @@ enc_temp_folder
 # C# junk in project creation wizard
 NewProjectWizard/bin
 NewProjectWizard/obj
-
+NewProjectWizard/Properties/
 
 Release
 NewProjectWizard/builddate.cs
 builddate.hpp
 JCR/ID/ID.ini
+

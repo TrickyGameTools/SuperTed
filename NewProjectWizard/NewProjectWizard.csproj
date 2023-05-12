@@ -20,15 +20,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\TrickyUnits\Dirry.cs" Link="Units\Dirry.cs" />
-    <Compile Include="..\..\..\TrickyUnits\FileList.cs" Link="Units\FileList.cs" />
-    <Compile Include="..\..\..\TrickyUnits\Fmt.cs" Link="Units\Fmt.cs" />
-    <Compile Include="..\..\..\TrickyUnits\FormConfirm.cs" Link="Units\FormConfirm.cs" />
-    <Compile Include="..\..\..\TrickyUnits\FormSelectFiles.cs" Link="Units\FormSelectFiles.cs" />
-    <Compile Include="..\..\..\TrickyUnits\GINIE.cs" Link="Units\GINIE.cs" />
-    <Compile Include="..\..\..\TrickyUnits\mkl.cs" Link="Units\mkl.cs" />
-    <Compile Include="..\..\..\TrickyUnits\qstr.cs" Link="Units\qstr.cs" />
-    <Compile Include="..\..\..\TrickyUnits\qstream.cs" Link="Units\qstream.cs" />
+    <Compile Include="..\..\..\..\VisualStudio\TrickyUnits\Dirry.cs" Link="Units\Dirry.cs" />
+    <Compile Include="..\..\..\..\VisualStudio\TrickyUnits\FileList.cs" Link="Units\FileList.cs" />
+    <Compile Include="..\..\..\..\VisualStudio\TrickyUnits\Fmt.cs" Link="Units\Fmt.cs" />
+    <Compile Include="..\..\..\..\VisualStudio\TrickyUnits\FormConfirm.cs" Link="Units\FormConfirm.cs" />
+    <Compile Include="..\..\..\..\VisualStudio\TrickyUnits\FormSelectFiles.cs" Link="Units\FormSelectFiles.cs" />
+    <Compile Include="..\..\..\..\VisualStudio\TrickyUnits\GINIE.cs" Link="Units\GINIE.cs" />
+    <Compile Include="..\..\..\..\VisualStudio\TrickyUnits\mkl.cs" Link="Units\mkl.cs" />
+    <Compile Include="..\..\..\..\VisualStudio\TrickyUnits\qstr.cs" Link="Units\qstr.cs" />
+    <Compile Include="..\..\..\..\VisualStudio\TrickyUnits\qstream.cs" Link="Units\qstream.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,5 +39,24 @@
   <ItemGroup>
     <Folder Include="Units\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="pwsh mbdate.ps1" />
+  </Target>
 
 </Project>

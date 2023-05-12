@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2022
+// (c) Jeroen P. Broks, 2022, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,17 +21,19 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.24
+// Version: 23.05.12
 // EndLic
 #pragma once
 
-#include <jcr6_core.hpp>
-#include <QCol.hpp>
+#include <JCR6_Core.hpp>
+#include <SlyvQCol.hpp>
 
-namespace SuperTed {
-	namespace JCR6 {
+namespace Slyvina {
+	namespace SuperTed {
+		namespace SupJCR6 {
 
-		jcr6::JT_Dir* STED_Assets(std::string d);
+			Slyvina::JCR6::JT_Dir STED_Assets(std::string d);
 
+		}
 	}
 }

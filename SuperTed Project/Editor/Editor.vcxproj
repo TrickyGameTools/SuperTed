@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{d4fdf2f0-faf4-4139-8153-8a5a364f11fb}</ProjectGuid>
+    <RootNamespace>Editor</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)..\Release</OutDir>
+    <IncludePath>E:\Projects\Applications\Slyvina\Apps\SuperTed\C++ Class\headers;E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\include;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;E:\Projects\Applications\Slyvina\Libs\Lunatic\Lua\Raw\src;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Libs\Units\Headers;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\include;E:\Projects\Applications\Slyvina\Libs\June19\head;E:\Projects\Applications\Slyvina\Libs\Units\Headers;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Apps\SuperTed\C++ Class\headers;E:\Projects\Applications\Slyvina\Libs\Lunatic\Lua\Raw\src;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)$(Platform)\..\..\Release</OutDir>
+    <LibraryWPath>$(LibraryWPath)</LibraryWPath>
+    <LibraryPath>E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2;E:\Projects\Applications\Slyvina\Libs\JCR6\3rdParty\zlib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <TargetName>SuperTed_Editor</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2main.lib;zlib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PreBuildEvent>
+      <Command>pwsh bd.ps1</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_Core.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_JQL.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_RealDir.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_Write.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\JCR6\Source\JCR6_zlib.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_button.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_checkbox.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_core.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_label.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_listbox.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_picture.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_radio.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_scrollbar.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_tabber.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\June19\src\june19_textfield.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lapi.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lauxlib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lbaselib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lcode.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lcorolib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lctype.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ldblib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ldebug.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ldo.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ldump.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lfunc.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lgc.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\linit.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\liolib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\llex.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lmathlib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lmem.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\loadlib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lobject.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lopcodes.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\loslib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lparser.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lstate.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lstring.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lstrlib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ltable.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ltablib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\ltm.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lundump.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lutf8lib.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lvm.c" />
+    <ClCompile Include="..\..\..\..\Libs\Lunatic\Lua\Raw\src\lzio.c" />
+    <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSA.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSE.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\TQSL\Source\TQSG.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvArgParse.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvAsk.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvBank.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvDir.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvDirry.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvMD5.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvQCol.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvRequestFile.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvSTOI.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvStream.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvString.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvTime.cpp" />
+    <ClCompile Include="..\..\..\..\Libs\Units\Source\SlyvVolumes.cpp" />
+    <ClCompile Include="..\..\C++ Class\source\SuperTed_Core.cpp" />
+    <ClCompile Include="..\..\C++ Class\source\SuperTed_Draw_TQSG.cpp" />
+    <ClCompile Include="..\..\C++ Class\source\SuperTed_Save.cpp" />
+    <ClCompile Include="..\..\Editor\Algemeen.cpp" />
+    <ClCompile Include="..\..\Editor\Globals.cpp" />
+    <ClCompile Include="..\..\Editor\Main.cpp" />
+    <ClCompile Include="..\..\Editor\MapEdit.cpp" />
+    <ClCompile Include="..\..\Editor\MetaEdit.cpp" />
+    <ClCompile Include="..\..\Editor\Opslaan.cpp" />
+    <ClCompile Include="..\..\Editor\RoomEdit.cpp" />
+    <ClCompile Include="..\..\Editor\Run.cpp" />
+    <ClCompile Include="..\..\Editor\Script_API.cpp" />
+    <ClCompile Include="..\..\Editor\Textures.cpp" />
+    <ClCompile Include="..\..\SupJCR\SupJCR.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_button.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_checkbox.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_core.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_label.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_listbox.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_picture.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_radio.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_scrollbar.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_tabber.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\June19\head\june19_textfield.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\DieParse.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\Slyv2DArray.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvArgParse.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvAsk.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvBank.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvConInput.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvDir.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvDirry.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvEndian.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvGINIE.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvHSVRGB.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\Slyvina.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvMD5.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvMKL.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvQCol.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvQuickHead.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvRandom.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvRequestFile.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvSTOI.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvStream.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvString.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvTime.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvVecSearch.hpp" />
+    <ClInclude Include="..\..\..\..\Libs\Units\Headers\SlyvVolumes.hpp" />
+    <ClInclude Include="..\..\C++ Class\headers\SuperTed_Core.hpp" />
+    <ClInclude Include="..\..\C++ Class\headers\SuperTed_Draw_TQSG.hpp" />
+    <ClInclude Include="..\..\C++ Class\headers\SuperTed_Save.hpp" />
+    <ClInclude Include="..\..\Editor\Algemeen.hpp" />
+    <ClInclude Include="..\..\Editor\Globals.hpp" />
+    <ClInclude Include="..\..\Editor\MapEdit.hpp" />
+    <ClInclude Include="..\..\Editor\MetaEdit.hpp" />
+    <ClInclude Include="..\..\Editor\Opslaan.hpp" />
+    <ClInclude Include="..\..\Editor\RoomEdit.hpp" />
+    <ClInclude Include="..\..\Editor\Run.hpp" />
+    <ClInclude Include="..\..\Editor\Script_API.hpp" />
+    <ClInclude Include="..\..\Editor\Textures.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libFLAC-8.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libjpeg-9.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libmodplug-1.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libmpg123-0.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libogg-0.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libopus-0.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libopusfile-0.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libpng16-16.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libtiff-5.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libvorbis-0.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libvorbisfile-3.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\libwebp-7.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\SDL2.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\SDL2_image.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\SDL2_mixer.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\..\..\..\Libs\TQSL\SDL2\zlib1.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\..\..\..\Libs\JCR6\3rdParty\zlib\zlib.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

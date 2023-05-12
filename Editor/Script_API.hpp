@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2022
+// (c) Jeroen P. Broks, 2022, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,19 +21,21 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.25
+// Version: 23.05.11
 // EndLic
+
 #pragma once
 
 #include <string>
 
 #include <lua.hpp>
 
-
-namespace SuperTed {
-	namespace Editor {
-		void InitState(lua_State* L, std::string ScriptFile);
-		void LoadScript(std::string);
-		void LoadScript();
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
+			void InitState(lua_State* L, std::string ScriptFile);
+			void LoadScript(std::string);
+			void LoadScript();
+		}
 	}
 }

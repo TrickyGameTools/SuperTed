@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2022
+// (c) Jeroen P. Broks, 2022, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,17 +21,22 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.24
+// Version: 23.05.11
 // EndLic
+
 #pragma once
+
 #include <string>
-#include <jcr6_core.hpp>
-namespace SuperTed {
-	namespace Launcher {
-		extern std::string MyDir;
-		extern jcr6::JT_Dir* JAS;
-		std::string ProjectsDir();
-		int WW();
-		int WH();
+#include <JCR6_Core.hpp>
+
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Launcher {
+			extern std::string MyDir;
+			extern JCR6::JT_Dir JAS;
+			std::string ProjectsDir();
+			int WW();
+			int WH();
+		}
 	}
 }

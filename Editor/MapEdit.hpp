@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2022
+// (c) Jeroen P. Broks, 2022, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,36 +21,38 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.29
+// Version: 23.05.12
 // EndLic
 
 #pragma once
 #include <june19.hpp>
 #include <SuperTed_Core.hpp>
 
-namespace SuperTed {
-	namespace Editor {
-		// General
-		void AdeptStatus();
-		void AdeptStatus(std::string st);
-		void DrawMap();
-		void RenewRooms();
-		void RenewLayers();
-		void RenewTextures();
-		std::string CurrentRoom();
-		TeddyRoom Room(std::string groom = "");
-		TeddyRoomLayer Layer(std::string glayer = "");
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
+			// General
+			void AdeptStatus();
+			void AdeptStatus(std::string st);
+			void DrawMap();
+			void RenewRooms();
+			void RenewLayers();
+			void RenewTextures();
+			std::string CurrentRoom();
+			TeddyRoom Room(std::string groom = "");
+			TeddyRoomLayer Layer(std::string glayer = "");
 
-		// Pulldown menu callbacks
-		void ToggleShowGrid(june19::j19gadget*, june19::j19action);
-		void ScrollDn(june19::j19gadget*, june19::j19action);
-		void ScrollUp(june19::j19gadget*, june19::j19action);
-		void ScrollRi(june19::j19gadget*, june19::j19action);
-		void ScrollLe(june19::j19gadget*, june19::j19action);
-		void OptimizeToOrigin(june19::j19gadget*, june19::j19action);
+			// Pulldown menu callbacks
+			void ToggleShowGrid(June19::j19gadget*, June19::j19action);
+			void ScrollDn(June19::j19gadget*, June19::j19action);
+			void ScrollUp(June19::j19gadget*, June19::j19action);
+			void ScrollRi(June19::j19gadget*, June19::j19action);
+			void ScrollLe(June19::j19gadget*, June19::j19action);
+			void OptimizeToOrigin(June19::j19gadget*, June19::j19action);
 
-		// UI Start
-		void UI_MapStart();
+			// UI Start
+			void UI_MapStart();
 
+		}
 	}
 }

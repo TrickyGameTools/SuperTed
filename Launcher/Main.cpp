@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2022
+// (c) Jeroen P. Broks, 2022, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,13 +21,13 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.24
+// Version: 23.05.12
 // EndLic
 
-#include <QCol.hpp>
-#include <Platform.hpp>
-#include <QuickString.hpp>
-#include <QuickStream.hpp>
+#include <SlyvQCol.hpp>
+//#include <Platform.hpp>
+#include <SlyvString.hpp>
+#include <SlyvStream.hpp>
 #include <TQSG.hpp>
 #include <TQSE.hpp>
 
@@ -35,13 +35,16 @@
 #include "builddate.hpp"
 #include "Glob.hpp"
 #include "Run.hpp"
-#include "../SupJCR/SupJCR.hpp"
+#include "../SupJCR/SupJCR.hpp" 
 
-using namespace TrickyUnits;
-using namespace SuperTed::Launcher;
+using namespace Slyvina;
+using namespace Units;
+using namespace TQSG;
+using namespace Slyvina::SuperTed::Launcher;
+using namespace Slyvina::SuperTed::SupJCR6;
 
 int main(int ac, char** arg) {
-	MyDir = TReplace(ExtractDir(arg[0]), '\\', '/');
+	MyDir = ChReplace(ExtractDir(arg[0]), '\\', '/');
 	// Start
 	QCol->LGreen("SuperTed - Launcher\n");
 	QCol->Magenta("(c) 2022 Jeroen P. Broks - Released under the terms of the GPL3\n\n");
@@ -50,12 +53,16 @@ int main(int ac, char** arg) {
 	QCol->Doing("Platform", Platform());
 	QCol->Doing("PlatformX", Platform(false));
 	QCol->Doing("SuperTed Dir", MyDir);
-	QCol->Doing("Called from", TReplace(CurrentDir(), '\\', '/'));
+	QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));
 	QCol->Doing("Project Dir", ProjectsDir());
-	JAS = SuperTed::JCR6::STED_Assets(MyDir);
+	JAS = STED_Assets(MyDir);
 	QCol->Doing("Initizing", "SDL2 and TQSG"); 
-	TQSG_Init("SuperTed - Launcher - (c) Jeroen P. Broks", WW(), WH()); TQSG_Cls(); TQSG_Flip();
-	QCol->Doing("Initizing", "TQSE"); TQSE_Init();
+	Graphics(
+		WW(), WH(),
+		"SuperTed - Launcher - (c) Jeroen P. Broks"
+	); 
+	Cls(); Flip();
+	//QCol->Doing("Initizing", "TQSE"); TQSE_Init();
 	LoadBackGround();
 	CreateUI();
 	QCol->Yellow("Let's get ready to rumble\n\n");
@@ -64,6 +71,6 @@ int main(int ac, char** arg) {
 
 	// End
 	QCol->Doing("Closing", "SDL2 and TQSG");
-	TQSG_Close();
+	//TQSG_Close(); // No longer needed. Has been automated.
 	QCol->Reset();
 }

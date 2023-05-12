@@ -4,7 +4,7 @@
 // 
 // 
 // 
-// (c) Jeroen P. Broks, 2022
+// (c) Jeroen P. Broks, 2022, 2023
 // 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -21,19 +21,21 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 22.11.26
+// Version: 23.05.12
 // EndLic
 
-#include <QCol.hpp>
+#include <SlyvQCol.hpp>
 
 #include "MetaEdit.hpp"
 
-using namespace TrickyUnits;
+using namespace Slyvina::Units;
 
-namespace SuperTed {
-	namespace Editor {
-		void GoMeta(june19::j19gadget*, june19::j19action) {
-			QCol->Error("Meta data editor not yet implemented");
+namespace Slyvina {
+	namespace SuperTed {
+		namespace Editor {
+			void GoMeta(June19::j19gadget*, June19::j19action) {
+				QCol->Error("Meta data editor not yet implemented");
+			}
 		}
 	}
 }
