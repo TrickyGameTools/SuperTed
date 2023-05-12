@@ -234,12 +234,12 @@ namespace Slyvina {
 
 
 				// Script Spot Tab
-				if (ProjectConfig.ListCount("Script", "Spot")) {
+				if (ProjectConfig->ListCount("Script", "Spot")) {
 					DataTabs["Script Spot"] = CreateGroup(5, 65, DataPanel->W(), DataPanel->H() - 65, DataPanel);
 				} else RScriptSpot->Enabled = false;
 
 				// Script Area Tab
-				if (ProjectConfig.ListCount("Script", "Area")) {
+				if (ProjectConfig->ListCount("Script", "Area")) {
 					DataTabs["Script Area"] = CreateGroup(5, 65, DataPanel->W(), DataPanel->H() - 65, DataPanel);
 				} else RScriptArea->Enabled = false;
 
@@ -315,7 +315,7 @@ namespace Slyvina {
 					return;
 				}
 				auto s = Split(TexList->ItemText(), ' ');
-				auto i = ToInt(s[0]);
+				auto i = ToInt((*s)[0]);
 				if (i <= 0) {
 					QCol->Error("$000000 reseved for 'nothing'.");
 					return;
@@ -326,21 +326,21 @@ namespace Slyvina {
 #pragma endregion
 
 #pragma region CallBackFunctionPullDownMenus
-			void ToggleShowGrid(june19::j19gadget*, june19::j19action) {
+			void ToggleShowGrid(June19::j19gadget*, June19::j19action) {
 				QCol->Error("Grid toggling not yet implemented");
 			}
 
-			void ScrollDn(june19::j19gadget*, june19::j19action) {
+			void ScrollDn(June19::j19gadget*, June19::j19action) {
 				int SMax{ max(0,(Room()->GH() * Room()->H()) - MapGroup->H()) };
 				ScrollY = min(SMax, ScrollY + 16);
 			}
-			void ScrollUp(june19::j19gadget*, june19::j19action) { ScrollY = max(0, ScrollY - 16); }
-			void ScrollRi(june19::j19gadget*, june19::j19action) {
+			void ScrollUp(June19::j19gadget*, June19::j19action) { ScrollY = max(0, ScrollY - 16); }
+			void ScrollRi(June19::j19gadget*, June19::j19action) {
 				int SMax{ max(0,(Room()->GW() * Room()->W()) - MapGroup->W()) };
 				ScrollX = min(SMax, ScrollX + 16);
 			}
-			void ScrollLe(june19::j19gadget*, june19::j19action) { ScrollX = max(0, ScrollX - 16); }
-			void OptimizeToOrigin(june19::j19gadget*, june19::j19action) { QCol->Error("No optimizing to origin yet"); }
+			void ScrollLe(June19::j19gadget*, June19::j19action) { ScrollX = max(0, ScrollX - 16); }
+			void OptimizeToOrigin(June19::j19gadget*, June19::j19action) { QCol->Error("No optimizing to origin yet"); }
 #pragma endregion
 
 #pragma region GeneralFunctions
@@ -350,7 +350,7 @@ namespace Slyvina {
 
 			void AdeptStatus(std::string st) {
 				//auto st{ "Actual stuff comes later!" };
-				june19::j19gadget::StatusText(st);
+				June19::j19gadget::StatusText(st);
 			}
 
 			void AdeptStatus() { AdeptStatus("Welcome to SuperTed"); }

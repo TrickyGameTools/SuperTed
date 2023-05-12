@@ -85,10 +85,10 @@ namespace Slyvina {
 					}
 				}
 				QCol->Doing("Loading", f);
-				TheMap = LoadTeddy(f, ProjectConfig.Value("Save", "Prefix"));
+				TheMap = LoadTeddy(f, ProjectConfig->Value("Save", "Prefix"));
 				if (!TheMap) Throw("Map not properly loaded");
-				TheMap->BaseZones = *ProjectConfig.List("LAYERS", "ZONES");
-				TheMap->BaseLayers = *ProjectConfig.List("LAYERS", "LAYERS");
+				TheMap->BaseZones = *ProjectConfig->List("LAYERS", "ZONES");
+				TheMap->BaseLayers = *ProjectConfig->List("LAYERS", "LAYERS");
 			}
 
 
@@ -101,9 +101,9 @@ namespace Slyvina {
 				}
 				QCol->Doing("Saving", f);
 #ifdef __ZLIB_Broken
-				if (ProjectConfig.Value("Save", "Storage") != "Store") {
-					if (ProjectConfig.Value("Save", "Storage") != "")
-						QCol->Warn("Compression storage method is set to '" + ProjectConfig.Value("Save", "Storage") + "'. Due to trouble with the compression this has been set to 'Store'");
+				if (ProjectConfig->Value("Save", "Storage") != "Store") {
+					if (ProjectConfig->Value("Save", "Storage") != "")
+						QCol->Warn("Compression storage method is set to '" + ProjectConfig->Value("Save", "Storage") + "'. Due to trouble with the compression this has been set to 'Store'");
 					ProjectConfig->Value("Save", "Storage", "Store");
 				}
 #endif
