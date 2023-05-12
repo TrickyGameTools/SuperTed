@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.05.11
+// Version: 23.05.12
 // EndLic
 
 #pragma once
@@ -31,7 +31,7 @@ namespace Slyvina {
 
 	namespace SuperTed {
 		namespace Editor {
-			void GoMeta(june19::j19gadget*, june19::j19action);
+			void GoMeta(June19::j19gadget*, June19::j19action);
 		}
 	}
 }
