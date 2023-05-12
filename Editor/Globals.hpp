@@ -47,8 +47,8 @@ namespace Slyvina {
 	namespace SuperTed {
 		namespace Editor {
 			extern std::string MyDir;
-			extern JCR6::JT_Dir JAS;
-			extern JCR6::JT_Dir JTEX;
+			extern Slyvina::JCR6::JT_Dir JAS;
+			extern Slyvina::JCR6::JT_Dir JTEX;
 			extern Units::GINIE GlobalConfig;
 			extern Units::GINIE ProjectConfig;
 			extern Units::ParsedArg CLIOptions;

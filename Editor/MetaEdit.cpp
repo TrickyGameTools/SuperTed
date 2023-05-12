@@ -33,7 +33,7 @@ using namespace Slyvina::Units;
 namespace Slyvina {
 	namespace SuperTed {
 		namespace Editor {
-			void GoMeta(june19::j19gadget*, june19::j19action) {
+			void GoMeta(June19::j19gadget*, June19::j19action) {
 				QCol->Error("Meta data editor not yet implemented");
 			}
 		}

@@ -28,6 +28,8 @@
 
 #include <june19.hpp>
 
+#include <SuperTed_Core.hpp>
+
 #include "Globals.hpp"
 #include "Algemeen.hpp"
 #include "Textures.hpp"
@@ -36,6 +38,7 @@
 using namespace Slyvina;
 using namespace June19;
 using namespace Units;
+using namespace TQSG;
 
 namespace Slyvina {
 	namespace SuperTed {
@@ -118,10 +121,10 @@ namespace Slyvina {
 				RoomList->CBAction = RoomSelected;
 
 				auto TedPic = CreatePicture(0, RoomPanel->H() - 120, RoomPanel->W(), 120, RoomPanel, Pic_FullStretch);
-				TedPic->Image(*JAS, "Img/TeddyBear.png");
+				TedPic->Image(JAS, "Img/TeddyBear.png");
 
 				// Right
-				DataPanel = CreatePanel(TQSG_ScreenWidth() - 400, 0, 400, MG->H(), MG);
+				DataPanel = CreatePanel(TQSG::ScreenWidth() - 400, 0, 400, MG->H(), MG);
 				DataPanel->BR = 25; DataPanel->BG = 18; DataPanel->BB = 0;
 				auto OptionGroup = CreateGroup(0, 0, DataPanel->W(), 50, DataPanel);
 				auto REdit = CreateRadioButton("Edit Map", 5, 5, OptionGroup->W() - 10, 20, OptionGroup);

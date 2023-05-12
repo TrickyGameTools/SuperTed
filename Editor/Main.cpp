@@ -65,8 +65,8 @@ void CLIParse(int argcount, char** args) {
 	if (CLIOptions.bool_flags["dc"]) {
 		for (char ch = -125; ch < 127; ch++) {
 			string rc = ""; rc += ch;
-			EdtProject = ChReplace(EdtProject, TrSPrintF(":%d:", (int)ch), rc);
-			EdtMap = ChReplace(EdtMap, TrSPrintF(":%d:", (int)ch), rc);
+			EdtProject = StReplace(EdtProject, TrSPrintF(":%d:", (int)ch), rc);
+			EdtMap = StReplace(EdtMap, TrSPrintF(":%d:", (int)ch), rc);
 		}
 	}
 	QCol->Doing("Project", EdtProject);
@@ -92,7 +92,7 @@ int main(int argcount, char** args) {
 	QCol->Doing("Project Dir", ProjectsDir());
 	JAS = SuperTed::JCR6::STED_Assets(MyDir);
 	CLIParse(argcount, args);
-	JCR6::JCR6_InitRealDir(); ScanForTextures();
+	Slyvina::JCR6::JCR6_InitRealDir(); ScanForTextures();
 	LoadScript();
 	// Start TQSG (always after all non-SDL2 things are done).
 	QCol->Doing("Initizing", "SDL2 and TQSG");
@@ -105,7 +105,7 @@ int main(int argcount, char** args) {
 	TQSG::Cls();
 	TQSG::Flip();
 	QCol->Doing("Initizing", "TQSE");	
-	TQSE::Init();
+	//TQSE::Init();
 	QCol->Doing("Initizing", "SuperTed TQSG Driver");
 	SuperTed_InitTQSG(JTEX);
 	LoadMap();

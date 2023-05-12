@@ -37,7 +37,7 @@
 #define __DPanic TeddyPanicFunction = TCrash
 #define __ZLIB_Broken
 
-using namespace june19;
+using namespace Slyvina::June19;
 using namespace Slyvina::Units;
 
 namespace Slyvina {
@@ -55,18 +55,18 @@ namespace Slyvina {
 				__DPanic;
 				QCol->Doing("Creating", f);
 				static vector<string> BaseRoom{ "__BASE" };
-				if (!ProjectConfig.ListCount("LAYERS", "LAYERS")) {
-					ProjectConfig.Add("LAYERS", "LAYERS", "FLOORS");
-					ProjectConfig.Add("LAYERS", "LAYERS", "WALLS");
+				if (!ProjectConfig->List("LAYERS", "LAYERS")->size()) {
+					ProjectConfig->Add("LAYERS", "LAYERS", "FLOORS");
+					ProjectConfig->Add("LAYERS", "LAYERS", "WALLS");
 				}
 				TheMap = CreateTeddy(
-					AskInt(&ProjectConfig, "Default Map Format", "Width", "Default width in tiles:", 64),
-					AskInt(&ProjectConfig, "Default Map Format", "Height", "Default height in tiles:", 64),
-					AskInt(&ProjectConfig, "Grid", "Width", "Default Tile Width:", 32),
-					AskInt(&ProjectConfig, "Grid", "Height", "Default Tile Height:", 32),
+					AskInt(ProjectConfig, "Default Map Format", "Width", "Default width in tiles:", 64),
+					AskInt(ProjectConfig, "Default Map Format", "Height", "Default height in tiles:", 64),
+					AskInt(ProjectConfig, "Grid", "Width", "Default Tile Width:", 32),
+					AskInt(ProjectConfig, "Grid", "Height", "Default Tile Height:", 32),
 					BaseRoom,
-					*ProjectConfig.List("LAYERS", "LAYERS"),
-					*ProjectConfig.List("LAYERS", "ZONES")
+					*ProjectConfig->List("LAYERS", "LAYERS"),
+					*ProjectConfig->List("LAYERS", "ZONES")
 				);
 				SaveMap(f);
 			}
