@@ -60,9 +60,9 @@ void CLIParse(int argcount, char** args) {
 	FlagConfig C;
 	AddFlag(C, "dc", false);
 	CLIOptions = ParseArg(argcount, args, C);
-	if (CLIOptions.arguments.size() < 3) { QCol->Error("I need a project and a map!"); exit(1); }
-	EdtProject = CLIOptions.arguments[1];
-	EdtMap = CLIOptions.arguments[2];
+	if (CLIOptions.arguments.size() < 2) { QCol->Error("I need a project and a map!"); exit(1); }
+	EdtProject = CLIOptions.arguments[0];
+	EdtMap = CLIOptions.arguments[1];
 	if (CLIOptions.bool_flags["dc"]) {
 		for (char ch = -125; ch < 127; ch++) {
 			string rc = ""; rc += ch;
