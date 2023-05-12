@@ -389,12 +389,12 @@ namespace Slyvina {
 
 			void DrawMap() {
 				if (ShowGrid) {
-					TQSG_Color(100, 100, 100);
+					SetColor(100, 100, 100);
 					for (int y = MapGroup->DrawY() - (ScrollY % TheMap->Rooms[CurrentRoom()]->GH()); y < MapGroup->DrawY() + MapGroup->H(); y += TheMap->Rooms[CurrentRoom()]->GH())
-						TQSG_Line(0, y, TQSG_ScreenWidth(), y);
+						Line(0, y, ScreenWidth(), y);
 
 					for (int x = MapGroup->DrawX() - (ScrollX % TheMap->Rooms[CurrentRoom()]->GW()); x < MapGroup->DrawX() + MapGroup->W(); x += TheMap->Rooms[CurrentRoom()]->GW())
-						TQSG_Line(x, 0, x, TQSG_ScreenHeight());
+						Line(x, 0, x, ScreenHeight());
 				}
 				// TODO: Draw layers and stuff in order
 				MouseStatus();
