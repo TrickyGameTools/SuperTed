@@ -28,7 +28,7 @@
 #include <SlyvQCol.hpp>
 #include <SlyvString.hpp>
 
-#include <June19::.hpp>
+#include <June19.hpp>
 
 #include <SuperTed_Core.hpp>
 
