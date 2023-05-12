@@ -123,9 +123,9 @@ namespace Slyvina {
 			static void SelectTexList(j19gadget* tl, j19action) {
 				auto tex{ tl->ItemText() }; //cout << "Selected: " << tex << endl;
 				if (!tex.size()) return;
-				ProjectConfig.GetNewValue("Texture::" + tex, "AnimSpeed", "-1");
-				for (auto k : TexRadioReg) for (auto l : k.second) l->checked = ProjectConfig.GetNewValue("Texture::" + tex, k.first, "Stretch") == l->Caption;
-				for (auto k : TexFieldReg) k.second->Text = ProjectConfig.GetNewValue("Texture::" + tex, k.first, "255");
+				ProjectConfig->NewValue("Texture::" + tex, "AnimSpeed", "-1");
+				for (auto k : TexRadioReg) for (auto l : k.second) l->checked = ProjectConfig->NewValue("Texture::" + tex, k.first, "Stretch") == l->Caption;
+				for (auto k : TexFieldReg) k.second->Text = ProjectConfig->NewValue("Texture::" + tex, k.first, "255");
 			}
 
 			static void TexCancelAct(j19gadget*, j19action) { _UI::GoToStage("Map"); }
