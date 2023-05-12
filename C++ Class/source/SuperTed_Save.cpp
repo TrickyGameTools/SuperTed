@@ -22,8 +22,8 @@
 #include "../headers/SuperTed_Save.hpp"
 //#include <QuickTypes.hpp>
 
-#define jerchk() Slyvina::SuperTed::TedAssert(jcr6::Get_JCR_Error_Message()=="" || jcr6::Get_JCR_Error_Message()=="Ok",jcr6::Get_JCR_Error_Message())
-
+//#define jerchk() Slyvina::SuperTed::TedAssert(jcr6::Get_JCR_Error_Message()=="" || jcr6::Get_JCR_Error_Message()=="Ok",jcr6::Get_JCR_Error_Message())
+#define jerchk() TedAssert(!Last()->Error,Last()->ErrorMessage+"\n"+Last()->MainFile+"::"+Last()->Entry)
 
 using namespace Slyvina::Units;
 using namespace Slyvina::JCR6;
@@ -32,7 +32,7 @@ namespace Slyvina {
 
 	namespace SuperTed {
 
-		static void WriteTexCode(Teddy TeddyMap, JT_CreateBuf Buf, uint32 t) {
+		static void WriteTexCode(Teddy TeddyMap, JT_CreateStream Buf, uint32 t) {
 			TedAssert(t < (int)TeddyMap->_MaxTiles, "Trying to save tex reference " + std::to_string(t) + " which is higher than the max tiles (" + std::to_string((uint32)TeddyMap->_MaxTiles) + ")");
 			switch (TeddyMap->_MaxTiles) {
 			case TeddyMaxTile::B8:
@@ -42,7 +42,7 @@ namespace Slyvina {
 				Buf->Write((uint16)t);
 				break;
 			case TeddyMaxTile::B32:
-				Buf->Write(t);
+				Buf->WriteUInt32(t);
 				break;
 			default:
 				TedPanic("Unknown max tile size");
@@ -50,8 +50,8 @@ namespace Slyvina {
 			}
 		}
 
-		static void SaveLayer(JT_Create* res, std::string entry, TeddyRoomLayer lay, Teddy tmap, std::string Storage) {
-			auto blay{ res->StartEntry(entry,Storage) };
+		static void SaveLayer(JT_Create res, std::string entry, TeddyRoomLayer lay, Teddy tmap, std::string Storage) {
+			auto blay{ res->NewEntry(entry,Storage) };			
 			for (auto d : lay->Data) {
 				blay->Write((byte)1); blay->Write(d.first); blay->Write(d.second);
 			}
@@ -62,10 +62,10 @@ namespace Slyvina {
 		}
 
 		void TeddySave(Teddy TeddyMap, std::string filename, std::string dir, std::string Storage) {
-			auto saveted{ jcr6::JT_Create(filename,Storage) };
+			auto saveted{ CreateJCR6(filename,Storage) };
 			jerchk();
-			TeddySave(TeddyMap, &saveted, dir, Storage);
-			saveted.Close();
+			TeddySave(TeddyMap, saveted, dir, Storage);
+			saveted->Close();
 		}
 
 		void TeddySave(Teddy TeddyMap, JT_Create resource, std::string dir, std::string Storage) {
@@ -73,7 +73,7 @@ namespace Slyvina {
 
 			// Data
 			{
-				auto bdata = resource->StartEntry(dir + "Data", Storage);
+				auto bdata = resource->NewEntry(dir + "Data", Storage);
 				for (auto i : TeddyMap->Data) {
 					bdata->Write((byte)1);
 					bdata->Write(i.first);
@@ -86,9 +86,9 @@ namespace Slyvina {
 
 			// Textures
 			{
-				auto bttex = resource->StartEntry(dir + "Textures", Storage);
+				auto bttex = resource->NewEntry(dir + "Textures", Storage);
 				jerchk();
-				bttex->Write((byte)1); bttex->Write((uint32)TeddyMap->_MaxTiles);
+				bttex->Write((byte)1); bttex->WriteUInt32((uint32)TeddyMap->_MaxTiles);
 				for (auto i : TeddyMap->Textures) {
 					if (i.second) {
 						bttex->Write((byte)2);
@@ -101,7 +101,7 @@ namespace Slyvina {
 						bttex->Write((byte)4);
 						bttex->Write(i.second->alpha);
 						bttex->Write((byte)5);
-						bttex->Write(i.second->Frame);
+						bttex->WriteUInt32(i.second->Frame);
 						bttex->Write((byte)6);
 						bttex->Write(i.second->AnimSpeed);
 					}
@@ -112,7 +112,7 @@ namespace Slyvina {
 
 			// Rooms
 			{
-				auto brt{ resource->StartEntry(dir + "RoomTable",Storage) };
+				auto brt{ resource->NewEntry(dir + "RoomTable",Storage) };
 				for (auto room : TeddyMap->Rooms) {
 					brt->Write((byte)1);
 					brt->Write(room.first);
@@ -126,17 +126,17 @@ namespace Slyvina {
 							break;
 						case TeddyRoomLayerType::Objects:
 						{
-							auto bob{ resource->StartEntry(dir + "Rooms/" + room.first + "/Objects") };
+							auto bob{ resource->NewEntry(dir + "Rooms/" + room.first + "/Objects") };
 							for (uint32 y = 0; y < room.second->H(); y++)for (uint32 x = 0; x < room.second->W(); x++) {
 								if (room.second->MapObjects->Value(x, y)) {
 									auto l{ *(room.second->MapObjects->Value(x, y).get()) };
 									for (auto obj : l) {
 										bob->Write((byte)1);
 										bob->Write((byte)2);
-										bob->Write(x);
-										bob->Write(y);
+										bob->WriteUInt32(x);
+										bob->WriteUInt32(y);
 										bob->Write((byte)3);
-										bob->Write(obj->kind);
+										bob->WriteUInt32(obj->kind);
 										for (auto d : obj->Data) {
 											bob->Write((byte)4);
 											bob->Write(d.first);
@@ -154,7 +154,7 @@ namespace Slyvina {
 						}
 
 					}
-					auto brd{ resource->StartEntry(dir + "Rooms/" + room.first + "/Room",Storage) };
+					auto brd{ resource->NewEntry(dir + "Rooms/" + room.first + "/Room",Storage) };
 					brd->Write((byte)1);
 					brd->Write(room.second->W());
 					brd->Write(room.second->H());
