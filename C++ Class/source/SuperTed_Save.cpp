@@ -1,7 +1,7 @@
 // Lic:
 // C++ Class/source/SuperTed_Save.cpp
 // SuperTed Save
-// version: 23.05.11
+// version: 23.05.12
 // Copyright (C) 2022, 2023 Jeroen P. Broks
 // This software is provided 'as-is', without any express or implied
 // warranty.  In no event will the authors be held liable for any damages
