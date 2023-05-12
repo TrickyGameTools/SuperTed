@@ -84,6 +84,7 @@
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2\include;E:\Projects\Applications\Slyvina\Libs\June19\head;E:\Projects\Applications\Slyvina\Libs\Units\Headers;E:\Projects\Applications\Slyvina\Libs\TQSL\Headers;E:\Projects\Applications\Slyvina\Apps\SuperTed\C++ Class\headers;E:\Projects\Applications\Slyvina\Libs\Lunatic\Lua\Raw\src;E:\Projects\Applications\Slyvina\Libs\JCR6\Headers;</IncludePath>
     <OutDir>$(SolutionDir)$(Platform)\..\..\Release</OutDir>
     <LibraryPath>E:\Projects\Applications\Slyvina\Libs\JCR6\3rdParty\zlib\;E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2;$(LibraryPath)</LibraryPath>
+    <TargetName>SuperTed</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

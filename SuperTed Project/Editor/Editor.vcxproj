@@ -87,6 +87,7 @@
     <OutDir>$(SolutionDir)$(Platform)\..\..\Release</OutDir>
     <LibraryWPath>$(LibraryWPath)</LibraryWPath>
     <LibraryPath>E:\Projects\Applications\Slyvina\Libs\TQSL\SDL2;E:\Projects\Applications\Slyvina\Libs\JCR6\3rdParty\zlib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <TargetName>SuperTed_Editor</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
