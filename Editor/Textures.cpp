@@ -98,7 +98,7 @@ namespace Slyvina {
 			}
 
 			static int GetTexIndex() {
-				if (!prefixed(TexIndex->Text, "$")) TexIndex->Text = "$" + TexIndex->Text;
+				if (!Prefixed(TexIndex->Text, "$")) TexIndex->Text = "$" + TexIndex->Text;
 				return ToInt(TexIndex->Text);
 			}
 
