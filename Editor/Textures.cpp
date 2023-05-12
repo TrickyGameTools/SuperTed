@@ -68,17 +68,17 @@ namespace Slyvina {
 			void ScanForTextures() {
 				QCol->Doing("Scanning", TextureDir());
 				if (cBool(ProjectConfig, "AUTHOR", "TEXTURES")) {
-					auto alist{ FileList(TextureDir(),Directories) };
+					auto alist{ *FileList(TextureDir(),DirWant::Directories) };
 					for (size_t i = 0; i < alist.size(); ++i) {
 						QCol->Doing("=> Author", alist[i]);
 						auto f{ TextureDir() + "/" + alist[i] };
 						if (i == 0)
-							JTEX = jcr6::Dir(f);
+							JTEX = JCR6::JCR6_Dir(f);
 						else
-							JTEX.PatchFile(f);
+							JTEX->Patch(f);
 					}
 				} else {
-					JTEX = jcr6::Dir(TextureDir());
+					JTEX = JCR6::JCR6_Dir(TextureDir());
 				}
 			}
 
