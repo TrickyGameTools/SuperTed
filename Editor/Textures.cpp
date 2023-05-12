@@ -142,10 +142,10 @@ namespace Slyvina {
 				tex->AnimSpeed = ToInt(TexAnimSpeed->Text);
 				for (auto k : TexRadioReg["Type"]) if (k->checked) {
 					tex->Type = TexTypesReg[k->Caption];
-					ProjectConfig.Value(tag, "Type", k->Caption);
+					ProjectConfig->Value(tag, "Type", k->Caption);
 				}
 				for (auto k : TexFieldReg) {
-					ProjectConfig.Value(tag, k.first, k.second->Text);
+					ProjectConfig->Value(tag, k.first, k.second->Text);
 				}
 				_UI::GoToStage("Map");
 				RenewTextures();
