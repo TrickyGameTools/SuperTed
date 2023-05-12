@@ -357,8 +357,8 @@ namespace Slyvina {
 
 			static void MouseStatus() {
 				auto
-					MX{ TQSE_MouseX() },
-					MY{ TQSE_MouseY() },
+					MX{ TQSE::MouseX() },
+					MY{ TQSE::MouseY() },
 					GBX{ MapGroup->DrawX() },
 					GEX{ MapGroup->DrawX() + MapGroup->W() },
 					GBY{ MapGroup->DrawY() },
@@ -371,8 +371,8 @@ namespace Slyvina {
 						PlMX{ (int)floor(((MapX * Room()->GW()) + ScrollX) / Room()->GW()) },
 						PlMY{ (int)floor(((MapY * Room()->GH()) + ScrollY) / Room()->GH()) };
 
-					TQSG_Color(255, 255, 0);
-					TQSG_Rect(
+					SetColor(255, 255, 0);
+					Rect(
 						(MapX * Room()->GW()) + MapGroup->DrawX() - (ScrollX % Room()->GW()),
 						(MapY * Room()->GH()) + MapGroup->DrawY() - (ScrollY % Room()->GH()),
 						Room()->GW(),
