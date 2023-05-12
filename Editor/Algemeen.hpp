@@ -21,7 +21,7 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.05.11
+// Version: 23.05.12
 // EndLic
 #pragma once
 
@@ -55,7 +55,7 @@ namespace Slyvina {
 			class _UI {
 			private:
 				static bool _initialized;
-				static Slyvina::TQSG::TQSG_AutoImage Mouse;
+				static Slyvina::TQSG::TImage Mouse;
 				static std::map<std::string, UI> Stage;
 				std::string _Name{ "" };
 				static UI _Current;
