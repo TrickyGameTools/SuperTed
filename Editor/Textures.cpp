@@ -208,8 +208,8 @@ namespace Slyvina {
 				TexList->CBDraw = DrawTexList;
 				TexList->CBAction = SelectTexList;
 				TexList->ClearItems();
-				for (auto t : JTEX.Entries()) {
-					TexList->AddItem(t.second.Entry());
+				for (auto t : *JTEX->Entries()) {
+					TexList->AddItem(t->Name());
 				}
 
 
