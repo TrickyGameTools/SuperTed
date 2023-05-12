@@ -30,7 +30,7 @@
 
 namespace Slyvina {
 	namespace SuperTed {
-		namespace JCR6 {
+		namespace SupJCR6 {
 
 			Slyvina::JCR6::JT_Dir STED_Assets(std::string d);
 

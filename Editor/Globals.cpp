@@ -61,7 +61,7 @@ namespace Slyvina {
 				static auto ginie_file{ Dirry("$AppSupport$/SuperTed.ini") };
 				if (first || force) {
 					QCol->Doing("Reading", ginie_file);
-					GlobalConfig->FromFile(ginie_file);
+					GlobalConfig= LoadGINIE(ginie_file);
 					GlobalConfig->AutoSave = ginie_file;
 					first = false;
 				}

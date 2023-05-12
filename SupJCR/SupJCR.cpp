@@ -36,7 +36,7 @@ namespace Slyvina {
 	using namespace Units;
 
 	namespace SuperTed {
-		namespace JCR6 {
+		namespace SupJCR6 {
 
 			static bool Loaded{ false };
 			static Slyvina::JCR6::JT_Dir STEDA;

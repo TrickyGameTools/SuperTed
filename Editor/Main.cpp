@@ -52,6 +52,7 @@
 using namespace Slyvina;
 using namespace Units;
 using namespace Slyvina::SuperTed;
+using namespace Slyvina::SuperTed::SupJCR6;
 using namespace Editor;
 
 void CLIParse(int argcount, char** args) {
@@ -90,7 +91,7 @@ int main(int argcount, char** args) {
 	QCol->Doing("SuperTed Dir", MyDir);
 	QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));
 	QCol->Doing("Project Dir", ProjectsDir());
-	JAS = SuperTed::JCR6::STED_Assets(MyDir);
+	JAS = STED_Assets(MyDir);
 	CLIParse(argcount, args);
 	Slyvina::JCR6::JCR6_InitRealDir(); ScanForTextures();
 	LoadScript();

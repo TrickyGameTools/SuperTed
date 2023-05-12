@@ -41,6 +41,7 @@ using namespace Slyvina;
 using namespace Units;
 using namespace TQSG;
 using namespace Slyvina::SuperTed::Launcher;
+using namespace Slyvina::SuperTed::SupJCR6;
 
 int main(int ac, char** arg) {
 	MyDir = ChReplace(ExtractDir(arg[0]), '\\', '/');
@@ -54,7 +55,7 @@ int main(int ac, char** arg) {
 	QCol->Doing("SuperTed Dir", MyDir);
 	QCol->Doing("Called from", ChReplace(CurrentDir(), '\\', '/'));
 	QCol->Doing("Project Dir", ProjectsDir());
-	JAS = SuperTed::JCR6::STED_Assets(MyDir);
+	JAS = STED_Assets(MyDir);
 	QCol->Doing("Initizing", "SDL2 and TQSG"); 
 	Graphics(
 		WW(), WH(),
