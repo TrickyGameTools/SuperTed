@@ -38,6 +38,8 @@
 #include <SlyvString.hpp>
 #include <SlyvStream.hpp>
 #include <SlyvDir.hpp>
+#include <SlyvDirry.hpp>
+#include <SlyvVolumes.hpp>
 
 #include "Glob.hpp"
 #include "Run.hpp"
@@ -106,6 +108,18 @@ namespace Slyvina {
 			static void PCheck(j19gadget* j, j19action a) {
 				if (!haveprj) return;
 				haveprj->Visible = selPrj->ItemText() != "";
+				selMap->ClearItems();
+				edtMapButton->Enabled = false;
+				if (haveprj->Visible) {
+					auto PGINIE{ LoadUGINIE(ProjectsDir() + "/" + selPrj->ItemText() + "/" + selPrj->ItemText() + ".ini") };
+					auto MapDir{ AVolPath(Dirry(PGINIE->Value("Directory","Maps"))) }; QCol->Doing("Getting tree of ", MapDir);
+					auto mDir{ GetTree(MapDir) };
+					for (auto mFile : *mDir) selMap->AddItem(mFile);
+				}
+			}
+
+			static void MCheck(j19gadget* j, j19action a) {
+				edtMapButton->Enabled = selMap->ItemText() != "";
 			}
 
 
@@ -125,6 +139,11 @@ namespace Slyvina {
 			static void ActNew(j19gadget*, j19action a) {
 				//QCol->Error("Action for new map not yet implemented");
 				if (newMap->Text.size()) StartEditor(ChosenProject(), newMap->Text);
+			}
+
+			static void ActEdit(j19gadget*, j19action a) {
+				if (selMap->ItemText() != "")
+					StartEditor(ChosenProject(), selMap->ItemText());
 			}
 
 			static void TypeNew(j19gadget* j, j19action a) {
@@ -180,10 +199,12 @@ namespace Slyvina {
 				selMap = CreateListBox(5, 20, dw - 10, haveprj->H() - 60, haveprj);
 				selMap->FR = 0; selMap->FG = 180; selMap->FB = 255; selMap->FA = 255;
 				selMap->BR = 0; selMap->BG = 18; selMap->BB = 25; selMap->BA = 255;
+				selMap->CBAction = MCheck;
 				edtMapButton = CreateButton("Edit chosen map", dw, 0, haveprj);
 				edtMapButton->FR = 0; edtMapButton->FG = 180; edtMapButton->FB = 255; edtMapButton->FA = 255;
 				edtMapButton->BR = 0; edtMapButton->BG = 18; edtMapButton->BB = 25; edtMapButton->BA = 255;
 				edtMapButton->Enabled = false;
+				edtMapButton->CBAction = ActEdit;
 
 				auto newy{ haveprj->H() - 30 };
 				newMap = CreateTextfield(5, newy, dw - 10, haveprj);

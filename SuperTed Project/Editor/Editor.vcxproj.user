@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LocalDebuggerCommandArguments>-dc :84::101::115::116: :84::101::115::116::77::97::112:</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>-dc :84::104::101::32::76::101::103::101::110::100::32::79::102::32::84::104::101::32::75::120::115::97::114::108: :68::117::110::103::101::111::110:</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
