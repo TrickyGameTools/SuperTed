@@ -21,12 +21,14 @@
 // Please note that some references to data like pictures or audio, do not automatically
 // fall under this licenses. Mostly this is noted in the respective files.
 // 
-// Version: 23.05.12
+// Version: 23.08.01
 // EndLic
 
 #include <SlyvQCol.hpp>
 #include <SlyvString.hpp>
 #include <SlyvDir.hpp>
+#include <SlyvVolumes.hpp>
+#include <SlyvDirry.hpp>
 //#include <SlyvMath.hpp>
 
 #include "Globals.hpp"
@@ -78,7 +80,7 @@ namespace Slyvina {
 							JTEX->Patch(f);
 					}
 				} else {
-					JTEX = JCR6::JCR6_Dir(TextureDir());
+					JTEX = JCR6::JCR6_Dir( TextureDir());
 				}
 			}
 
@@ -208,7 +210,8 @@ namespace Slyvina {
 				TexList->CBDraw = DrawTexList;
 				TexList->CBAction = SelectTexList;
 				TexList->ClearItems();
-				for (auto t : *JTEX->Entries()) {
+				auto TTL{ JTEX->Entries() };
+				for (auto t : *TTL) {
 					TexList->AddItem(t->Name());
 				}
 
