@@ -48,9 +48,11 @@ namespace Slyvina {
 			static bool ShowGrid{ true };
 			static int ScrollX{ 0 };
 			static int ScrollY{ 0 };
-			static map<string, j19gadget*> DataTabs;
-			static map<TeddyRoomLayerType, j19gadget*> LayerTypeTabs;
-			static map<string, map<string, bool>> ShowLayerReg;
+			static map<string, j19gadget*> DataTabs{};
+			static map<TeddyRoomLayerType, j19gadget*> LayerTypeTabs{};
+			static map<string, map<string, bool>> ShowLayerReg{};
+			static bool MarkArea{ false };
+			static int AreaStartX{ 0 }, AreaStartY{ 0 };
 
 
 			static j19gadget
@@ -72,6 +74,11 @@ namespace Slyvina {
 				//* TexR{ nullptr },
 				//* TexG{ nullptr },
 				//* TexB{ nullptr },
+
+				* REdit{ nullptr },
+				* RScriptArea{ nullptr },
+				* RScriptSpot{ nullptr },
+
 
 				* ChkShowLayer{ nullptr },
 
@@ -127,19 +134,19 @@ namespace Slyvina {
 				DataPanel = CreatePanel(TQSG::ScreenWidth() - 400, 0, 400, MG->H(), MG);
 				DataPanel->BR = 25; DataPanel->BG = 18; DataPanel->BB = 0;
 				auto OptionGroup = CreateGroup(0, 0, DataPanel->W(), 50, DataPanel);
-				auto REdit = CreateRadioButton("Edit Map", 5, 5, OptionGroup->W() - 10, 20, OptionGroup);
+				REdit = CreateRadioButton("Edit Map", 5, 5, OptionGroup->W() - 10, 20, OptionGroup);
 				REdit->FR = 255;
 				REdit->FG = 180;
 				REdit->FB = 0;
 				REdit->checked = true;
 				REdit->CBAction = TabRadioAct;
-				auto RScriptSpot = CreateRadioButton("Script Spot", 5, 25, OptionGroup->W() - 10, 20, OptionGroup);
+				RScriptSpot = CreateRadioButton("Script Spot", 5, 25, OptionGroup->W() - 10, 20, OptionGroup);
 				RScriptSpot->FR = 255;
 				RScriptSpot->FG = 180;
 				RScriptSpot->FB = 0;
 				RScriptSpot->checked = false;
 				RScriptSpot->CBAction = TabRadioAct;
-				auto RScriptArea = CreateRadioButton("Script Area", 5, 45, OptionGroup->W() - 10, 20, OptionGroup);
+				RScriptArea = CreateRadioButton("Script Area", 5, 45, OptionGroup->W() - 10, 20, OptionGroup);
 				RScriptArea->FR = 255;
 				RScriptArea->FG = 180;
 				RScriptArea->FB = 0;
@@ -355,7 +362,19 @@ namespace Slyvina {
 
 			void AdeptStatus() { AdeptStatus("Welcome to SuperTed"); }
 
+			static bool EditingArea() {
+				if (RScriptSpot->checked) return false;
+				if (RScriptArea->checked) return true;
+				return Layer()->GetType() != TeddyRoomLayerType::Objects;
+			}
+			inline bool EditingSpot() { return !EditingArea(); }
+
 			static void MouseStatus() {
+				auto
+					ML{ TQSE::MouseHit(1) },
+					MR{ TQSE::MouseHit(2) },
+					MDL{ TQSE::MouseDown(1) },
+					MDR{ TQSE::MouseDown(2) };
 				auto
 					MX{ TQSE::MouseX() },
 					MY{ TQSE::MouseY() },
@@ -379,11 +398,47 @@ namespace Slyvina {
 						Room()->GH(),
 						true
 					);
-					s += TrSPrintF("  Map(%03d,%03d)", PlMX, PlMY);
+					s += TrSPrintF("  Map(%03d,%03d) ", PlMX, PlMY);
+					if (EditingArea()) {
+						s += "Area";
+						if (MarkArea) {
+							SetColorHSV((SDL_GetTicks() / 75) % 360, 1, 1);
+							SetAlpha(75);
+							// TODO: Rect
+							auto
+								SX{ std::min(AreaStartX,PlMX) },
+								SY{ std::min(AreaStartY,PlMY) },
+								EX{ std::max(AreaStartX,PlMX) },
+								EY{ std::max(AreaStartY,PlMY) };
+							if (EX >= SX) EX++;
+							if (EY >= SY) EY++;
+							ExRect(
+								((SX * Room()->GW()) - ScrollX)+MapGroup->DrawX(),
+								((SY * Room()->GH()) - ScrollY)+MapGroup->DrawY(),
+								((EX * Room()->GW()) - ScrollX) + MapGroup->DrawX(),
+								((EY * Room()->GH()) - ScrollY) + MapGroup->DrawY()
+							);
+							s += TrSPrintF(" Area(%03d,%03d) %03dx%03d", AreaStartX, AreaStartY, abs(PlMX - AreaStartX), abs(PlMY - AreaStartY));
+							SetAlpha(255);
+							if (!MDL) {
+								// TODO: Act when mousebutton is released!
+								MarkArea = false;
+							}
+						} else if (MDL) {
+							MarkArea = true;
+							AreaStartX = PlMX;
+							AreaStartY = PlMY;
+						}
+					} else {
+						MarkArea = false;
+						s += "Spot"; 
+					}
 
+				} else {
+					MarkArea = false;
 				}
 
-				s += TrSPrintF("\tScroll (%04d,%04d)", ScrollX, ScrollY);
+				s += TrSPrintF("\t\tScroll (%04d,%04d)", ScrollX, ScrollY);
 				AdeptStatus(s);
 			}
 
