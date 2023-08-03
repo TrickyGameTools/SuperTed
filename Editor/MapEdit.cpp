@@ -23,6 +23,7 @@
 // 
 // Version: 23.05.12
 // EndLic
+
 #include <SlyvQCol.hpp>
 #include <SlyvSTOI.hpp>
 
@@ -41,6 +42,7 @@ using namespace Slyvina;
 using namespace June19;
 using namespace Units;
 using namespace TQSG;
+using namespace TQSE;
 
 namespace Slyvina {
 	namespace SuperTed {
@@ -55,6 +57,8 @@ namespace Slyvina {
 			static map<string, map<string, bool>> ShowLayerReg{};
 			static bool MarkArea{ false };
 			static int AreaStartX{ 0 }, AreaStartY{ 0 };
+			static int SpotObjX{ 0 }, SpotObjY{ 0 };
+			static bool SpotObj{ false };
 
 
 			static j19gadget
@@ -80,9 +84,11 @@ namespace Slyvina {
 				* REdit{ nullptr },
 				* RScriptArea{ nullptr },
 				* RScriptSpot{ nullptr },
+				* SpotObjGroup{ nullptr },
 
-				* PlaceObjList{nullptr},
-				* SplotObjList{nullptr},
+				* PlaceObjList{ nullptr },
+				* SpotObjList{ nullptr },
+				* RemoveObjButton{ nullptr },
 
 
 				* ChkShowLayer{ nullptr },
@@ -111,6 +117,8 @@ namespace Slyvina {
 			static void B_AddTexture(j19gadget*, j19action) { GoTextures(); }
 			static void B_EditTexture(j19gadget*, j19action);
 			static void ActShowLayer(j19gadget* g, j19action) { ShowLayer(g->checked); }
+			static void DrawSpotObjButton(j19gadget* g, j19action);
+			static void ActRemoveObject(j19gadget*, j19action);
 #pragma endregion
 
 
@@ -241,6 +249,20 @@ namespace Slyvina {
 				PlaceObjList->FB = 255;
 				RenewObjects();
 
+				SpotObjGroup = CreateGroup(0, LTOBJMidY, LTOBJ->W(), LTOBJMidY, LTOBJ);
+				SpotObjList = CreateListBox(0, 0, LTOBJ->W(), LTOBJMidY, SpotObjGroup);
+				SpotObjList->SetForeground(0, 180, 255);
+				SpotObjList->SetBackground(0, 18, 25, 255);
+				auto EditO{ CreateButton("Modify",0,0,SpotObjGroup) };
+				EditO->SetForeground(255, 180, 0);
+				EditO->SetBackground(25, 180, 0);
+				EditO->CBDraw = DrawSpotObjButton;
+				auto RemoveO{ CreateButton("Remove",0,0,SpotObjGroup) }; RemoveObjButton = RemoveO;
+				RemoveO->SetForeground(255, 0, 0);
+				RemoveO->SetBackground(25, 0, 0);
+				RemoveO->CBAction = ActRemoveObject;
+				
+
 
 
 
@@ -352,6 +374,27 @@ namespace Slyvina {
 				GoTextures(i);
 			}
 
+			void DrawSpotObjButton(j19gadget* g, j19action) {
+				g->Y(g->GetParent()->H() - (g->H() + 5));
+				RemoveObjButton->Y(g->Y());
+				RemoveObjButton->X(g->X() + g->W() + 3);
+				SpotObjList->H(g->Y() - 3);
+				SpotObjGroup->Enabled = SpotObj;
+				auto SI{ SpotObjList->SelectedItem() >= 0 };
+				g->Enabled = SpotObj && SI;
+				RemoveObjButton->Enabled = SpotObj && SI;
+			}
+
+			void ActRemoveObject(j19gadget*, j19action) {				
+				auto OL{ Room()->MapObjects->Value(SpotObjX,SpotObjY)}; if (!OL) return;
+				auto Idx{ SpotObjList->SelectedItem() }; if (Idx < 0) return;
+				if (Yes(TrSPrintF("Do you really want to remove Object #%d from (%d,%d)?", Idx + 1, SpotObjX, SpotObjY))) {
+					OL->erase(OL->begin() + Idx);
+					SpotObj = false;
+					SpotObjList->ClearItems();
+				}
+			}
+
 #pragma endregion
 
 #pragma region CallBackFunctionPullDownMenus
@@ -402,7 +445,7 @@ namespace Slyvina {
 			static void MouseStatus() {
 				auto
 					ML{ TQSE::MouseHit(1) },
-					MR{ TQSE::MouseHit(2) },
+					MR{ TQSE::MouseHit(SDL_BUTTON_RIGHT) },
 					MDL{ TQSE::MouseDown(1) },
 					MDR{ TQSE::MouseDown(2) };
 				auto
@@ -493,9 +536,19 @@ namespace Slyvina {
 						if (RScriptSpot->checked && ML) {
 							TQSE::Notify("Sorry. Scripting not yet supported! Please come back later! Okay?");
 						} else if (Layer()->GetType() == TeddyRoomLayerType::Objects) {
+							//cout << "Left:" << ML << ";\tRight:" << ML << endl; // debug only
 							if (ML) {
 								if (GetChosenObjectIdx())
 									PlaceObject(PlMX, PlMY, GetChosenObjectIdx(), GetChosenObject());
+							}
+							if (MR) {
+								auto OL{ Room()->MapObjects->Value(PlMX,PlMY) };
+								SpotObj = OL && OL->size() > 0;
+								SpotObjX = PlMX;
+								SpotObjY = PlMY;
+								SpotObjList->ClearItems();
+								//cout << SpotObj << " -> (" << SpotObjX << "," << SpotObjY << ") S:" << OL->size() << "\n"; // debug only
+								for (auto O : *OL) SpotObjList->AddItem(O->Data["__kind"]);
 							}
 						}
 					}
