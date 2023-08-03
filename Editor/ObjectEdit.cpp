@@ -30,6 +30,8 @@ namespace Slyvina {
 				* Okay{ nullptr },
 				* Cancel{ nullptr };
 			static OES EditObjectStage{OES::None};
+			static int cx{ 0 }, cy{ 0 },cikind{ 0 };
+			static string cskind{""};
 
 			static void ButtonView(j19gadget*, j19action) {
 				Okay->Y(EditObjScreen->MainGadget->H() - Okay->H() - 10);
@@ -38,6 +40,21 @@ namespace Slyvina {
 			}
 
 			static void ActCancel(j19gadget*,j19action){ _UI::GoToStage("Map"); }
+
+			static void ActOkay(j19gadget*, j19action) {
+				auto o{ Room()->AddObject(cx, cy, cikind) };
+				o->Data["__kind"] = cskind;
+				auto Fields{ *ProjectConfig->List("OBJECTFIELDS",cskind) };
+				for (auto Field : Fields) {
+					if (ProjectConfig->BoolValue("OBJECTFIELDS", "CapsLock"))
+						o->Data[Upper(Field)] = ObjFields[Upper(cskind)][Upper(Field)]->Text;
+					else
+						o->Data[Field] = ObjFields[Upper(cskind)][Upper(Field)]->Text;
+				}
+				QCol->Doing("Object Created", TrSPrintF("%s (%d,%d)", cskind.c_str(), cx, cy));
+				_UI::GoToStage("Map");
+			}
+			
 
 
 			static void InitObjScreen(string skind) {
@@ -67,6 +84,7 @@ namespace Slyvina {
 				 Okay = CreateButton("Okay", 5, 0, EditObjScreen->MainGadget);
 				 Okay->SetBackground(0, 25, 0);
 				 Okay->SetForeground(0, 255, 0);
+				 Okay->CBAction = ActOkay;
 				 Cancel = CreateButton("Cancel", 5, 0, EditObjScreen->MainGadget);
 				 Cancel->SetBackground(25, 0, 0);
 				 Cancel->SetForeground(255, 0, 0);
@@ -83,6 +101,10 @@ namespace Slyvina {
 					QCol->Doing("Default", skind, "\t"); QCol->Green(Field + " "); QCol->Magenta(ProjectConfig->Value("ObjectFieldsDefault", ikind + "::" + Field)+"\n");
 					ObjFields[Upper(skind)][Upper(Field)]->Text = ProjectConfig->Value("ObjectFieldsDefault", skind + "::" + Field);
 				}
+				cikind = ikind;
+				cx = x;
+				cy = y;
+				cskind = skind;
 			}
 		}
 	}
