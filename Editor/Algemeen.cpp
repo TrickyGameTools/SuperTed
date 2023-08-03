@@ -116,7 +116,7 @@ namespace Slyvina {
 
 				// Main screen config
 				AdeptStatus();
-				j19gadget::SetDefaultFont(JD, "Fonts/DOS.jfbf");
+				j19gadget::SetDefaultFont(JD, "Fonts/DOS.jfbf");				
 				auto Scr = WorkScreen();
 				Scr->BR = 25;
 				Scr->BG = 18;

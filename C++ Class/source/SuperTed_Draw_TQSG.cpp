@@ -158,6 +158,7 @@ namespace Slyvina {
 				for (auto iy = 0; iy < TRoom->H(); iy++) {
 					for (auto ix = 0; ix < TRoom->W(); ix++) {
 						auto F{ TLay->Field->Value(ix,iy) };
+						//Chat("Drawing " << URoom << "::" << ULay << " (" << ix << "," << iy << ")" << " = "<<F);
 						auto
 							tx{ ix * TRoom->GW() },
 							ty{ iy * TRoom->GH() },
@@ -167,6 +168,7 @@ namespace Slyvina {
 						if (F && M->Textures[F] && M->Textures[F]->TexFile.size()) {
 							if (!MT->Tex.count(F)) {
 								auto TT{ M->Textures[F] };
+								Chat("Loading texture " << M->Textures[F] << " onto spot #" << F);
 								MT->Tex[F] = make_shared<_TTex>(TT->TexFile, TT->r, TT->g, TT->b, TT->alpha, TT->AnimSpeed, TT->Frame, TT->Type);
 							}
 

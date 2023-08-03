@@ -38,7 +38,9 @@ namespace Slyvina {
 			void RenewRooms();
 			void RenewLayers();
 			void RenewTextures();
+			void RenewObjects();
 			std::string CurrentRoom();
+			std::string CurrentLayer();
 			TeddyRoom Room(std::string groom = "");
 			TeddyRoomLayer Layer(std::string glayer = "");
 

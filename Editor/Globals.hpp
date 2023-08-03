@@ -35,6 +35,10 @@
 // JCR
 #include <JCR6_Core.hpp>
 
+// TQSL
+#include <TQSE.hpp>
+
+
 // SuperTed
 #include <SuperTed_Core.hpp>
 
@@ -72,6 +76,10 @@ namespace Slyvina {
 			enum class ThrowAct { None, InstantEnd, LogForRun };
 			extern ThrowAct PanicAct;
 			void Throw(std::string message, std::string TraceBack = "", ThrowAct A = ThrowAct::LogForRun);
+			inline void BThrow(std::string message, std::string TraceBack = "", ThrowAct A = ThrowAct::LogForRun) {
+				Slyvina::TQSE::Notify("ERROR!\n\n"+message);
+				Throw(message, TraceBack, A);
+			}
 			bool GetThrown();
 
 

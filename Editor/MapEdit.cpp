@@ -33,6 +33,7 @@
 #include "Globals.hpp"
 #include "Algemeen.hpp"
 #include "Textures.hpp"
+#include "ObjectEdit.hpp"
 
 
 using namespace Slyvina;
@@ -79,6 +80,9 @@ namespace Slyvina {
 				* RScriptArea{ nullptr },
 				* RScriptSpot{ nullptr },
 
+				* PlaceObjList{nullptr},
+				* SplotObjList{nullptr},
+
 
 				* ChkShowLayer{ nullptr },
 
@@ -89,7 +93,10 @@ namespace Slyvina {
 			static void GoDTap(string);
 			static bool ShowLayer();
 			static void ShowLayer(bool);
-			static void LayTabShow();
+			static void LayTabShow();			
+			static void GetChosenObject(int32& idx, std::string& tname);
+			inline int32 GetChosenObjectIdx() { int32 i; std::string n; GetChosenObject(i, n); return i; }
+			inline std::string GetChosenObject() { int32 i; std::string n; GetChosenObject(i, n); return n; }
 #pragma endregion
 
 #pragma region CallBackHeaders
@@ -219,6 +226,20 @@ namespace Slyvina {
 				ChkShowLayer->SetForeground(255, 180, 0, 255);
 				ChkShowLayer->checked = true;
 				ChkShowLayer->CBAction = ActShowLayer;
+
+
+				LayerTypeTabs[TeddyRoomLayerType::Objects] = CreateGroup(0, bly + 50, DataPanel->W() - 4, EMT->H() - (bly + 50), EMT);
+				auto LTOBJ = LayerTypeTabs[TeddyRoomLayerType::Objects];
+				auto LTOBJMidY = LTOBJ->H() / 2;
+				PlaceObjList = CreateListBox(0, 0, LTOBJ->W(), LTOBJMidY, LTOBJ);
+				PlaceObjList->BR = 18;
+				PlaceObjList->BG = 0;
+				PlaceObjList->BB = 25;
+				PlaceObjList->FR = 180;
+				PlaceObjList->FG = 0;
+				PlaceObjList->FB = 255;
+				RenewObjects();
+
 
 
 
@@ -369,6 +390,14 @@ namespace Slyvina {
 			}
 			inline bool EditingSpot() { return !EditingArea(); }
 
+			static void LayerAreaChange(int x1, int y1, int x2, int y2,int value) {
+				for (int y = std::min(y1, y2); y <= std::max(y1, y2); ++y) {
+					for (int x = std::min(x1, x2); x <= std::max(x1, x2); ++x) {
+						Layer()->Field->Value(x, y, value);
+					}
+				}
+			}
+
 			static void MouseStatus() {
 				auto
 					ML{ TQSE::MouseHit(1) },
@@ -413,8 +442,8 @@ namespace Slyvina {
 							if (EX >= SX) EX++;
 							if (EY >= SY) EY++;
 							ExRect(
-								((SX * Room()->GW()) - ScrollX)+MapGroup->DrawX(),
-								((SY * Room()->GH()) - ScrollY)+MapGroup->DrawY(),
+								((SX * Room()->GW()) - ScrollX) + MapGroup->DrawX(),
+								((SY * Room()->GH()) - ScrollY) + MapGroup->DrawY(),
 								((EX * Room()->GW()) - ScrollX) + MapGroup->DrawX(),
 								((EY * Room()->GH()) - ScrollY) + MapGroup->DrawY()
 							);
@@ -422,6 +451,34 @@ namespace Slyvina {
 							SetAlpha(255);
 							if (!MDL) {
 								// TODO: Act when mousebutton is released!
+								if (RScriptArea->checked) {
+									BThrow("Scripts for Area not yet supported","MouseStatus() function in MapEdit.cpp");
+								} else if (RScriptSpot->checked) {
+									BThrow("INTERNAL ERROR!\nPlease report\n\nArea checkup during spot scripting should NEVER be possible", "MouseStatus() function in MapEdit.cpp",ThrowAct::InstantEnd);
+								} else if (REdit->checked) {
+									switch (Layer()->GetType()) {
+									case TeddyRoomLayerType::Objects:
+										BThrow("INTERNAL ERROR!\nPlease report\n\nArea checkup during object placement should NEVER be possible", "MouseStatus() function in MapEdit.cpp", ThrowAct::InstantEnd);
+										return; // Safety precaution, but the editor should actually end instantly.
+									case TeddyRoomLayerType::Zones:
+										BThrow("Zone placement not yet coded!", "", ThrowAct::None);
+										break;
+									case TeddyRoomLayerType::Layer: {
+										auto Tex{ 0 };
+										auto TexItem{ TexList->ItemText() };
+										if (TexItem.size()) {
+											auto TIS{ Split(TexItem,' ') };
+											Tex = ToInt((*TIS)[0]);		
+											LayerAreaChange(PlMX, PlMY, AreaStartX, AreaStartY,Tex);
+										}
+
+										//BThrow("Layer placement not yet coded!", "", ThrowAct::None);
+									}break;
+									default:
+										BThrow(TrSPrintF("INTERNAL ERROR!\nPlease report\n\nUnknown layer type give (%d)",(int)Layer()->GetType()), "MouseStatus() function in MapEdit.cpp", ThrowAct::InstantEnd);
+										return;
+									}
+								}
 								MarkArea = false;
 							}
 						} else if (MDL) {
@@ -431,7 +488,15 @@ namespace Slyvina {
 						}
 					} else {
 						MarkArea = false;
-						s += "Spot"; 
+						s += "Spot"; 						
+						if (RScriptSpot->checked && ML) {
+							TQSE::Notify("Sorry. Scripting not yet supported! Please come back later! Okay?");
+						} else if (Layer()->GetType() == TeddyRoomLayerType::Objects) {
+							if (ML) {
+								if (GetChosenObjectIdx())
+									PlaceObject(PlMX, PlMY, GetChosenObjectIdx(), GetChosenObject());
+							}
+						}
 					}
 
 				} else {
@@ -442,7 +507,7 @@ namespace Slyvina {
 				AdeptStatus(s);
 			}
 
-			void DrawMap() {
+			void DrawMap() {				
 				if (ShowGrid) {
 					SetColor(100, 100, 100);
 					for (int y = MapGroup->DrawY() - (ScrollY % TheMap->Rooms[CurrentRoom()]->GH()); y < MapGroup->DrawY() + MapGroup->H(); y += TheMap->Rooms[CurrentRoom()]->GH())
@@ -450,8 +515,42 @@ namespace Slyvina {
 
 					for (int x = MapGroup->DrawX() - (ScrollX % TheMap->Rooms[CurrentRoom()]->GW()); x < MapGroup->DrawX() + MapGroup->W(); x += TheMap->Rooms[CurrentRoom()]->GW())
 						Line(x, 0, x, ScreenHeight());
+				}				
+				// Layers first
+				for (auto& l : Room()->Layers) {
+					switch (l.second->GetType()) {
+					case TeddyRoomLayerType::Layer:
+						if (ShowLayerReg[CurrentRoom()][l.first])
+							TheMap->DrawLayer(CurrentRoom(), l.first, ScrollX - MapGroup->DrawX(), ScrollY - MapGroup->DrawY());
+					}
 				}
-				// TODO: Draw layers and stuff in order
+				// Objects and zones now!
+				if (Layer()->GetType() == TeddyRoomLayerType::Zones) {
+					for (int zy = 0; zy < Layer()->H(); ++zy) {
+						for (int zx = 0; zx < Layer()->W(); ++zx) {
+							auto v{ Layer()->Field->Value(zx,zy) };
+							if (v) {
+								switch (v % 10) {
+								case 1: SetColor(0, 180, 255, 75); break;
+								case 2: SetColor(255, 0, 0, 75); break;
+								case 3: SetColor(0, 255, 0, 75); break;
+								case 4: SetColor(255, 180, 180, 75); break;
+								case 5: SetColor(255, 180, 0, 75); break;
+								case 6: SetColor(0, 0, 255, 75); break;
+								case 7: SetColor(125, 100, 0, 75); break;
+								case 8: SetColor(180, 255, 0, 75); break;
+								case 9: SetColor(0, 255, 255, 75); break;
+								case 0: SetColor(180, 0, 255, 0); break;
+								}
+								auto dx{ ((zx * Room()->GW()) + MapGroup->DrawX()) - ScrollX };
+								auto dy{ ((zy * Room()->GH()) + MapGroup->DrawY()) - ScrollY };
+								Rect(dx, dy, Room()->GW(), Room()->GH());
+								SetAlpha(255);
+								j19gadget::GetDefaultFont()->Text(TrSPrintF("%x", v), zx, zy);
+							}
+						}
+					}
+				}
 				MouseStatus();
 			}
 
@@ -479,6 +578,13 @@ namespace Slyvina {
 				TexList->SelectItem(0);
 			}
 
+			void RenewObjects() {
+				PlaceObjList->ClearItems();
+				auto lobj{ ProjectConfig->List("Layers","Objects") };
+				PlaceObjList->AddItem(TrSPrintF("$%08x <Nothing>", 0));
+				for (uint32 i = 0; i < lobj->size(); i++) PlaceObjList->AddItem(TrSPrintF("$%08x %s", i + 1, (*lobj)[i].c_str()));
+			}
+
 			std::string CurrentRoom() { return RoomList->ItemText(); }
 			std::string CurrentLayer() { return LayerList->ItemText(); }
 
@@ -503,6 +609,23 @@ namespace Slyvina {
 				for (auto l : LayerTypeTabs) l.second->Visible = l.first == Layer()->GetType();
 				if (Layer()->GetType() == TeddyRoomLayerType::Layer) {
 					ChkShowLayer->checked = ShowLayer();
+				}
+			}
+
+			void GetChosenObject(int32& idx, std::string& tname) {
+				auto IText = PlaceObjList->ItemText();
+				if (!IText.size()) {
+					idx = 0;
+					tname = "<nothing>";
+				} else {
+					auto p = FindFirst(IText, ' ');
+					if (p <= -1) {
+						idx = ToInt(IText);
+						tname = TrSPrintF("Object $%08x", idx);
+					} else {
+						idx = ToInt(Trim(IText.substr(0, p)));
+						tname = Trim(IText.substr(p + 1));
+					}
 				}
 			}
 

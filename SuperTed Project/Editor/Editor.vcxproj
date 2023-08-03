@@ -221,6 +221,7 @@
     <ClCompile Include="..\..\Editor\Main.cpp" />
     <ClCompile Include="..\..\Editor\MapEdit.cpp" />
     <ClCompile Include="..\..\Editor\MetaEdit.cpp" />
+    <ClCompile Include="..\..\Editor\ObjectEdit.cpp" />
     <ClCompile Include="..\..\Editor\Opslaan.cpp" />
     <ClCompile Include="..\..\Editor\RoomEdit.cpp" />
     <ClCompile Include="..\..\Editor\Run.cpp" />
@@ -271,6 +272,7 @@
     <ClInclude Include="..\..\Editor\Globals.hpp" />
     <ClInclude Include="..\..\Editor\MapEdit.hpp" />
     <ClInclude Include="..\..\Editor\MetaEdit.hpp" />
+    <ClInclude Include="..\..\Editor\ObjectEdit.hpp" />
     <ClInclude Include="..\..\Editor\Opslaan.hpp" />
     <ClInclude Include="..\..\Editor\RoomEdit.hpp" />
     <ClInclude Include="..\..\Editor\Run.hpp" />
