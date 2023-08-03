@@ -34,6 +34,7 @@
 #include "Algemeen.hpp"
 #include "Textures.hpp"
 #include "ObjectEdit.hpp"
+#include <SlyvMath.hpp>
 
 
 using namespace Slyvina;
@@ -524,7 +525,7 @@ namespace Slyvina {
 							TheMap->DrawLayer(CurrentRoom(), l.first, ScrollX - MapGroup->DrawX(), ScrollY - MapGroup->DrawY());
 					}
 				}
-				// Objects and zones now!
+				// Zones now!
 				if (Layer()->GetType() == TeddyRoomLayerType::Zones) {
 					for (int zy = 0; zy < Layer()->H(); ++zy) {
 						for (int zx = 0; zx < Layer()->W(); ++zx) {
@@ -548,6 +549,24 @@ namespace Slyvina {
 								SetAlpha(255);
 								j19gadget::GetDefaultFont()->Text(TrSPrintF("%x", v), zx, zy);
 							}
+						}
+					}
+				}
+				// Objects
+				for (int zy = 0; zy < Layer()->H(); ++zy) {
+					for (int zx = 0; zx < Layer()->W(); ++zx) {
+						auto L{ Room()->MapObjects->Value(zx,zy) };
+						if (L && L->size()) {
+							double c{ abs(DegSin((double)(SDL_GetTicks() / (double)20)) * (double)255) };
+							SetColor((byte)c, (byte)c, (byte)c, (byte)c);
+							auto dx{ ((zx * Room()->GW()) + MapGroup->DrawX()) - ScrollX };
+							auto dy{ ((zy * Room()->GH()) + MapGroup->DrawY()) - ScrollY };
+							//cout << "Obj (" << zx << "," << zy << ") => " << L->size() << " Draw@("<<dx<<","<<dy<<") ["<<c<<"]\n"; // debug only!
+							Rect(dx, dy, Room()->GW(), Room()->GH(), true);
+							SetColor(255, 255, 255, 255);
+							auto zo{ TrSPrintF("O:%d", L->size()) };
+							//cout << zo << "  ("<<zx<<","<<zy<<")"<< endl; // debug only
+							j19gadget::GetDefaultFont()->Text(zo, dx, dy);
 						}
 					}
 				}
